@@ -1,7 +1,7 @@
 {
   "schema": "duanjuhui.sources",
   "version": 1,
-  "minimumApp": "0.0.121+200",
+  "minimumApp": "0.0.123+202",
   "upstream": {
     "repository": "https://github.com/Predidit/KazumiRules",
     "commit": "2fa4d28659f94e1eb52e7a38d79b7b9a5dcd605b",
@@ -626,5 +626,6 @@
       "iOS dynamic extraction pending",
       "no live source image or media verification"
     ]
-  }
+  },
+  "layout": "sorani-lines"
 }

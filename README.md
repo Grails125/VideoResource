@@ -1,23 +1,25 @@
 # VideoResource
 
-短剧汇在线源仓库，适配客户端开发快照 **0.0.121+200** 及后续兼容版本。
+短剧汇在线源仓库。当前配置结构要求客户端 **0.0.123+202** 或后续兼容版本，旧200／201客户端不支持本次嵌套线路结构。
 
-在应用「设置 → 站源管理 → 添加 → 配置订阅」点击「VideoResource 源仓库」，或填写下面的 JSON 地址，获取后先检查导入预览再确认。订阅更新保留原有权限、配置修订校验和个人资料，不会自动解锁来源。
+所有版本只内置红果、B站和看剧AI，其余已支持的十个来源通过配置安装。外层稳定键直接使用 `hanxiaoquan`、`sorani` 等名称，无需 `native:` 或 `kazumi:` 前缀；`adapter` 和规则字段决定实际解析方式，旧前缀兼容映射到原身份。
 
-| 配置 | 内容 | 在线地址 |
-| --- | --- | --- |
-| 默认扩展包 | 3 个可选原生源及 16 个当前 Kazumi 规则 | [config.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/config.json) |
-| 当前 Kazumi 规则 | 16 个未废弃规则 | [kazumi.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/kazumi.json) |
-| 全量 Kazumi 规则 | 86 个规则，含 70 个默认禁用的废弃规则 | [all.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/all.json) |
-| 可选原生源 | 韩小圈、鬼片、青空，保留原来源 ID | [native.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/native.json) |
-| 废弃规则归档 | 70 个规则，默认禁用 | [archive.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/archive.json) |
+在应用「设置 → 站源管理 → 添加 → 配置订阅」点击「VideoResource 源仓库」，或填写以下地址，获取后检查预览再确认。保留原有来源ID、个人顺序、隐藏、权限、观看和下载资料，不会自动解锁来源。
 
-应用默认入口只保留红果、看剧AI、B站；以上配置需要用户主动导入。单份原始规则位于 `kazumi/`，客户端也接受原始 JSON、规则数组和 `kazumi://` 分享链接。`index.json` 是版本、数量和 SHA-256 索引，不是配置订阅入口。
+| 配置 | 内容 |
+| --- | --- |
+| [config.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/config.json) | 十个可选来源，青空内含16条当前规则线路 |
+| [native.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/native.json) | 与默认扩展包相同，保留原订阅地址 |
+| [kazumi.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/kazumi.json) | 仅青空配置及16条当前规则线路 |
+| [all.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/all.json) | 青空86条规则线路，70条上游废弃规则默认禁用 |
+| [archive.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/archive.json) | 青空70条废弃线路，全部禁用 |
 
-规则来自 [Predidit/KazumiRules](https://github.com/Predidit/KazumiRules/tree/2fa4d28659f94e1eb52e7a38d79b7b9a5dcd605b)，固定提交 `2fa4d28659f94e1eb52e7a38d79b7b9a5dcd605b`，遵循 [上游 MIT 许可](LICENSE.kazumi.txt)。原始规则字节与废弃标记保留。参考 [Kazumi](https://github.com/Predidit/Kazumi/tree/025dcb5c2f62db881382c72f191d08b49a9feb41) 的字段和协议独立实现客户端适配，不复制其 GPL 应用代码。
+十个可选来源为韩小圈、鬼片、青空、黄豆、剧果、野果、帝果、黄果视频、黄果AI、黄果旧版。来源仍需对应的客户端适配器，不承诺任意网站自动接入。
 
-86 份规则已通过结构解析和导入／回读合成检查；XPath/API 搜索、章节映射、静态播放解析和动态解析会话另有合成用例。**这不是 86 个站点实时可播放的证明。** 废弃域名、站点改版、登录、地区与站点自身授权限制仍可能使规则不可用。未请求或验证站源图片、视频。
+规则放在青空的 `lines` 内，不再显示为独立站源。青空首页沿用真实目录；关键词搜索调用已启用线路并保留规则身份。播放器选择备用线路时才核验完整同名作品与对应分集；同名歧义、相似标题或匿名分集不能强行映射，可先在青空搜索中选择具体结果。原始规则JSON、数组和 `kazumi://` 分享链接也会归入青空。
 
-动态解析接入 Android/Windows 临时浏览器，验证码需用户手动完成，不执行规则中的任意验证码脚本；实际设备行为待验证。iOS 动态解析未接入，HTTP 旧页面、blob/MSE 导出和 DRM 不属于当前支持范围。规则中的旧 useWebview/useNativePlayer/useLegacyParser/adBlocker 字段可回读，但不切换成 Kazumi 的平台实现或启用不可靠裁流算法。
+规则来自 [Predidit/KazumiRules](https://github.com/Predidit/KazumiRules/tree/2fa4d28659f94e1eb52e7a38d79b7b9a5dcd605b)，固定提交 `2fa4d28659f94e1eb52e7a38d79b7b9a5dcd605b`，遵循 [MIT许可](LICENSE.kazumi.txt)。`kazumi/` 内86份原始JSON字节、SHA-256和废弃标记不变；`index.json` 是元数据索引，不是订阅入口。参考 [Kazumi固定源码](https://github.com/Predidit/Kazumi/tree/025dcb5c2f62db881382c72f191d08b49a9feb41) 独立适配协议，不复制GPL应用代码。
 
-广告自动跳过由客户端根据明确 CUE-OUT/CUE-IN 区间及实际时间轴决定，无明确广告证据时不猜测跳过正片。本仓库不存用户账号、Cookie、私钥或设备配置；上游声明的公开客户端标识随原规则保留。
+已用合成数据检查结构、导入回读、搜索、分集、换线与临时浏览器重试，**不代表86个网站实时可播**。站点改版、失效域名、登录、地区及站点授权仍可能使规则失效。未请求站源图片或视频。Android／Windows动态解析使用隔离临时浏览器，验证码需用户手动完成，不执行任意验证码脚本；真实设备行为仍待验收，iOS动态解析未接入。旧useWebview／useNativePlayer／useLegacyParser／adBlocker字段可回读，不切换成Kazumi的平台实现或启用猜测裁流。
+
+广告自动跳过只使用明确广告标记及可靠时间轴，不猜测跳过正片。本仓库不存账号、Cookie、私钥或设备配置；上游公开客户端标识随原规则保留。
