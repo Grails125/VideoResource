@@ -1,0 +1,20 @@
+{
+  "cache_time": 7200,
+  "api_site": {
+    "native:hanxiaoquan": {
+      "name": "韩小圈",
+      "api": "https://www.jennyhow.com",
+      "adapter": "hanxiaoquan"
+    },
+    "native:guipian": {
+      "name": "鬼片",
+      "api": "https://guipianwu.com",
+      "adapter": "guipian"
+    },
+    "native:sorani": {
+      "name": "青空",
+      "api": "https://www.sorani.net",
+      "adapter": "sorani"
+    }
+  }
+}
