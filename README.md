@@ -34,12 +34,14 @@ https://raw.githubusercontent.com/Grails125/VideoResource/main/config.json
 ## 分类可选订阅
 
 | 配置 | 用途 |
-| [integrated.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/integrated.json) | 50项合集：原生10＋影视2原生适配1＋JSON28＋XML11，一次预览确认共同安装 |
 | --- | --- |
+| [integrated.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/integrated.json) | 50项合集：原生10＋影视2原生适配1＋JSON28＋XML11，一次预览确认共同安装 |
 | [jianpian.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/jianpian.json) | 影视2原生适配配置，需要支持`jianpian`适配器的新客户端；旧默认配置不追加此项 |
 | [tvbox-json.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/tvbox-json.json) | TVBox type1标准JSON采集接口 |
 | [tvbox-xml.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/tvbox-xml.json) | TVBox type0标准XML采集接口 |
 | [tvbox-pending.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/tvbox-pending.json) | 21项待验证配置，全部默认禁用；仅供手动选择，不作为快捷推荐 |
+
+短剧汇`0.0.148+227`源码为影视2增加发现页封面目录、推荐／电影／电视剧／动漫／综艺分类及连续分页，保留关键词搜索；旧`0.0.147+226`仍仅支持搜索。已安装的`jianpian`配置无需修改或重新导入，能力以客户端实际版本为准。荐片H5独立短剧入口使用另一套ID与播放消费者，当前未接入，不混用普通影视详情；`jianpian://`、荐片账号及付费授权仍未实现。目录元数据成功不代表图片或媒体实播已验收。
 
 TVBox配置固定参考`hebijunge/tvbox-config`提交`7d5a8d531cd8be71c1299c054a4234b0302b4a1c`，按API规范化去重，保留名称和语义查询参数。上游adult.json明确归类的API／主机排除；名称存在疑问的条目另按待确认保守排除，不将名称当作已确认内容证据。分类文件按接口协议组织，不代表影视题材分类或全部来源内容性质已核实。
 
