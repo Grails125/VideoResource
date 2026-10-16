@@ -17,7 +17,7 @@ https://raw.githubusercontent.com/Grails125/VideoResource/main/config.json
 | 配置                                                                                                     | 内容                                     |
 | -------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
 | [config.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/config.json)                 | 默认订阅，包含十个可选原生来源           |
-| [plugin20261016.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/plugin20261016.json) | 与默认配置内容相同，保留原生来源订阅地址 |
+| [plugin20261016.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/plugin20261016.json) | 2026-10-16新增配置 |
 
 配置中的 `cache_time` 为 `7200`；`api_site` 按来源稳定键组织，每个条目包含显示名称 `name`、站点地址 `api` 和客户端适配器标识 `adapter`。稳定键直接使用 `hanxiaoquan`、`sorani` 等名称。
 
