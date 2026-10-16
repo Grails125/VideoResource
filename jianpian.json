@@ -1,0 +1,10 @@
+{
+  "cache_time": 7200,
+  "api_site": {
+    "jianpian": {
+      "name": "影视2",
+      "api": "https://h5.jianpianips1.com",
+      "adapter": "jianpian"
+    }
+  }
+}

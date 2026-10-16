@@ -1,0 +1,49 @@
+{
+  "cache_time": 7200,
+  "api_site": {
+    "tvbox-9853db9402397d48e6d6cf30": {
+      "name": "[590ms|5] 暴风影视",
+      "api": "http://by.bfzyapi.com/api.php/provide/vod/at/xml"
+    },
+    "tvbox-767ef4a77523a900029905d7": {
+      "name": "🌕金鷹jyz",
+      "api": "https://jyzyapi.com/provide/vod/from/jinyingm3u8/at/xml"
+    },
+    "tvbox-50149246d7f0f4fbb5c6953d": {
+      "name": "[590ms|5] U酷影视",
+      "api": "https://api.ukuapi88.com/api.php/provide/vod/from/ukm3u8/at/xml"
+    },
+    "tvbox-58ed988fd29158a314961954": {
+      "name": "[590ms|5] 非凡影视",
+      "api": "https://api.ffzyapi.com/api.php/provide/vod/from/ffm3u8/at/xml"
+    },
+    "tvbox-f5f6fa9dd82a95a6a4880670": {
+      "name": "🏆百度db",
+      "api": "https://api.apibdzy.com/api.php/provide/vod/from/dbm3u8/at/xml"
+    },
+    "tvbox-bcd6f62ea15b88740bf1128e": {
+      "name": "[322ms|我的] OK资源",
+      "api": "http://api.okzyw.net/api.php/provide/vod/from/okm3u8/at/xml"
+    },
+    "tvbox-97e66eee0051b4370190faa1": {
+      "name": "🍀都司资源",
+      "api": "http://y.ds05.cn/zyapi.php"
+    },
+    "tvbox-1abe18a0cfa635c4b1a4c4a4": {
+      "name": "影视 • 索尼[直连]",
+      "api": "https://suoniapi.com/api.php/provide/vod/at/xml"
+    },
+    "tvbox-a2fcad8e3382cf496a443169": {
+      "name": "[322ms|我的] 牛牛资源",
+      "api": "https://api.niuniuzy.me/api.php/provide/vod/at/xml"
+    },
+    "tvbox-1bbd8bef53279ef8d72fcb1e": {
+      "name": "牛牛",
+      "api": "https://api.niuniuzy.me/api.php/provide/vod/from/nnm3u8/at/xml"
+    },
+    "tvbox-fa9d471e5171936cad0840e6": {
+      "name": "红牛云",
+      "api": "https://www.hongniuzy2.com/api.php/provide/vod/from/hnyun/at/xml"
+    }
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "cache_time": 7200,
+  "api_site": {
+    "tvbox-9f84c0615646e2dd1da56475": {
+      "name": "Clun📚在线·茅台 | 采集",
+      "api": "https://mtzy.me/api.php/provide/vod",
+      "disabled": true
+    },
+    "tvbox-975219d8af26d677fb17ebaa": {
+      "name": "[322ms|我的] 豆瓣采集2",
+      "api": "https://caiji.dbzy5.com/api.php/provide/vod/from/dbm3u8/at/json",
+      "disabled": true
+    },
+    "tvbox-d94c6e05ab018a5c7cf2682f": {
+      "name": "🎫官采┃[采集]",
+      "api": "https://cj.jusj.top/api.php/provide/vod?ac=list",
+      "disabled": true
+    },
+    "tvbox-d5597ba670618a92b45d158f": {
+      "name": "[137ms|zy] 🍊鸡坤",
+      "api": "https://jkunzyapi.com/api.php/provide/vod/at/json",
+      "disabled": true
+    },
+    "tvbox-81f906d22adf7f16cc9b14e5": {
+      "name": "ckzyCK资源",
+      "api": "https://ckzy.me/api.php/provide/vod",
+      "disabled": true
+    },
+    "tvbox-0cb9919474cc77e7ce42fcc3": {
+      "name": "iKun资源",
+      "api": "https://ikunzyapi.com/api.php/provide/vod?ac=list",
+      "disabled": true
+    },
+    "tvbox-669206549ca535a328f57e7b": {
+      "name": "魔都影视",
+      "api": "https://www.moduzy.com/api.php/provide/vod",
+      "disabled": true
+    },
+    "tvbox-3a207c730034f6b1dc003c00": {
+      "name": "💕jkun(直连)",
+      "api": "https://jkunzyapi.com/api.php/provide/vod?ac=list",
+      "disabled": true
+    },
+    "tvbox-696d3e1521a8c83a093b18ba": {
+      "name": "10-如意",
+      "api": "https://cj.rycjapi.com/api.php/provide/vod",
+      "disabled": true
+    },
+    "tvbox-77ba3e2e3d3c7a779ff4a0f6": {
+      "name": "1080资源库(切)",
+      "api": "https://api.1080zyku.com/inc/api_mac10.php",
+      "disabled": true
+    },
+    "tvbox-f87a5a4f84ba0188d3863cce": {
+      "name": "[590ms|5] 豆瓣影视",
+      "api": "https://caiji.dbzy5.com/api.php/provide/vod/from/dbm3u8/at/xml",
+      "disabled": true
+    },
+    "tvbox-dfff5f69688040087c4fa032": {
+      "name": "💞火速资源💞",
+      "api": "https://api.huosuapi.cc/api.php/provide/vod",
+      "disabled": true
+    },
+    "tvbox-3c1204193dd947c7b92257f3": {
+      "name": "IK",
+      "api": "https://ikunzyapi.com/api.php/provide/vod/from/ikm3u8",
+      "disabled": true
+    },
+    "tvbox-6ddcd1c9d3eca1b09daeffc2": {
+      "name": "❤优质资源",
+      "api": "https://api.1080zyku.com/inc/api_mac10.php?ac=list",
+      "disabled": true
+    },
+    "tvbox-14bb2fa3370824aaffd62d2c": {
+      "name": "如意｜采集",
+      "api": "https://cj.rycjapi.com/api.php/provide/vod/at/json",
+      "disabled": true
+    },
+    "tvbox-10ee9009c31aca814d2a6de8": {
+      "name": "影视 🔰 ikun[直连]",
+      "api": "https://ikunzyapi.com/api.php/provide/vod",
+      "disabled": true
+    },
+    "tvbox-b21f656b2bad47bf1565f37b": {
+      "name": "🌼如意┃影视🌼",
+      "api": "http://cj.rycjapi.com/api.php/provide/vod",
+      "disabled": true
+    },
+    "tvbox-7d6472ada2ff87784efca9ec": {
+      "name": "55-最大",
+      "api": "https://zuidazy.me/api.php/provide/vod",
+      "disabled": true
+    },
+    "tvbox-8bda40c7eb0a44ed19d69658": {
+      "name": "[590ms|5] 柚子影视",
+      "api": "https://api.yzzy-api.com/inc/api.php/provide/vod/at/xml",
+      "disabled": true
+    },
+    "tvbox-ea24ce5b4cd4e4894d597ba7": {
+      "name": "如意云",
+      "api": "https://cj.rycjapi.com/api.php/provide/vod/from/ruyi/at/xml",
+      "disabled": true
+    },
+    "tvbox-99e23eb5ef9bf1b2ee32b40f": {
+      "name": "🍊柚子资源",
+      "api": "https://api.yzzy-api.com/inc/api.php",
+      "disabled": true
+    }
+  }
+}
