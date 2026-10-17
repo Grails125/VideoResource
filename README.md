@@ -33,6 +33,8 @@ https://raw.githubusercontent.com/Grails125/VideoResource/main/config.json
 
 ## 分类可选订阅
 
+短剧汇`0.0.149+228`起直接内置影视2，默认位于B站、红果、影视之后，无需导入或来源解锁。下方荐片配置及合集中的相同条目继续兼容旧客户端；新客户端保留原配置记录并使用内置入口，不增加重复来源。请勿将荐片H5网页首页作为普通JSON／XML采集接口；旧误配会提示使用内置影视2，不放宽XML解析校验。
+
 | 配置 | 用途 |
 | --- | --- |
 | [integrated.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/integrated.json) | 50项合集：原生10＋影视2原生适配1＋JSON28＋XML11，一次预览确认共同安装 |
