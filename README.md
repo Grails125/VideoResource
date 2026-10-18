@@ -1,5 +1,19 @@
 # VideoResource
 
+## 原生适配资料（任务243）
+
+短剧汇 `0.0.163+242` 保留 B站、红果、影视、影视2、奈飞五个内置来源。其余11个原生适配器的名称、说明、入口、API、备用域、分类及线路资料由本仓库配置提供，客户端只保留适配方法、稳定来源身份和权限规则。当前新增资料发布在 `codex/tvbox-jianpian` 分支，不代表 `main` 已更新。
+
+- [native.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/native.json)：原10项可选原生配置，内容与本分支 `config.json` 一致。
+- [tencent.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/tencent.json)：独立腾讯原生配置。
+- [integrated.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/integrated.json)：原50项合集，保留原来源和稳定键，仅为其中10项可选原生配置补齐资料。
+
+每项 `api` 是站点根，`native.version` 为 `1`。可选字段包括独立 `apiUrl` / `cdnUrl`、按角色组织的 `endpoints`、备用 `mirrors`、`allowedHosts` / `allowedSuffixes`、旧输入 `aliases`、分类 `categories`、`playbackLine`、发现入口 `transitSites` / `seedWords`、`generatedMirrorSuffix`、`description` / `warning`。封面引用来源由 `endpoints.coverReferer` 与 `coverRefererHosts` 配套限定。角色路径与站点根不可混用；资料缺失不会回退到客户端内置旧地址。
+
+配置导入仅新增，稳定键冲突会保留现有项，重新订阅不会暗中覆盖用户配置。旧记录补充或更新 `native` 资料时，请使用明确编辑或规则更新流程；编辑原生项时将对应的 `native` 对象放入“站源资料 JSON”，不要把整份订阅文档放进去。旧客户端未传 `native` 的编辑保留已有资料，禁用状态和权限不会因补资料自动改变。
+
+`archive/source_repository/` 保存从客户端移出的94个历史文本文件，其中86个 Kazumi JSON。归档用于追溯，不是当前可安装的原生配置，也不恢复已退休的脚本执行器。配置迁移和文本解析检查不等于站源健康或实际媒体播放验收。
+
 短剧汇在线源配置仓库，提供十个可选原生来源的订阅配置。
 
 ## 使用方法

@@ -1,0 +1,721 @@
+{
+  "schema": "duanjuhui.sources",
+  "version": 1,
+  "minimumApp": "0.0.124+203",
+  "upstream": {
+    "repository": "https://github.com/Predidit/KazumiRules",
+    "commit": "2fa4d28659f94e1eb52e7a38d79b7b9a5dcd605b",
+    "license": "MIT",
+    "licenseFile": "LICENSE.kazumi.txt"
+  },
+  "referenceImplementation": "025dcb5c2f62db881382c72f191d08b49a9feb41",
+  "defaultConfig": "config.json",
+  "activeCount": 0,
+  "deprecatedCount": 70,
+  "rules": [
+    {
+      "file": "kazumi/1ANI.json",
+      "name": "1ANI",
+      "deprecated": true,
+      "sha256": "cc20ae6bd18cd6f7af846141a197896b91b60b988fdde4f78c4117d4fac5b70a",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/233dm.json",
+      "name": "233dm",
+      "deprecated": true,
+      "sha256": "eebf335411a4109d6ed53ed1b2b4b9f4fcbfe02e59cbf0b7893050eee9703626",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/295yhw.json",
+      "name": "295yhw",
+      "deprecated": true,
+      "sha256": "1391364c43544fa326524143f0119acee053ffafd346f65992df753f31920104",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/7sefun.json",
+      "name": "7sefun",
+      "deprecated": false,
+      "sha256": "43228a94fcae885185b7f29977a764d520bf6650d283f4abec428f8bc03344c3",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/80tv.json",
+      "name": "80tv",
+      "deprecated": true,
+      "sha256": "51068079335745af459b27029678d642efc823c1012b6bfa1aeec9782c0c17ce",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/9ciyuan.json",
+      "name": "9ciyuan",
+      "deprecated": true,
+      "sha256": "6ea22f740ac9be76328c9cbb828d489ffa48edf009262fcacd92940284b8739e",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/aafun.json",
+      "name": "aafun",
+      "deprecated": false,
+      "sha256": "4fe917a871f7e89af5ef7ceaa65df29150f245bae157a2112456a042e62e1e31",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/AGE.json",
+      "name": "AGE",
+      "deprecated": false,
+      "sha256": "a38a6662dcf542b50d0fe5d7d26c44594ab73042d8574ad9a067548a6b457076",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/akianime.json",
+      "name": "akianime",
+      "deprecated": false,
+      "sha256": "1c6f89f777b7434e2623d8e1e32d52a7668efab5b9512423084178f379cfeb11",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/AnFuns.json",
+      "name": "AnFuns",
+      "deprecated": true,
+      "sha256": "d5459f77e6db890ba6088250ae53cbdb167386653a395f36856419b70be17ac8",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/anime7.json",
+      "name": "anime7",
+      "deprecated": true,
+      "sha256": "4609158b19ea12acc541d2e2cbb197c98d11c9e3bb8d1458bfcb22deae9f3e9f",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/ant.json",
+      "name": "ant",
+      "deprecated": true,
+      "sha256": "5bcc85b995734c12f3f765df242a3e08ba6d102109994ac840558b5529c1b3b5",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/aowu.json",
+      "name": "aowu",
+      "deprecated": true,
+      "sha256": "b580b7503310ee476b09ca2f6431aae5a7d4401e2301a2d052e4d803e6e036f7",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/baimao.json",
+      "name": "baimao",
+      "deprecated": false,
+      "sha256": "785dd7c120634096470119f2b9bf7e3832ef09a2a4165d2f847b0956a16f9032",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/BF.json",
+      "name": "BF",
+      "deprecated": true,
+      "sha256": "b943d730f4b7902c33b908f6535d90930179e51fdffd13330b1c171b988e2f92",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/bobodm.json",
+      "name": "bobodm",
+      "deprecated": true,
+      "sha256": "65c1c36835612114bd7fd62431a9929893c88799a3b12aefbb2ed87b9a24cfd5",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/brovod.json",
+      "name": "brovod",
+      "deprecated": true,
+      "sha256": "8c7da9d3e44cdec03f649d07858f33520d5a4d8566a4a8eacea325d11e96705d",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/ciyuancheng.json",
+      "name": "ciyuancheng",
+      "deprecated": true,
+      "sha256": "e16d31c7b3216696aee10c8537ba02941d6a7dcc6254e36761613532f51997e1",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/clicli.json",
+      "name": "clicli",
+      "deprecated": true,
+      "sha256": "8fb71051469e7758094a475761638831c240a9afaf83ee2e9854cf1896f2c8d5",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/cyfz.json",
+      "name": "cyfz",
+      "deprecated": true,
+      "sha256": "d2182f14cb72f758e596ed5a8d2f51381e38e9993c65aea26f54e09e7098dc03",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/dalvdm.json",
+      "name": "dalvdm",
+      "deprecated": false,
+      "sha256": "801d35d93383059343edeed47d6194f5df1af07cc7b9e4724efe440b1708f74a",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/dlma.json",
+      "name": "dlma",
+      "deprecated": true,
+      "sha256": "f9406c9a0b26e9a9ac23ff7c02c4a8990c30c05e2ef244f14dea5825ebb9dd92",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/DM84.json",
+      "name": "DM84",
+      "deprecated": false,
+      "sha256": "4fed81571de82cc91fe23ce0034da9641cc64e91e2e8c432ddb2444f3419813c",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/dmand.json",
+      "name": "dmand",
+      "deprecated": true,
+      "sha256": "0332e4a8c57ec74e9e2e410af5436c95e4a28ff85245c09cd3b98d395a6d51ef",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/dmghg.json",
+      "name": "dmghg",
+      "deprecated": true,
+      "sha256": "09b5f733c5ed86b781233ce9a93443bca37cd7ff4007fdf79ee21dfd93691bb6",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/dms.json",
+      "name": "dms",
+      "deprecated": true,
+      "sha256": "c8bfc4f65425024912e0463083e14e24bd321c6b1c279a42c0e41bd5519ce192",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/eacg.json",
+      "name": "eacg",
+      "deprecated": true,
+      "sha256": "5ccc1e7a919b29c94b64277eaf867f62e9f91c3e432f852283913c7f3bdf2534",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/enlie.json",
+      "name": "enlie",
+      "deprecated": true,
+      "sha256": "b134957cc526db560e23c28b3d836d765854304721f95fe91b0e371649f911f0",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/ezdmw.json",
+      "name": "ezdmw",
+      "deprecated": false,
+      "sha256": "a6b0aace9a11d6c6fd41279922195a3334ce279a896b1295a9e7a1ebfebe1fd9",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/Fantuan.json",
+      "name": "Fantuan",
+      "deprecated": true,
+      "sha256": "4acb6297ff1cdcb89156c93165cb228b995c0263e1c9773ff7ad1d627dad6f64",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/fcdm.json",
+      "name": "fcdm",
+      "deprecated": true,
+      "sha256": "3416e11aa8890ca4674eb9cc7fc0cfca0ea40a9ef570ea782c8ecb5a28f0e85f",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/ffdm.json",
+      "name": "ffdm",
+      "deprecated": true,
+      "sha256": "f40736ba6225c8ef54c2f24046deef813dd2b574b226ba8a8835b209d4238693",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/FQDM.json",
+      "name": "FQDM",
+      "deprecated": true,
+      "sha256": "394ec3f45f2ba6721d85d115386d29b237229e3da2ea44639d50b4fa5effa600",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/giriGiriLove.json",
+      "name": "giriGiriLove",
+      "deprecated": false,
+      "sha256": "4d7b4a32c68fcbf27ac1b2dd719408dd960067e5c40599ba90a33c05e2a8e01b",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/gpjda.json",
+      "name": "gpjda",
+      "deprecated": true,
+      "sha256": "107765dc07b4f93f32ff67a39294466ed49e52f0267088d687311ddab37018a5",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/gugu3.json",
+      "name": "gugu3",
+      "deprecated": true,
+      "sha256": "25ec30d10be6bb64a22dbae99d7e13ef26697c19147536210cf3cbd79f18b12d",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/hfkzm.json",
+      "name": "hfkzm",
+      "deprecated": true,
+      "sha256": "0be562538efc6f5980d99192734598533b5f21b9482cd84a66726410ba869b40",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/HZDM.json",
+      "name": "HZDM",
+      "deprecated": true,
+      "sha256": "b49c71c4cf17f79bd376edfbb1a32935df3986701afb5d34f506057d2aa3627e",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/IF.json",
+      "name": "IF",
+      "deprecated": true,
+      "sha256": "222068a108a0bb54fbdd98aafb88e90e21b354528837f9eaa3df213335fc4b6d",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/jzsdm.json",
+      "name": "jzsdm",
+      "deprecated": true,
+      "sha256": "b671ff7f8092f30fa69a41f895f8d61b24258e33e05880adef7b65c62fc250f1",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/k8dm.json",
+      "name": "k8dm",
+      "deprecated": true,
+      "sha256": "b5476abef49933ebfbff9891efd20a264c1722784fa2afcf27d2cb57e1070734",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/kimani.json",
+      "name": "kimani",
+      "deprecated": true,
+      "sha256": "91dbce245ba8334f88f946d68aa2ec5bd8bf5363de746ccb3a5645950629fb7b",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/libvio.json",
+      "name": "libvio",
+      "deprecated": true,
+      "sha256": "8da6822fa353499bc72f76c0e72d71adf2c8f89d33db87fe755e9a34bae0e202",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/LMM.json",
+      "name": "LMM",
+      "deprecated": true,
+      "sha256": "25a311c72429da4954db919822be8c93768a88c0b0e0ba38b2cf0d5357b8eee3",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/mandao.json",
+      "name": "mandao",
+      "deprecated": true,
+      "sha256": "ca15f1fc61ebd77edbf0f7662bdc26ae5ddfb922568fd74920f78a9aaeb1dfaf",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/mcy.json",
+      "name": "mcy",
+      "deprecated": true,
+      "sha256": "b9cd55182ad84063f174bf4ae1e76ba57c9dd3b99e429462226930f4609d107e",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/mengfan.json",
+      "name": "mengfan",
+      "deprecated": true,
+      "sha256": "c506c27d68331c8dd85fb236890a5b6bacecd54b60d684e3df702d8a92138c20",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/mgnacg.json",
+      "name": "mgnacg",
+      "deprecated": false,
+      "sha256": "4db471b174b76a2952a89eac80c874c7a92c30b8ff114d69b03c9146313c881e",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/mifun.json",
+      "name": "mifun",
+      "deprecated": true,
+      "sha256": "2da45543071a0cf8f099db97877eec310eaa5f1efb98c30a9557de51ed34ca56",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/milimili.json",
+      "name": "milimili",
+      "deprecated": true,
+      "sha256": "02b445e14a28294c9103f20c6e1d718b730f6e867194c3fe325bd61ec30f158c",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/mitang.json",
+      "name": "mitang",
+      "deprecated": true,
+      "sha256": "2e4cdfbe6a7e8c9573faa8509694db92921bb39855477fa30ad0606133602108",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/mitaodm.json",
+      "name": "mitaodm",
+      "deprecated": true,
+      "sha256": "6910ec80e6dd3f235803ccf9d3ce64422c8661dfb434a526a66d46bab8ee412f",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/moefan.json",
+      "name": "moefan",
+      "deprecated": true,
+      "sha256": "995eecff3ec1da021b236c7091a01bd700e00d939f6064947fe9aafd9dd67212",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/moonci.json",
+      "name": "moonci",
+      "deprecated": false,
+      "sha256": "b742eb4b9c76754cf0ca80b28ebe355319d52d12a973a0b4d499ccf8d0eef6d0",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/MT.json",
+      "name": "MT",
+      "deprecated": true,
+      "sha256": "49bfc0a668c9687e99ae5d8a22d481ec7b10e25a61b0ddaa90130554a10f8cc2",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/mutefun.json",
+      "name": "mutefun",
+      "deprecated": false,
+      "sha256": "a23ab806ee6d9d853e38abe730fa7277851a19471db6bc6482b1fa2b97fc246f",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/mwcy.json",
+      "name": "mwcy",
+      "deprecated": true,
+      "sha256": "fbd84030078da61c110275cfeeac95411d41a5c4e8a47b23d0ebc69d74a74520",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/MXdm.json",
+      "name": "MXdm",
+      "deprecated": false,
+      "sha256": "61d0e4d505828125fadba4ef4b6cca6196d1dd8e2ef870b37817a885a2d4c4f7",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/nekodm.json",
+      "name": "nekodm",
+      "deprecated": true,
+      "sha256": "9afb744b9e27d99d6bb7530f28274dfa829bbaa84bfc08d63233bac1129ff956",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/NT.json",
+      "name": "NT",
+      "deprecated": true,
+      "sha256": "09e6f35e31da6c91ccdabfc6b08fbca1898efa73d121948e277bcabae63b2b19",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/nyafun.json",
+      "name": "nyafun",
+      "deprecated": true,
+      "sha256": "e81c02968203a5617eda48a1829fee38155e62354d6c213e58150294ebea5dea",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/omofun.json",
+      "name": "omofun",
+      "deprecated": true,
+      "sha256": "4e36dce71af91ecf1eaf783dde338b76846a34e77f570cc0fd2a682789e0178d",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/omofun03.json",
+      "name": "omofun03",
+      "deprecated": true,
+      "sha256": "5d0117224ac6f5e91a280589457ca7675c043f18d86cd6b58276fe20fab113d6",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/omofunz.json",
+      "name": "omofunz",
+      "deprecated": true,
+      "sha256": "fb09aefd0e1e022b49f6c2c81ce9e51efc6fb44243bebc0a9e0b3ef926aa13ec",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/pekolove.json",
+      "name": "pekolove",
+      "deprecated": true,
+      "sha256": "51a8bbd3c0dcc7e1bed7536e50e73020d3199d0eedb962624907c2ae9d80c211",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/qdm.json",
+      "name": "qdm",
+      "deprecated": true,
+      "sha256": "5a7ce376ea5e92d900ea4a3de5cd0149a36b1bee5e3276cb6fc164aeef8e896c",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/qifun.json",
+      "name": "qifun",
+      "deprecated": true,
+      "sha256": "43d04077baa582b079c1bd8f6136eaf938adb4d66c2b17a0599d2bc84f550d90",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/qimi.json",
+      "name": "qimi",
+      "deprecated": true,
+      "sha256": "b6cf41f7202b2376c0170fe7b8701f1794443901f585ece6b434c3fe29e1232b",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/qkan9.json",
+      "name": "qkan9",
+      "deprecated": true,
+      "sha256": "e23fd75f3b957928c93ba3f69f2602d505332f46762afa6ecfa220a0f97e7987",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/skr.json",
+      "name": "skr",
+      "deprecated": true,
+      "sha256": "aaf9a1e20296ee8ab3a80f131cdbc6881c9aa03a21d99a6b2d0ec08e427881b4",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/sorani.json",
+      "name": "sorani",
+      "deprecated": false,
+      "sha256": "6a07fd92f0262e48365996e0c6e21c5b246ff24024a22e0a6826e24a6b4e82cd",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/tt776b.json",
+      "name": "tt776b",
+      "deprecated": true,
+      "sha256": "0ba34dacf2848137f2ce4a10f1e7763fcee044c9ae336cdc50aaa65597de0861",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/TvTFun.json",
+      "name": "TvTFun",
+      "deprecated": true,
+      "sha256": "52f74e266fcb2d89351f5c37549106e4bc739824b347940a9a43dc32b33deed8",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/WYDM.json",
+      "name": "WYDM",
+      "deprecated": true,
+      "sha256": "b479633537904fd74a65f479f8c75b31ca3797a277f375d194fdf44c2640152c",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/xfdm.json",
+      "name": "xfdm",
+      "deprecated": true,
+      "sha256": "970cfb2ef5b2c577616b4b6c0bfe64f24d77c042737f6700f9d976565a633085",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/xfdmneo.json",
+      "name": "xfdmneo",
+      "deprecated": false,
+      "sha256": "fa84edbaba7024fb60abe70a754201e05faec9f69e6b8aef86fb5b47bc24e0c0",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/xfdmnext.json",
+      "name": "xfdmnext",
+      "deprecated": false,
+      "sha256": "44aedb07ba77c822835f2f3e09fe18eeda82ee46cb3c69624fe39cca0db5c176",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/xiaobao.json",
+      "name": "xiaobao",
+      "deprecated": true,
+      "sha256": "f08e6e46ac2acdf5809a14a5a8990387066ee4d10cddb73e2d5db2eaec742afc",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/xiapidm.json",
+      "name": "xiapidm",
+      "deprecated": true,
+      "sha256": "d307e52ca662bb87be125c25ac8bb991f569bffb049c716c89c539564a0b4331",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/xigua.json",
+      "name": "xigua",
+      "deprecated": true,
+      "sha256": "bb63515b4f595208c9780313499858ccd8d11c1190fc0c00c7e4504e188dacb2",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/XY.json",
+      "name": "XY",
+      "deprecated": true,
+      "sha256": "5053192bb3c1bc919712af464cdf31a14a81aab3e2b7fe9979f9f1224c9a81e5",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/yinghua.json",
+      "name": "yinghua",
+      "deprecated": true,
+      "sha256": "1a85d822e3ce7c86625556dc084752c010c40aabad472bdbdf8e7c24ee1c5e3e",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/yishijie.json",
+      "name": "yishijie",
+      "deprecated": true,
+      "sha256": "99c879eac4edc4a0b505e3d88bcdacf36cedd29104aab9e7eaa1c385dc0aa907",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/ylsp.json",
+      "name": "ylsp",
+      "deprecated": true,
+      "sha256": "4baea8ac7d20734344e606231b0138c8ec4c1a214dc079b85a28b54ff4accb03",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/ziyedm.json",
+      "name": "ziyedm",
+      "deprecated": true,
+      "sha256": "663e291bde9e4c7b5477b0bc2ed54ef2d46a91b267e4779e4e15ab64e89f815f",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    },
+    {
+      "file": "kazumi/zkk79.json",
+      "name": "zkk79",
+      "deprecated": true,
+      "sha256": "693d27db2294ab30985edaffa685e18abeaf6f4034e0cbb247bd922f5ecbb7e3",
+      "verification": "historical-structure-check; retired-not-connected",
+      "status": "archived-not-connected"
+    }
+  ],
+  "compatibility": {
+    "input": "all 86 pinned upstream rule documents",
+    "runtime": "XPath and API metadata; Android/Windows browser media extraction",
+    "limits": [
+      "deprecated rules stay disabled",
+      "manual verification only; no injected captchaScript",
+      "HTTPS browser media URLs only; no DRM or blob/MSE export",
+      "iOS dynamic extraction pending",
+      "no live source image or media verification"
+    ]
+  },
+  "layout": "native-only",
+  "retiredRuleCount": 86,
+  "upstreamActiveCount": 16,
+  "nativeSourceCount": 10,
+  "activeRuleCount": 0
+}

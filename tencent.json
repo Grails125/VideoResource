@@ -1,0 +1,35 @@
+{
+  "cache_time": 7200,
+  "api_site": {
+    "tencent": {
+      "name": "腾讯视频",
+      "api": "https://v.qq.com",
+      "adapter": "tencent",
+      "native": {
+        "version": 1,
+        "description": "频道 · 搜索 · 公开点播",
+        "warning": "公开频道、搜索与分集；仅播放接口实际授权的完整公开MP4/HLS，DRM与试看不作为正片播放",
+        "apiUrl": "https://pbaccess.video.qq.com",
+        "endpoints": {
+          "api": "https://pbaccess.video.qq.com",
+          "vinfoProxy": "https://vd6.l.qq.com/vinfo_proxy"
+        },
+        "aliases": [
+          "tencent",
+          "v.qq.com"
+        ],
+        "allowedHosts": [
+          "v.qq.com",
+          "pbaccess.video.qq.com",
+          "vd6.l.qq.com"
+        ],
+        "categories": [
+          {
+            "id": "choice",
+            "name": "默认"
+          }
+        ]
+      }
+    }
+  }
+}

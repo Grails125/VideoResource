@@ -4,52 +4,397 @@
     "hanxiaoquan": {
       "name": "韩小圈",
       "api": "https://www.jennyhow.com",
-      "adapter": "hanxiaoquan"
+      "adapter": "hanxiaoquan",
+      "native": {
+        "version": 1,
+        "description": "韩剧 · 韩国电影 · 综艺动漫",
+        "warning": "仅支持 jennyhow.com 或 www.jennyhow.com；播放链接仍按原站协议校验",
+        "aliases": [
+          "hanxiaoquan",
+          "jennyhow.com",
+          "www.jennyhow.com"
+        ],
+        "allowedHosts": [
+          "jennyhow.com",
+          "www.jennyhow.com"
+        ],
+        "categories": [
+          {
+            "id": "1",
+            "name": "最新韩剧"
+          },
+          {
+            "id": "2",
+            "name": "韩国电影"
+          },
+          {
+            "id": "3",
+            "name": "韩国综艺"
+          },
+          {
+            "id": "4",
+            "name": "韩国动漫"
+          }
+        ]
+      }
     },
     "guipian": {
       "name": "鬼片",
       "api": "https://guipianwu.com",
-      "adapter": "guipian"
+      "adapter": "guipian",
+      "native": {
+        "version": 1,
+        "description": "鬼片 · 电视剧 · 动漫",
+        "warning": "仅支持 guipianwu.com 或 www.guipianwu.com；播放链接仍按原站协议校验",
+        "aliases": [
+          "guipian",
+          "guipianwu.com",
+          "www.guipianwu.com"
+        ],
+        "allowedHosts": [
+          "guipianwu.com",
+          "www.guipianwu.com"
+        ],
+        "categories": [
+          {
+            "id": "3",
+            "name": "恐怖片"
+          },
+          {
+            "id": "6",
+            "name": "大陆鬼片"
+          },
+          {
+            "id": "7",
+            "name": "日韩鬼片"
+          },
+          {
+            "id": "8",
+            "name": "林正英鬼片"
+          },
+          {
+            "id": "9",
+            "name": "港台鬼片"
+          },
+          {
+            "id": "10",
+            "name": "泰国鬼片"
+          },
+          {
+            "id": "11",
+            "name": "欧美鬼片"
+          },
+          {
+            "id": "31",
+            "name": "剧情片"
+          },
+          {
+            "id": "12",
+            "name": "国产剧"
+          },
+          {
+            "id": "13",
+            "name": "美剧"
+          },
+          {
+            "id": "14",
+            "name": "韩剧"
+          },
+          {
+            "id": "15",
+            "name": "日剧"
+          },
+          {
+            "id": "16",
+            "name": "泰剧"
+          },
+          {
+            "id": "17",
+            "name": "港台剧"
+          },
+          {
+            "id": "18",
+            "name": "其他剧"
+          },
+          {
+            "id": "23",
+            "name": "日韩动漫"
+          },
+          {
+            "id": "24",
+            "name": "国产动漫"
+          },
+          {
+            "id": "25",
+            "name": "欧美动漫"
+          },
+          {
+            "id": "26",
+            "name": "港台动漫"
+          }
+        ]
+      }
     },
     "sorani": {
       "name": "青空",
       "api": "https://www.sorani.net",
-      "adapter": "sorani"
+      "adapter": "sorani",
+      "native": {
+        "version": 1,
+        "description": "番剧 · 剧场动画 · 特摄",
+        "apiUrl": "https://api.sorani.cc/sorani-cms/api",
+        "endpoints": {
+          "api": "https://api.sorani.cc/sorani-cms/api"
+        },
+        "aliases": [
+          "sorani",
+          "sorani.net",
+          "www.sorani.net",
+          "api.sorani.cc",
+          "sorani.cc"
+        ],
+        "allowedHosts": [
+          "sorani.net",
+          "www.sorani.net",
+          "api.sorani.cc",
+          "sorani.cc"
+        ],
+        "categories": [
+          {
+            "id": "1",
+            "name": "TV番剧"
+          },
+          {
+            "id": "2",
+            "name": "剧场动画"
+          },
+          {
+            "id": "5",
+            "name": "特摄剧场"
+          }
+        ],
+        "playbackLine": "anime_jp_m3u8"
+      }
     },
     "huangdou": {
       "name": "黄豆",
       "api": "https://tideember.cc",
-      "adapter": "huangdou"
+      "adapter": "huangdou",
+      "native": {
+        "version": 1,
+        "description": "精选短剧",
+        "mirrors": [
+          "https://xqjurgek.top"
+        ],
+        "aliases": [
+          "huangdou",
+          "tideember.cc",
+          "xqjurgek.top"
+        ],
+        "allowedHosts": [
+          "tideember.cc",
+          "xqjurgek.top"
+        ],
+        "playbackLine": "free"
+      }
     },
     "huangju": {
       "name": "剧果",
       "api": "https://huangju.net",
-      "adapter": "huangju"
+      "adapter": "huangju",
+      "native": {
+        "version": 1,
+        "description": "热门 · 最新 · 分类短剧",
+        "apiUrl": "https://api.huangju.net",
+        "endpoints": {
+          "api": "https://api.huangju.net"
+        },
+        "aliases": [
+          "huangju",
+          "huangju.net",
+          "api.huangju.net"
+        ],
+        "allowedHosts": [
+          "huangju.net",
+          "api.huangju.net"
+        ]
+      }
     },
     "yeguo": {
       "name": "野果",
       "api": "https://analyze.buxefaex.cc",
-      "adapter": "yeguo"
+      "adapter": "yeguo",
+      "native": {
+        "version": 1,
+        "description": "分类短剧 · 在线搜索",
+        "warning": "入口支持已识别的 buxefaex.cc、fzchosdi.cc、lwblvxvy.cc 活动域名；接口留空时从公开模块发现，入口失效时尝试已识别备用站点",
+        "aliases": [
+          "yeguo",
+          "ygdj7.com",
+          "www.ygdj7.com",
+          "ygdj15.com",
+          "www.ygdj15.com",
+          "analyze.buxefaex.cc",
+          "delta.ygrwdsgt.cc",
+          "yeguodj.com",
+          "www.yeguodj.com"
+        ],
+        "allowedSuffixes": [
+          ".buxefaex.cc",
+          ".fzchosdi.cc",
+          ".lwblvxvy.cc"
+        ],
+        "transitSites": [
+          "https://ygdj15.com",
+          "https://ygdj7.com"
+        ],
+        "seedWords": [
+          "analyze",
+          "ability",
+          "abandon"
+        ],
+        "allowedHosts": [
+          "ygdj7.com",
+          "www.ygdj7.com",
+          "ygdj15.com",
+          "www.ygdj15.com",
+          "analyze.buxefaex.cc",
+          "delta.ygrwdsgt.cc",
+          "yeguodj.com",
+          "www.yeguodj.com"
+        ]
+      }
     },
     "dsd": {
       "name": "帝果",
       "api": "https://www.dsd.com.se",
-      "adapter": "dsd"
+      "adapter": "dsd",
+      "native": {
+        "version": 1,
+        "description": "分类视频 · 在线搜索",
+        "aliases": [
+          "dsd",
+          "dsd.com.se",
+          "www.dsd.com.se"
+        ],
+        "allowedHosts": [
+          "dsd.com.se",
+          "www.dsd.com.se"
+        ]
+      }
     },
     "huangguo-video": {
       "name": "黄果视频",
       "api": "https://huangguo.video",
-      "adapter": "huangguo-video"
+      "adapter": "huangguo-video",
+      "native": {
+        "version": 1,
+        "description": "视频剧集",
+        "aliases": [
+          "huangguo-video",
+          "huangguo.video"
+        ],
+        "allowedHosts": [
+          "huangguo.video"
+        ]
+      }
     },
     "huangguoai": {
       "name": "黄果AI",
       "api": "https://huangguoai.com",
-      "adapter": "huangguoai"
+      "adapter": "huangguoai",
+      "native": {
+        "version": 1,
+        "description": "AI 短剧",
+        "mirrors": [
+          "https://huangguoai.com",
+          "https://ttvoij.ediayikma.cc",
+          "https://thu.ediayikma.cc",
+          "https://pku.ediayikma.cc",
+          "https://fdu.ediayikma.cc",
+          "https://thu.agdkczeyx.cc"
+        ],
+        "aliases": [
+          "huangguo",
+          "huangguoai",
+          "huangguoai.com"
+        ],
+        "allowedSuffixes": [
+          ".ediayikma.cc",
+          ".agdkczeyx.cc"
+        ],
+        "allowedHosts": [
+          "huangguoai.com",
+          "ttvoij.ediayikma.cc",
+          "thu.ediayikma.cc",
+          "pku.ediayikma.cc",
+          "fdu.ediayikma.cc",
+          "thu.agdkczeyx.cc"
+        ],
+        "categories": [
+          {
+            "id": "ai-duanju",
+            "name": "AI 短剧"
+          },
+          {
+            "id": "ai-manju",
+            "name": "AI 漫剧"
+          },
+          {
+            "id": "ai-huanlian",
+            "name": "AI 换脸"
+          },
+          {
+            "id": "ai-mogai",
+            "name": "AI 魔改"
+          }
+        ],
+        "generatedMirrorSuffix": "ediayikma.cc"
+      }
     },
     "cloudfront": {
       "name": "黄果旧版",
       "api": "https://d2pypzndaqisk.cloudfront.net",
-      "adapter": "cloudfront"
+      "adapter": "cloudfront",
+      "native": {
+        "version": 1,
+        "description": "旧 API 剧库",
+        "warning": "旧版使用固定入口与接口发现协议，地址不可修改",
+        "apiUrl": "https://dr6skssi3nxbk.cloudfront.net",
+        "endpoints": {
+          "api": "https://dr6skssi3nxbk.cloudfront.net",
+          "coverPrimary": "https://pic.zdmhyg.cn",
+          "coverFallback": "https://zzzznnn.lkkwip.cn",
+          "apiBackup1": "https://d18ka9rqpfd3lo.cloudfront.net",
+          "apiBackup2": "https://d37n0wjehmw08f.cloudfront.net",
+          "coverReferer": "https://huangguoai.com"
+        },
+        "cdnUrl": "https://sjljsla.lkkwip.cn",
+        "aliases": [
+          "cloudfront"
+        ],
+        "allowedSuffixes": [
+          ".cloudfront.net",
+          ".tuafjz.cn",
+          ".zdmhyg.cn",
+          ".lkkwip.cn",
+          ".bnfuiu.cn"
+        ],
+        "allowedHosts": [
+          "dr6skssi3nxbk.cloudfront.net",
+          "pic.zdmhyg.cn",
+          "zzzznnn.lkkwip.cn",
+          "d18ka9rqpfd3lo.cloudfront.net",
+          "d37n0wjehmw08f.cloudfront.net",
+          "sjljsla.lkkwip.cn",
+          "d2pypzndaqisk.cloudfront.net",
+          "pic.tuafjz.cn"
+        ],
+        "coverRefererHosts": [
+          ".zdmhyg.cn",
+          "pic.tuafjz.cn"
+        ]
+      }
     }
   }
 }
