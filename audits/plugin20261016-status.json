@@ -1,0 +1,4792 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-10-18T17:55:09.496539+00:00",
+  "input_sha256": "4b0bb365c55187c470329061e0ea40862d45bee51cb320886513dd7f44c295bd",
+  "scope": {
+    "source_count": 93,
+    "maximum_parallel_sources": 3,
+    "public_sample_maximum_per_source": 1,
+    "full_film": false,
+    "images": "HEAD metadata only; image body prohibited",
+    "user_data": false,
+    "proxy_mode": "isolated auto; system settings unchanged"
+  },
+  "initial": {
+    "elapsed_seconds": 470.752,
+    "requests": 494,
+    "metadata_bytes": 8763412,
+    "media_bytes": 23362083,
+    "image_body_bytes": 0,
+    "decoder_confirmed": 18,
+    "status_counts": {
+      "decoder_not_confirmed": 3,
+      "eof": 5,
+      "consumer_rejected": 6,
+      "sample_complete": 18,
+      "invalid_api_format": 7,
+      "connection": 1,
+      "http_404": 3,
+      "tls_certificate": 3,
+      "timeout": 9,
+      "http_403": 13,
+      "explicit_adult_reference_not_sampled": 10,
+      "explicit_adult_category_not_sampled": 15
+    },
+    "sources": [
+      {
+        "index": 0,
+        "key": "iqiyizyapi.com",
+        "name": "🎬爱奇艺",
+        "stage": "complete",
+        "status": "decoder_not_confirmed",
+        "seconds": 40.1649309,
+        "requests": 9,
+        "metadataBytes": 167226,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 4,
+        "routeCount": 1,
+        "categories": {
+          "count": 43,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "",
+          "decodedFrames": 0,
+          "errorEvents": 684,
+          "height": 0,
+          "loaded": false,
+          "maxPosition": 0,
+          "ok": false,
+          "seconds": 15.046,
+          "video": "",
+          "width": 0
+        },
+        "download": {
+          "bytes": 0,
+          "completedFragments": 0,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 1,
+          "prefixFragments": 1,
+          "status": "consumer_rejected"
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:19:07.3910504+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 1,
+        "key": "dbzy.tv",
+        "name": "🎬豆瓣资源",
+        "stage": "catalog",
+        "status": "eof",
+        "seconds": 0.2938136,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "eof"
+        },
+        "checked_at": "2026-10-19T01:26:01.3139366+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 2,
+        "key": "tyyszy.com",
+        "name": "🎬天涯影视",
+        "stage": "prepare",
+        "status": "consumer_rejected",
+        "seconds": 10.1816606,
+        "requests": 6,
+        "metadataBytes": 165917,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 8,
+        "categories": {
+          "count": 39,
+          "status": ""
+        },
+        "search": {
+          "count": 0,
+          "status": "invalid_api_format"
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:25:52.1369272+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 3,
+        "key": "mtzy.me",
+        "name": "🎬茅台资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 17.7808455,
+        "requests": 16,
+        "metadataBytes": 768717,
+        "mediaBytes": 1555552,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 1,
+        "routeCount": 1,
+        "categories": {
+          "count": 54,
+          "status": ""
+        },
+        "search": {
+          "count": 0,
+          "status": "consumer_rejected"
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 6,
+          "errorEvents": 0,
+          "height": 1080,
+          "loaded": true,
+          "maxPosition": 0.16,
+          "ok": true,
+          "seconds": 1.404,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 1920
+        },
+        "download": {
+          "bytes": 777776,
+          "completedFragments": 1,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 2,
+          "prefixFragments": 1,
+          "status": ""
+        },
+        "coverHeadError": "eof",
+        "checked_at": "2026-10-19T01:25:18.5134869+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 4,
+        "key": "wolongzyw.com",
+        "name": "🎬卧龙资源",
+        "stage": "catalog",
+        "status": "invalid_api_format",
+        "seconds": 7.1503473,
+        "requests": 2,
+        "metadataBytes": 13980,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "invalid_api_format"
+        },
+        "checked_at": "2026-10-19T01:25:41.9453963+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 5,
+        "key": "ikunzy.com",
+        "name": "🎬iKun资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 32.0486464,
+        "requests": 15,
+        "metadataBytes": 333050,
+        "mediaBytes": 252383,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 6,
+        "routeCount": 1,
+        "categories": {
+          "count": 53,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 6,
+          "errorEvents": 0,
+          "height": 800,
+          "loaded": true,
+          "maxPosition": 0.16,
+          "ok": true,
+          "seconds": 8.254,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 1920
+        },
+        "download": {
+          "bytes": 77268,
+          "completedFragments": 1,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 1,
+          "prefixFragments": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:25:44.7963945+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 6,
+        "key": "dyttzyapi.com",
+        "name": "🎬电影天堂",
+        "stage": "catalog",
+        "status": "connection",
+        "seconds": 11.9330573,
+        "requests": 2,
+        "metadataBytes": 73408,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 32,
+          "status": ""
+        },
+        "checked_at": "2026-10-19T01:25:04.7292276+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 7,
+        "key": "www.maoyanzy.com",
+        "name": "🎬猫眼资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 22.5358377,
+        "requests": 16,
+        "metadataBytes": 271499,
+        "mediaBytes": 303872,
+        "imagesBodyBytes": 0,
+        "catalogCount": 30,
+        "chapterCount": 10,
+        "routeCount": 1,
+        "categories": {
+          "count": 53,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 3,
+          "errorEvents": 0,
+          "height": 432,
+          "loaded": true,
+          "maxPosition": 0.16,
+          "ok": true,
+          "seconds": 1.289,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 864
+        },
+        "download": {
+          "bytes": 151936,
+          "completedFragments": 1,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 2,
+          "prefixFragments": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:26:14.6907789+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 8,
+        "key": "cj.lzcaiji.com",
+        "name": "🎬量子资源",
+        "stage": "prepare",
+        "status": "http_404",
+        "seconds": 17.1951549,
+        "requests": 7,
+        "metadataBytes": 380783,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 2,
+        "categories": {
+          "count": 44,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:26:07.4594214+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 9,
+        "key": "360zy.com",
+        "name": "🎬360资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 23.6072637,
+        "requests": 16,
+        "metadataBytes": 645699,
+        "mediaBytes": 2125568,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 1,
+        "routeCount": 1,
+        "categories": {
+          "count": 0,
+          "status": "timeout"
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 6,
+          "errorEvents": 0,
+          "height": 1080,
+          "loaded": true,
+          "maxPosition": 0.16,
+          "ok": true,
+          "seconds": 1.691,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 1920
+        },
+        "download": {
+          "bytes": 1062784,
+          "completedFragments": 1,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 2,
+          "prefixFragments": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:26:01.0053401+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 10,
+        "key": "jszyapi.com",
+        "name": "🎬极速资源",
+        "stage": "prepare",
+        "status": "tls_certificate",
+        "seconds": 16.2717027,
+        "requests": 7,
+        "metadataBytes": 185892,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 2,
+        "categories": {
+          "count": 48,
+          "status": ""
+        },
+        "search": {
+          "count": 20,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:25:34.7907411+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 11,
+        "key": "www.moduzy.net",
+        "name": "🎬魔都资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 32.6458671,
+        "requests": 15,
+        "metadataBytes": 503477,
+        "mediaBytes": 1031264,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 3,
+        "routeCount": 1,
+        "categories": {
+          "count": 42,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 6,
+          "errorEvents": 0,
+          "height": 1080,
+          "loaded": true,
+          "maxPosition": 0.16,
+          "ok": true,
+          "seconds": 8.694,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 1920
+        },
+        "download": {
+          "bytes": 491056,
+          "completedFragments": 1,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 1,
+          "prefixFragments": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:25:37.3846724+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 12,
+        "key": "ffzyapi.com",
+        "name": "🎬非凡资源",
+        "stage": "prepare",
+        "status": "timeout",
+        "seconds": 18.715517900000002,
+        "requests": 7,
+        "metadataBytes": 89375,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 2,
+        "categories": {
+          "count": 31,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:23:50.8156599+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 13,
+        "key": "bfzy.tv",
+        "name": "🎬暴风资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 21.5516156,
+        "requests": 12,
+        "metadataBytes": 195007,
+        "mediaBytes": 120536,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 1,
+        "routeCount": 1,
+        "categories": {
+          "count": 49,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 7,
+          "errorEvents": 0,
+          "height": 960,
+          "loaded": true,
+          "maxPosition": 0.183,
+          "ok": true,
+          "seconds": 1.873,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 1920
+        },
+        "download": {
+          "bytes": 52076,
+          "completedFragments": 1,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 1,
+          "prefixFragments": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:25:00.7200588+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 14,
+        "key": "zuida.xyz",
+        "name": "🎬最大资源",
+        "stage": "prepare",
+        "status": "http_403",
+        "seconds": 18.9599938,
+        "requests": 7,
+        "metadataBytes": 286224,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 492,
+        "categories": {
+          "count": 59,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:24:52.7890006+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 15,
+        "key": "wujinzy.me",
+        "name": "🎬无尽资源",
+        "stage": "prepare",
+        "status": "http_403",
+        "seconds": 18.466834,
+        "requests": 7,
+        "metadataBytes": 47554,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 1,
+        "categories": {
+          "count": 63,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:24:45.5788091+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 16,
+        "key": "xinlangapi.com",
+        "name": "🎬新浪资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 35.0099281,
+        "requests": 13,
+        "metadataBytes": 151743,
+        "mediaBytes": 147087,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 2,
+        "routeCount": 1,
+        "categories": {
+          "count": 48,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 7,
+          "errorEvents": 0,
+          "height": 1080,
+          "loaded": true,
+          "maxPosition": 0.189889,
+          "ok": true,
+          "seconds": 8.423,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 1920
+        },
+        "download": {
+          "bytes": 0,
+          "completedFragments": 0,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 2,
+          "prefixFragments": 1,
+          "status": "consumer_rejected"
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:24:33.8224717+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 17,
+        "key": "api.wwzy.tv",
+        "name": "🎬旺旺资源",
+        "stage": "catalog",
+        "status": "invalid_api_format",
+        "seconds": 12.887916,
+        "requests": 4,
+        "metadataBytes": 38041,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "timeout"
+        },
+        "checked_at": "2026-10-19T01:23:50.8188911+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 18,
+        "key": "www.subozy.com",
+        "name": "🎬速播资源",
+        "stage": "complete",
+        "status": "decoder_not_confirmed",
+        "seconds": 43.2419933,
+        "requests": 14,
+        "metadataBytes": 151378,
+        "mediaBytes": 1309981,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 2,
+        "routeCount": 1,
+        "categories": {
+          "count": 44,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "",
+          "decodedFrames": 0,
+          "errorEvents": 3,
+          "height": 0,
+          "loaded": false,
+          "maxPosition": 0,
+          "ok": false,
+          "seconds": 15.015,
+          "video": "",
+          "width": 0
+        },
+        "download": {
+          "bytes": 0,
+          "completedFragments": 0,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 2,
+          "prefixFragments": 1,
+          "status": "consumer_rejected"
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:24:15.3032018+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 19,
+        "key": "jinyingzy.com",
+        "name": "🎬金鹰资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 27.1490146,
+        "requests": 13,
+        "metadataBytes": 147320,
+        "mediaBytes": 1015069,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 2,
+        "routeCount": 1,
+        "categories": {
+          "count": 44,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 7,
+          "errorEvents": 0,
+          "height": 1080,
+          "loaded": true,
+          "maxPosition": 0.189889,
+          "ok": true,
+          "seconds": 6.651,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 1920
+        },
+        "download": {
+          "bytes": 0,
+          "completedFragments": 0,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 2,
+          "prefixFragments": 1,
+          "status": "consumer_rejected"
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:25:12.7432646+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 20,
+        "key": "p2100.net",
+        "name": "🎬飘零资源",
+        "stage": "catalog",
+        "status": "http_403",
+        "seconds": 7.1103068,
+        "requests": 1,
+        "metadataBytes": 5814,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "http_403"
+        },
+        "checked_at": "2026-10-19T01:24:39.1631506+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 21,
+        "key": "api.ukuapi88.com",
+        "name": "🎬U酷资源",
+        "stage": "prepare",
+        "status": "http_403",
+        "seconds": 16.7333617,
+        "requests": 7,
+        "metadataBytes": 86772,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 3,
+        "categories": {
+          "count": 29,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:24:32.0468711+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 22,
+        "key": "api.guangsuapi.com",
+        "name": "🎬光速资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 36.2735424,
+        "requests": 16,
+        "metadataBytes": 189119,
+        "mediaBytes": 1711791,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 2,
+        "routeCount": 1,
+        "categories": {
+          "count": 44,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 7,
+          "errorEvents": 0,
+          "height": 1080,
+          "loaded": true,
+          "maxPosition": 0.189889,
+          "ok": true,
+          "seconds": 7.458,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 1920
+        },
+        "download": {
+          "bytes": 1581104,
+          "completedFragments": 1,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 2,
+          "prefixFragments": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:24:27.1046164+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 23,
+        "key": "www.hongniuzy.com",
+        "name": "🎬红牛资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 27.9577465,
+        "requests": 13,
+        "metadataBytes": 149260,
+        "mediaBytes": 933149,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 2,
+        "routeCount": 1,
+        "categories": {
+          "count": 44,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 7,
+          "errorEvents": 0,
+          "height": 1080,
+          "loaded": true,
+          "maxPosition": 0.189889,
+          "ok": true,
+          "seconds": 7.072,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 1920
+        },
+        "download": {
+          "bytes": 0,
+          "completedFragments": 0,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 2,
+          "prefixFragments": 1,
+          "status": "consumer_rejected"
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:23:58.8057239+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 24,
+        "key": "caiji.moduapi.cc",
+        "name": "🎬魔都动漫",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 30.9816784,
+        "requests": 16,
+        "metadataBytes": 503477,
+        "mediaBytes": 1391336,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 3,
+        "routeCount": 1,
+        "categories": {
+          "count": 42,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 6,
+          "errorEvents": 0,
+          "height": 1080,
+          "loaded": true,
+          "maxPosition": 0.16,
+          "ok": true,
+          "seconds": 10.522,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 1920
+        },
+        "download": {
+          "bytes": 491056,
+          "completedFragments": 1,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 1,
+          "prefixFragments": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:20:03.0495301+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 25,
+        "key": "www.ryzyw.com",
+        "name": "🎬如意资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 41.1491059,
+        "requests": 16,
+        "metadataBytes": 241524,
+        "mediaBytes": 3606852,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 2,
+        "routeCount": 1,
+        "categories": {
+          "count": 39,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 6,
+          "errorEvents": 0,
+          "height": 1080,
+          "loaded": true,
+          "maxPosition": 0.190056,
+          "ok": true,
+          "seconds": 10.747,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 1920
+        },
+        "download": {
+          "bytes": 1804612,
+          "completedFragments": 1,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 1,
+          "prefixFragments": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:22:26.4077702+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 26,
+        "key": "www.haohuazy.com",
+        "name": "🎬豪华资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 32.2828901,
+        "requests": 13,
+        "metadataBytes": 142194,
+        "mediaBytes": 1662639,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 2,
+        "routeCount": 1,
+        "categories": {
+          "count": 48,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 7,
+          "errorEvents": 0,
+          "height": 1080,
+          "loaded": true,
+          "maxPosition": 0.189889,
+          "ok": true,
+          "seconds": 6.864,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 1920
+        },
+        "download": {
+          "bytes": 1581104,
+          "completedFragments": 1,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 2,
+          "prefixFragments": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:22:08.456596+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 27,
+        "key": "bdzy1.com",
+        "name": "🎬百度云资源",
+        "stage": "prepare",
+        "status": "http_403",
+        "seconds": 18.0433524,
+        "requests": 7,
+        "metadataBytes": 186349,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 3,
+        "categories": {
+          "count": 54,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:22:40.9792761+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 28,
+        "key": "lovedan.net",
+        "name": "🎬艾旦影视",
+        "stage": "policy",
+        "status": "explicit_adult_reference_not_sampled",
+        "seconds": 0,
+        "requests": 0,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "checked_at": "2026-10-19T01:21:48.9977759+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 29,
+        "key": "api_1",
+        "name": "🎬1080资源",
+        "stage": "prepare",
+        "status": "http_403",
+        "seconds": 17.5365481,
+        "requests": 7,
+        "metadataBytes": 100891,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 1,
+        "categories": {
+          "count": 62,
+          "status": ""
+        },
+        "search": {
+          "count": 20,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:21:45.2527159+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 30,
+        "key": "api_4",
+        "name": "🎬CK资源",
+        "stage": "complete",
+        "status": "decoder_not_confirmed",
+        "seconds": 32.4095134,
+        "requests": 10,
+        "metadataBytes": 163152,
+        "mediaBytes": 16,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 1,
+        "routeCount": 1,
+        "categories": {
+          "count": 2,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "",
+          "decodedFrames": 0,
+          "errorEvents": 405,
+          "height": 0,
+          "loaded": false,
+          "maxPosition": 0,
+          "ok": false,
+          "seconds": 15.023,
+          "video": "",
+          "width": 0
+        },
+        "download": {
+          "bytes": 0,
+          "completedFragments": 0,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 1,
+          "prefixFragments": 1,
+          "status": "consumer_rejected"
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:21:48.9961573+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 31,
+        "key": "api_9",
+        "name": "🎬丫丫点播",
+        "stage": "prepare",
+        "status": "http_403",
+        "seconds": 16.7535888,
+        "requests": 7,
+        "metadataBytes": 143680,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 1,
+        "categories": {
+          "count": 59,
+          "status": ""
+        },
+        "search": {
+          "count": 0,
+          "status": "invalid_api_format"
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:21:27.7111636+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 32,
+        "key": "api_16",
+        "name": "🎬小猫咪资源",
+        "stage": "catalog",
+        "status": "eof",
+        "seconds": 13.8130363,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "eof"
+        },
+        "checked_at": "2026-10-19T01:21:16.5790869+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 33,
+        "key": "api_21",
+        "name": "🎬旺旺短剧",
+        "stage": "catalog",
+        "status": "invalid_api_format",
+        "seconds": 12.9909675,
+        "requests": 4,
+        "metadataBytes": 38041,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "timeout"
+        },
+        "checked_at": "2026-10-19T01:21:10.9527414+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 34,
+        "key": "api_24",
+        "name": "🎬最大点播",
+        "stage": "prepare",
+        "status": "http_403",
+        "seconds": 42.8029764,
+        "requests": 7,
+        "metadataBytes": 153003,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 1,
+        "categories": {
+          "count": 59,
+          "status": ""
+        },
+        "search": {
+          "count": 0,
+          "status": "connection"
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:21:36.168204+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 35,
+        "key": "api_26",
+        "name": "🎬樱花资源",
+        "stage": "detail",
+        "status": "http_403",
+        "seconds": 9.7896877,
+        "requests": 4,
+        "metadataBytes": 45079,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 33,
+          "status": ""
+        },
+        "search": {
+          "count": 0,
+          "status": "http_403"
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:21:02.759705+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 36,
+        "key": "api_27",
+        "name": "🎬步步高资源",
+        "stage": "detail",
+        "status": "http_403",
+        "seconds": 12.8833293,
+        "requests": 4,
+        "metadataBytes": 36635,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 24,
+          "status": ""
+        },
+        "search": {
+          "count": 0,
+          "status": "http_403"
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:20:57.9551855+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 37,
+        "key": "api_28",
+        "name": "🎬牛牛点播",
+        "stage": "prepare",
+        "status": "http_403",
+        "seconds": 17.2548609,
+        "requests": 7,
+        "metadataBytes": 146838,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 1,
+        "categories": {
+          "count": 59,
+          "status": ""
+        },
+        "search": {
+          "count": 0,
+          "status": "invalid_api_format"
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:20:53.3597951+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 38,
+        "key": "api_33",
+        "name": "🎬索尼资源",
+        "stage": "prepare",
+        "status": "http_403",
+        "seconds": 16.2459367,
+        "requests": 7,
+        "metadataBytes": 53812,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 1,
+        "categories": {
+          "count": 61,
+          "status": ""
+        },
+        "search": {
+          "count": 0,
+          "status": "invalid_api_format"
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:20:45.0669642+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 39,
+        "key": "api_36",
+        "name": "🎬虎牙资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 33.3436661,
+        "requests": 13,
+        "metadataBytes": 222538,
+        "mediaBytes": 883997,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 2,
+        "routeCount": 1,
+        "categories": {
+          "count": 44,
+          "status": ""
+        },
+        "search": {
+          "count": 20,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 7,
+          "errorEvents": 0,
+          "height": 1080,
+          "loaded": true,
+          "maxPosition": 0.189889,
+          "ok": true,
+          "seconds": 6.98,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 1920
+        },
+        "download": {
+          "bytes": 0,
+          "completedFragments": 0,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 2,
+          "prefixFragments": 1,
+          "status": "consumer_rejected"
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:20:52.9647438+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 40,
+        "key": "api_41",
+        "name": "🎬量子资源2",
+        "stage": "prepare",
+        "status": "http_404",
+        "seconds": 17.5369544,
+        "requests": 7,
+        "metadataBytes": 380783,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 2,
+        "categories": {
+          "count": 44,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:20:28.8149928+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 41,
+        "key": "api_43",
+        "name": "🎬金鹰资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 25.2141941,
+        "requests": 13,
+        "metadataBytes": 147320,
+        "mediaBytes": 1679023,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 2,
+        "routeCount": 1,
+        "categories": {
+          "count": 44,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 7,
+          "errorEvents": 0,
+          "height": 1080,
+          "loaded": true,
+          "maxPosition": 0.189889,
+          "ok": true,
+          "seconds": 6.58,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 1920
+        },
+        "download": {
+          "bytes": 1581104,
+          "completedFragments": 1,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 2,
+          "prefixFragments": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:20:36.0999659+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 42,
+        "key": "api_44",
+        "name": "🎬闪电资源",
+        "stage": "prepare",
+        "status": "http_403",
+        "seconds": 16.5624463,
+        "requests": 7,
+        "metadataBytes": 147884,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 1,
+        "categories": {
+          "count": 59,
+          "status": ""
+        },
+        "search": {
+          "count": 0,
+          "status": "invalid_api_format"
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:20:19.6162075+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 43,
+        "key": "api_47",
+        "name": "🎬魔爪资源",
+        "stage": "catalog",
+        "status": "eof",
+        "seconds": 13.7968824,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "eof"
+        },
+        "checked_at": "2026-10-19T01:20:10.8808823+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 44,
+        "key": "kauiboziyuan",
+        "name": "🎬快播资源",
+        "stage": "catalog",
+        "status": "timeout",
+        "seconds": 14.645897,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "eof"
+        },
+        "checked_at": "2026-10-19T01:20:11.2731858+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 45,
+        "key": "aiduanjucc",
+        "name": "🎬爱短剧",
+        "stage": "catalog",
+        "status": "consumer_rejected",
+        "seconds": 12.3218861,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "consumer_rejected"
+        },
+        "checked_at": "2026-10-19T01:19:56.6228569+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 46,
+        "key": "huaweiba",
+        "name": "🎬华为吧资源",
+        "stage": "catalog",
+        "status": "timeout",
+        "seconds": 24.0158564,
+        "requests": 4,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "timeout"
+        },
+        "checked_at": "2026-10-19T01:19:57.0797288+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 47,
+        "key": "taopian",
+        "name": "🎬淘片资源",
+        "stage": "catalog",
+        "status": "tls_certificate",
+        "seconds": 13.5894646,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "tls_certificate"
+        },
+        "checked_at": "2026-10-19T01:18:40.8163756+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 48,
+        "key": "fengchao",
+        "name": "🎬蜂巢片库",
+        "stage": "catalog",
+        "status": "timeout",
+        "seconds": 16.0281679,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "timeout"
+        },
+        "checked_at": "2026-10-19T01:23:32.0531365+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 49,
+        "key": "jinmaziyuan2",
+        "name": "🎬金马资源",
+        "stage": "catalog",
+        "status": "timeout",
+        "seconds": 16.0233248,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "timeout"
+        },
+        "checked_at": "2026-10-19T01:23:19.2042046+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 50,
+        "key": "dadiziy",
+        "name": "🎬大地资源",
+        "stage": "policy",
+        "status": "explicit_adult_category_not_sampled",
+        "seconds": 7.1068264,
+        "requests": 1,
+        "metadataBytes": 5746,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "categories": {
+          "count": 29,
+          "status": ""
+        },
+        "checked_at": "2026-10-19T01:23:07.123445+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 51,
+        "key": "kauicheziyuan",
+        "name": "🎬快车资源",
+        "stage": "catalog",
+        "status": "invalid_api_format",
+        "seconds": 6.144936,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "invalid_api_format"
+        },
+        "checked_at": "2026-10-19T01:26:14.6751093+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 52,
+        "key": "youzhidianying",
+        "name": "🎬优质资源",
+        "stage": "detail",
+        "status": "consumer_rejected",
+        "seconds": 10.3334844,
+        "requests": 5,
+        "metadataBytes": 55646,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 62,
+          "status": ""
+        },
+        "search": {
+          "count": 20,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:23:17.4632636+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 53,
+        "key": "qiqiqiqi",
+        "name": "🎬七七影视",
+        "stage": "catalog",
+        "status": "consumer_rejected",
+        "seconds": 12.3012316,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "consumer_rejected"
+        },
+        "checked_at": "2026-10-19T01:22:47.9486015+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 54,
+        "key": "fantuanyingshi",
+        "name": "🎬饭团影视",
+        "stage": "catalog",
+        "status": "timeout",
+        "seconds": 16.0252592,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "timeout"
+        },
+        "checked_at": "2026-10-19T01:23:16.0129724+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 55,
+        "key": "91md.me",
+        "name": "🔞麻豆视频",
+        "stage": "policy",
+        "status": "explicit_adult_category_not_sampled",
+        "seconds": 7.3420601,
+        "requests": 1,
+        "metadataBytes": 8891,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "categories": {
+          "count": 20,
+          "status": ""
+        },
+        "checked_at": "2026-10-19T01:23:03.1725457+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 56,
+        "key": "91jpzyw.com",
+        "name": "🔞91精品",
+        "stage": "catalog",
+        "status": "http_404",
+        "seconds": 6.2304756,
+        "requests": 2,
+        "metadataBytes": 86,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "http_404"
+        },
+        "checked_at": "2026-10-19T01:22:59.9797659+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 57,
+        "key": "lbapiby.com",
+        "name": "🔞Alvin",
+        "stage": "catalog",
+        "status": "consumer_rejected",
+        "seconds": 12.0215452,
+        "requests": 2,
+        "metadataBytes": 991,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "consumer_rejected"
+        },
+        "checked_at": "2026-10-19T01:22:59.9867779+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 58,
+        "key": "155zy2.com",
+        "name": "🔞155资源",
+        "stage": "policy",
+        "status": "explicit_adult_category_not_sampled",
+        "seconds": 6.3908536,
+        "requests": 1,
+        "metadataBytes": 14731,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "categories": {
+          "count": 40,
+          "status": ""
+        },
+        "checked_at": "2026-10-19T01:22:47.3744648+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 59,
+        "key": "apiyutu.com",
+        "name": "🔞玉兔资源",
+        "stage": "policy",
+        "status": "explicit_adult_reference_not_sampled",
+        "seconds": 0,
+        "requests": 0,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "checked_at": "2026-10-19T01:22:23.0748666+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 60,
+        "key": "fhapi9.com",
+        "name": "🔞番号资源",
+        "stage": "policy",
+        "status": "explicit_adult_reference_not_sampled",
+        "seconds": 0,
+        "requests": 0,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "checked_at": "2026-10-19T01:22:55.820385+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 61,
+        "key": "apilsbzy1.com",
+        "name": "🔞老色逼",
+        "stage": "policy",
+        "status": "explicit_adult_category_not_sampled",
+        "seconds": 5.9004417,
+        "requests": 1,
+        "metadataBytes": 4938,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "categories": {
+          "count": 25,
+          "status": ""
+        },
+        "checked_at": "2026-10-19T01:22:55.8193377+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 62,
+        "key": "www.yyzywcj.com",
+        "name": "🔞优优资源",
+        "stage": "catalog",
+        "status": "invalid_api_format",
+        "seconds": 6.3552358,
+        "requests": 2,
+        "metadataBytes": 11299,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "invalid_api_format"
+        },
+        "checked_at": "2026-10-19T01:22:53.733935+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 63,
+        "key": "xiaojizy.live",
+        "name": "🔞小鸡资源",
+        "stage": "policy",
+        "status": "explicit_adult_category_not_sampled",
+        "seconds": 5.8821734,
+        "requests": 1,
+        "metadataBytes": 8599,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "categories": {
+          "count": 38,
+          "status": ""
+        },
+        "checked_at": "2026-10-19T01:22:49.9134971+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 64,
+        "key": "hsckzy.xyz",
+        "name": "🔞黄色仓库",
+        "stage": "policy",
+        "status": "explicit_adult_category_not_sampled",
+        "seconds": 5.8738474,
+        "requests": 1,
+        "metadataBytes": 8217,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "categories": {
+          "count": 41,
+          "status": ""
+        },
+        "checked_at": "2026-10-19T01:22:44.0269885+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 65,
+        "key": "apidanaizi.com",
+        "name": "🔞大奶子",
+        "stage": "policy",
+        "status": "explicit_adult_reference_not_sampled",
+        "seconds": 0,
+        "requests": 0,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "checked_at": "2026-10-19T01:22:38.1488649+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 66,
+        "key": "jkunzyapi.com",
+        "name": "🔞JKUN资源",
+        "stage": "policy",
+        "status": "explicit_adult_category_not_sampled",
+        "seconds": 5.8139183,
+        "requests": 1,
+        "metadataBytes": 6944,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "categories": {
+          "count": 25,
+          "status": ""
+        },
+        "checked_at": "2026-10-19T01:22:38.1477334+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 67,
+        "key": "lbapi9.com",
+        "name": "🔞乐播资源",
+        "stage": "policy",
+        "status": "explicit_adult_reference_not_sampled",
+        "seconds": 0,
+        "requests": 0,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "checked_at": "2026-10-19T01:22:32.3287605+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 68,
+        "key": "Naixxzy.com",
+        "name": "🔞奶香资源",
+        "stage": "policy",
+        "status": "explicit_adult_category_not_sampled",
+        "seconds": 5.9108959,
+        "requests": 1,
+        "metadataBytes": 14851,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "categories": {
+          "count": 33,
+          "status": ""
+        },
+        "checked_at": "2026-10-19T01:22:32.3277013+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 69,
+        "key": "slapibf.com",
+        "name": "🔞森林资源",
+        "stage": "policy",
+        "status": "explicit_adult_reference_not_sampled",
+        "seconds": 0,
+        "requests": 0,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "checked_at": "2026-10-19T01:22:23.075911+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 70,
+        "key": "apilj.com",
+        "name": "🔞辣椒资源",
+        "stage": "policy",
+        "status": "explicit_adult_reference_not_sampled",
+        "seconds": 0,
+        "requests": 0,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "checked_at": "2026-10-19T01:18:27.224452+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 71,
+        "key": "shayuapi.com",
+        "name": "🔞鲨鱼资源",
+        "stage": "policy",
+        "status": "explicit_adult_reference_not_sampled",
+        "seconds": 0,
+        "requests": 0,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "checked_at": "2026-10-19T01:22:59.9886792+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 72,
+        "key": "xzytv.com",
+        "name": "🔞幸资源",
+        "stage": "catalog",
+        "status": "eof",
+        "seconds": 13.3704783,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "eof"
+        },
+        "checked_at": "2026-10-19T01:23:30.8433079+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 73,
+        "key": "doudouzy.com",
+        "name": "🔞豆豆资源",
+        "stage": "policy",
+        "status": "explicit_adult_reference_not_sampled",
+        "seconds": 0,
+        "requests": 0,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "checked_at": "2026-10-19T01:22:23.075911+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 74,
+        "key": "didizy.com",
+        "name": "🔞滴滴资源",
+        "stage": "policy",
+        "status": "explicit_adult_category_not_sampled",
+        "seconds": 6.1355739,
+        "requests": 1,
+        "metadataBytes": 7972,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "categories": {
+          "count": 28,
+          "status": ""
+        },
+        "checked_at": "2026-10-19T01:22:35.6418852+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 75,
+        "key": "heiliaozy.cc",
+        "name": "🔞黑料资源",
+        "stage": "policy",
+        "status": "explicit_adult_category_not_sampled",
+        "seconds": 6.4201615,
+        "requests": 1,
+        "metadataBytes": 15485,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "categories": {
+          "count": 24,
+          "status": ""
+        },
+        "checked_at": "2026-10-19T01:22:29.5014455+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 76,
+        "key": "api.bwzym3u8.com",
+        "name": "🔞百万资源",
+        "stage": "catalog",
+        "status": "timeout",
+        "seconds": 14.9548649,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "eof"
+        },
+        "checked_at": "2026-10-19T01:22:03.9569352+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 77,
+        "key": "thzy8.me",
+        "name": "🔞桃花资源",
+        "stage": "policy",
+        "status": "explicit_adult_category_not_sampled",
+        "seconds": 7.0396199,
+        "requests": 1,
+        "metadataBytes": 5128,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "categories": {
+          "count": 15,
+          "status": ""
+        },
+        "checked_at": "2026-10-19T01:22:23.0743327+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 78,
+        "key": "www.jingpinx.com",
+        "name": "🔞精品资源",
+        "stage": "policy",
+        "status": "explicit_adult_category_not_sampled",
+        "seconds": 7.3014766,
+        "requests": 1,
+        "metadataBytes": 5873,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "categories": {
+          "count": 29,
+          "status": ""
+        },
+        "checked_at": "2026-10-19T01:22:22.9291918+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 79,
+        "key": "souavzyw.com",
+        "name": "🔞SouavZY",
+        "stage": "policy",
+        "status": "explicit_adult_category_not_sampled",
+        "seconds": 5.9131771,
+        "requests": 1,
+        "metadataBytes": 13999,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "categories": {
+          "count": 103,
+          "status": ""
+        },
+        "checked_at": "2026-10-19T01:22:16.0301887+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 80,
+        "key": "api_50",
+        "name": "🔞黑木耳",
+        "stage": "catalog",
+        "status": "invalid_api_format",
+        "seconds": 7.1619541,
+        "requests": 4,
+        "metadataBytes": 27314,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "invalid_api_format"
+        },
+        "checked_at": "2026-10-19T01:22:15.6233917+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 81,
+        "key": "api_51",
+        "name": "🔞黑木耳点播",
+        "stage": "catalog",
+        "status": "invalid_api_format",
+        "seconds": 6.1486579,
+        "requests": 4,
+        "metadataBytes": 27314,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "invalid_api_format"
+        },
+        "checked_at": "2026-10-19T01:22:10.1134858+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 82,
+        "key": "api_57",
+        "name": "🔞奥斯卡资源",
+        "stage": "policy",
+        "status": "explicit_adult_category_not_sampled",
+        "seconds": 7.9440078,
+        "requests": 1,
+        "metadataBytes": 16740,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "categories": {
+          "count": 28,
+          "status": ""
+        },
+        "checked_at": "2026-10-19T01:18:35.171868+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 83,
+        "key": "api_60",
+        "name": "🔞淫水机资源",
+        "stage": "prepare",
+        "status": "timeout",
+        "seconds": 19.6564713,
+        "requests": 7,
+        "metadataBytes": 80609,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 1,
+        "categories": {
+          "count": 0,
+          "status": ""
+        },
+        "search": {
+          "count": 2,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:19:44.2949062+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 84,
+        "key": "api_63",
+        "name": "🔞白嫖资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 19.4374572,
+        "requests": 12,
+        "metadataBytes": 118478,
+        "mediaBytes": 1116192,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 1,
+        "routeCount": 1,
+        "categories": {
+          "count": 0,
+          "status": ""
+        },
+        "search": {
+          "count": 2,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 6,
+          "errorEvents": 0,
+          "height": 480,
+          "loaded": true,
+          "maxPosition": 0.210722,
+          "ok": true,
+          "seconds": 1.4,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 270
+        },
+        "download": {
+          "bytes": 492560,
+          "completedFragments": 1,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 1,
+          "prefixFragments": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:19:33.0595061+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 85,
+        "key": "api_65",
+        "name": "🔞美少女资源",
+        "stage": "prepare",
+        "status": "timeout",
+        "seconds": 19.1306189,
+        "requests": 7,
+        "metadataBytes": 78707,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 1,
+        "categories": {
+          "count": 0,
+          "status": ""
+        },
+        "search": {
+          "count": 2,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:19:32.0630107+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 86,
+        "key": "api_67",
+        "name": "🔞色南国",
+        "stage": "catalog",
+        "status": "eof",
+        "seconds": 14.4063906,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "eof"
+        },
+        "checked_at": "2026-10-19T01:19:24.6337459+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 87,
+        "key": "api_68",
+        "name": "🔞色猫资源",
+        "stage": "catalog",
+        "status": "consumer_rejected",
+        "seconds": 6.2190284,
+        "requests": 2,
+        "metadataBytes": 1910,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "consumer_rejected"
+        },
+        "checked_at": "2026-10-19T01:19:13.6177664+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 88,
+        "key": "api_70",
+        "name": "🔞香奶儿资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 24.7372524,
+        "requests": 12,
+        "metadataBytes": 138300,
+        "mediaBytes": 1490424,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 1,
+        "routeCount": 1,
+        "categories": {
+          "count": 0,
+          "status": ""
+        },
+        "search": {
+          "count": 2,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 6,
+          "errorEvents": 0,
+          "height": 406,
+          "loaded": true,
+          "maxPosition": 0.208833,
+          "ok": true,
+          "seconds": 3.123,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 720
+        },
+        "download": {
+          "bytes": 646908,
+          "completedFragments": 1,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 1,
+          "prefixFragments": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:19:12.9271579+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 89,
+        "key": "api_72",
+        "name": "🔞黄AV资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 22.3600558,
+        "requests": 12,
+        "metadataBytes": 169351,
+        "mediaBytes": 1025352,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 1,
+        "routeCount": 1,
+        "categories": {
+          "count": 0,
+          "status": ""
+        },
+        "search": {
+          "count": 2,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 6,
+          "errorEvents": 0,
+          "height": 406,
+          "loaded": true,
+          "maxPosition": 0.208833,
+          "ok": true,
+          "seconds": 1.566,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 720
+        },
+        "download": {
+          "bytes": 411532,
+          "completedFragments": 1,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 1,
+          "prefixFragments": 1,
+          "status": ""
+        },
+        "coverHeadError": "timeout",
+        "checked_at": "2026-10-19T01:19:10.221639+08:00",
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 90,
+        "key": "xingbaziyuan",
+        "name": "🔞杏吧资源",
+        "stage": "policy",
+        "status": "explicit_adult_category_not_sampled",
+        "seconds": 7.3590421,
+        "requests": 1,
+        "metadataBytes": 14838,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "categories": {
+          "count": 57,
+          "status": ""
+        },
+        "checked_at": "2026-10-19T01:18:48.1860274+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 91,
+        "key": "huangseziy",
+        "name": "🔞黄色资源",
+        "stage": "policy",
+        "status": "explicit_adult_reference_not_sampled",
+        "seconds": 0,
+        "requests": 0,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "checked_at": "2026-10-19T01:18:40.817399+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      },
+      {
+        "index": 92,
+        "key": "xibaocaiji",
+        "name": "🔞细胞采集",
+        "stage": "catalog",
+        "status": "tls_certificate",
+        "seconds": 12.6785981,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "tls_certificate"
+        },
+        "checked_at": "2026-10-19T01:18:47.8572744+08:00",
+        "download": {
+          "status": "not_attempted"
+        },
+        "playback": {
+          "status": "not_attempted"
+        },
+        "cover_check_policy": {
+          "method": "HEAD",
+          "timeout_seconds": 3,
+          "body_bytes": 0,
+          "result_semantics": "timeout or EOF is unconfirmed metadata, not proof of a broken cover"
+        }
+      }
+    ]
+  },
+  "diagnostic_followup": {
+    "source_count": 16,
+    "requests": 73,
+    "sources": [
+      {
+        "index": 0,
+        "key": "iqiyizyapi.com",
+        "name": "🎬爱奇艺",
+        "stage": "complete",
+        "status": "decoder_not_confirmed",
+        "seconds": 38.2241203,
+        "requests": 9,
+        "metadataBytes": 160574,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 4,
+        "routeCount": 1,
+        "categories": {
+          "count": 0,
+          "status": "consumer_rejected"
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "",
+          "decodedFrames": 0,
+          "errorCategories": {
+            "failed to open": 225
+          },
+          "errorEvents": 676,
+          "height": 0,
+          "loaded": false,
+          "maxPosition": 0,
+          "ok": false,
+          "seconds": 15.009,
+          "video": "",
+          "width": 0
+        },
+        "download": {
+          "bytes": 0,
+          "completedFragments": 0,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 1,
+          "prefixFragments": 1,
+          "status": "consumer: 下载连接中断，请检查网络后继续"
+        },
+        "coverHeadError": "timeout"
+      },
+      {
+        "index": 2,
+        "key": "tyyszy.com",
+        "name": "🎬天涯影视",
+        "stage": "prepare",
+        "status": "consumer: 普通影视分集序号已变化，请刷新详情",
+        "seconds": 10.2470351,
+        "requests": 6,
+        "metadataBytes": 165917,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 8,
+        "categories": {
+          "count": 39,
+          "status": ""
+        },
+        "search": {
+          "count": 0,
+          "status": "consumer: 普通影视采集接口未返回 JSON 对象"
+        },
+        "coverHeadError": "timeout"
+      },
+      {
+        "index": 4,
+        "key": "wolongzyw.com",
+        "name": "🎬卧龙资源",
+        "stage": "catalog",
+        "status": "consumer: 普通影视XML不接受DTD或实体声明",
+        "seconds": 7.0894094,
+        "requests": 2,
+        "metadataBytes": 13980,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "consumer: 普通影视XML不接受DTD或实体声明"
+        }
+      },
+      {
+        "index": 17,
+        "key": "api.wwzy.tv",
+        "name": "🎬旺旺资源",
+        "stage": "catalog",
+        "status": "consumer: 普通影视XML不接受DTD或实体声明",
+        "seconds": 12.7571123,
+        "requests": 4,
+        "metadataBytes": 38041,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "timeout"
+        }
+      },
+      {
+        "index": 18,
+        "key": "www.subozy.com",
+        "name": "🎬速播资源",
+        "stage": "complete",
+        "status": "sample_complete",
+        "seconds": 33.3497682,
+        "requests": 13,
+        "metadataBytes": 151378,
+        "mediaBytes": 1473821,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 2,
+        "routeCount": 1,
+        "categories": {
+          "count": 44,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "AAC (Advanced Audio Coding)",
+          "decodedFrames": 7,
+          "errorEvents": 0,
+          "height": 1080,
+          "loaded": true,
+          "maxPosition": 0.189889,
+          "ok": true,
+          "seconds": 7.166,
+          "video": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "width": 1920
+        },
+        "download": {
+          "bytes": 0,
+          "completedFragments": 0,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 2,
+          "prefixFragments": 1,
+          "status": "consumer: 媒体文件未接收完整，点击继续下载"
+        },
+        "coverHeadError": "timeout"
+      },
+      {
+        "index": 30,
+        "key": "api_4",
+        "name": "🎬CK资源",
+        "stage": "complete",
+        "status": "decoder_not_confirmed",
+        "seconds": 33.7218862,
+        "requests": 10,
+        "metadataBytes": 163152,
+        "mediaBytes": 16,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 1,
+        "routeCount": 1,
+        "categories": {
+          "count": 2,
+          "status": ""
+        },
+        "search": {
+          "count": 1,
+          "status": ""
+        },
+        "playback": {
+          "audio": "",
+          "decodedFrames": 0,
+          "errorCategories": {
+            "failed to open": 126
+          },
+          "errorEvents": 378,
+          "height": 0,
+          "loaded": false,
+          "maxPosition": 0,
+          "ok": false,
+          "seconds": 15.013,
+          "video": "",
+          "width": 0
+        },
+        "download": {
+          "bytes": 0,
+          "completedFragments": 0,
+          "fullDownload": false,
+          "mode": "hls-prefix",
+          "prefixAssets": 1,
+          "prefixFragments": 1,
+          "status": "consumer: 下载连接中断，请检查网络后继续"
+        },
+        "coverHeadError": "timeout"
+      },
+      {
+        "index": 33,
+        "key": "api_21",
+        "name": "🎬旺旺短剧",
+        "stage": "catalog",
+        "status": "consumer: 普通影视XML不接受DTD或实体声明",
+        "seconds": 12.6798735,
+        "requests": 4,
+        "metadataBytes": 75758,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "consumer: 普通影视XML不接受DTD或实体声明"
+        }
+      },
+      {
+        "index": 45,
+        "key": "aiduanjucc",
+        "name": "🎬爱短剧",
+        "stage": "catalog",
+        "status": "consumer_rejected",
+        "seconds": 12.2339755,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "consumer_rejected"
+        }
+      },
+      {
+        "index": 51,
+        "key": "kauicheziyuan",
+        "name": "🎬快车资源",
+        "stage": "catalog",
+        "status": "consumer: 普通影视采集接口未返回 JSON 对象",
+        "seconds": 6.2271456,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "consumer: 普通影视采集接口未返回 JSON 对象"
+        }
+      },
+      {
+        "index": 52,
+        "key": "youzhidianying",
+        "name": "🎬优质资源",
+        "stage": "detail",
+        "status": "consumer: 该影视暂无公开直连 MP4/HLS 分集，网页或需授权的线路暂不支持",
+        "seconds": 10.2532955,
+        "requests": 5,
+        "metadataBytes": 55646,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 62,
+          "status": ""
+        },
+        "search": {
+          "count": 20,
+          "status": ""
+        },
+        "coverHeadError": "timeout"
+      },
+      {
+        "index": 53,
+        "key": "qiqiqiqi",
+        "name": "🎬七七影视",
+        "stage": "catalog",
+        "status": "consumer_rejected",
+        "seconds": 12.1998435,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "consumer_rejected"
+        }
+      },
+      {
+        "index": 57,
+        "key": "lbapiby.com",
+        "name": "🔞Alvin",
+        "stage": "catalog",
+        "status": "consumer_rejected",
+        "seconds": 12.2110068,
+        "requests": 2,
+        "metadataBytes": 991,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "consumer_rejected"
+        }
+      },
+      {
+        "index": 62,
+        "key": "www.yyzywcj.com",
+        "name": "🔞优优资源",
+        "stage": "catalog",
+        "status": "consumer: 普通影视XML不接受DTD或实体声明",
+        "seconds": 6.4019991,
+        "requests": 2,
+        "metadataBytes": 11299,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "consumer: 普通影视XML不接受DTD或实体声明"
+        }
+      },
+      {
+        "index": 80,
+        "key": "api_50",
+        "name": "🔞黑木耳",
+        "stage": "catalog",
+        "status": "consumer: 普通影视XML不接受DTD或实体声明",
+        "seconds": 6.8058318,
+        "requests": 4,
+        "metadataBytes": 27314,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "consumer: 普通影视XML不接受DTD或实体声明"
+        }
+      },
+      {
+        "index": 81,
+        "key": "api_51",
+        "name": "🔞黑木耳点播",
+        "stage": "catalog",
+        "status": "consumer: 普通影视XML不接受DTD或实体声明",
+        "seconds": 6.0972453,
+        "requests": 4,
+        "metadataBytes": 27314,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "consumer: 普通影视XML不接受DTD或实体声明"
+        }
+      },
+      {
+        "index": 87,
+        "key": "api_68",
+        "name": "🔞色猫资源",
+        "stage": "catalog",
+        "status": "consumer_rejected",
+        "seconds": 7.2095811,
+        "requests": 2,
+        "metadataBytes": 1910,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "consumer_rejected"
+        }
+      }
+    ]
+  },
+  "corrected_harness_followup": {
+    "reason": "First sample must use chapterEpisodeNumber, not list offset; initial tyys prepare failure is harness attribution, not product failure",
+    "sources": [
+      {
+        "index": 2,
+        "key": "tyyszy.com",
+        "name": "🎬天涯影视",
+        "stage": "prepare",
+        "status": "consumer_rejected",
+        "seconds": 16.9021397,
+        "requests": 7,
+        "metadataBytes": 165917,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "chapterCount": 8,
+        "categories": {
+          "count": 39,
+          "status": ""
+        },
+        "search": {
+          "count": 0,
+          "status": "consumer: 普通影视采集接口未返回 JSON 对象"
+        },
+        "coverHeadError": "timeout"
+      }
+    ]
+  },
+  "independent_native_source": {
+    "reason": "Not present in original 93-entry plugin",
+    "sources": [
+      {
+        "index": 0,
+        "key": "huangguo-video",
+        "name": "黄果视频",
+        "stage": "catalog",
+        "status": "http_403",
+        "seconds": 6.1012211,
+        "requests": 1,
+        "metadataBytes": 8155,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "http_403"
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "A successful probe is a bounded sample, not whole-film/UI/device acceptance",
+    "Download evidence covers native prefix pipeline, not complete offline film",
+    "Explicit adult reference/classification sources were not media sampled",
+    "Initial and follow-up counts are separate; follow-up success does not rewrite initial results",
+    "Transient network failures do not prove permanently invalid sources"
+  ],
+  "coverFollowUp": {
+    "eligible_sources": 41,
+    "head_timeout_seconds": 12,
+    "maximum_parallel_sources": 3,
+    "image_body_bytes": 0,
+    "media_bytes": 0,
+    "head_response_counts": {
+      "200": 36,
+      "403": 1,
+      "404": 1
+    },
+    "sources": [
+      {
+        "index": 0,
+        "key": "iqiyizyapi.com",
+        "name": "🎬爱奇艺",
+        "stage": "catalog",
+        "status": "consumer_rejected",
+        "seconds": 7.4362851,
+        "requests": 2,
+        "metadataBytes": 380,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "consumer_rejected"
+        }
+      },
+      {
+        "index": 2,
+        "key": "tyyszy.com",
+        "name": "🎬天涯影视",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.4229608,
+        "requests": 3,
+        "metadataBytes": 160989,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 39,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 281180,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 3,
+        "key": "mtzy.me",
+        "name": "🎬茅台资源",
+        "stage": "cover-head",
+        "status": "cover_metadata_unconfirmed",
+        "seconds": 8.9901984,
+        "requests": 3,
+        "metadataBytes": 329945,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 54,
+          "status": ""
+        },
+        "coverHeadError": "eof"
+      },
+      {
+        "index": 5,
+        "key": "ikunzy.com",
+        "name": "🎬iKun资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.3554405,
+        "requests": 3,
+        "metadataBytes": 69189,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 53,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 65840,
+          "mime": "image/webp",
+          "status": 200
+        }
+      },
+      {
+        "index": 7,
+        "key": "www.maoyanzy.com",
+        "name": "🎬猫眼资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 19.1172956,
+        "requests": 4,
+        "metadataBytes": 195170,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 30,
+        "categories": {
+          "count": 53,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 33132,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 8,
+        "key": "cj.lzcaiji.com",
+        "name": "🎬量子资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 13.1795027,
+        "requests": 3,
+        "metadataBytes": 371993,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 44,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 24716,
+          "mime": "image/webp",
+          "status": 200
+        }
+      },
+      {
+        "index": 9,
+        "key": "360zy.com",
+        "name": "🎬360资源",
+        "stage": "catalog",
+        "status": "timeout",
+        "seconds": 16.0158938,
+        "requests": 2,
+        "metadataBytes": 0,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 0,
+        "categories": {
+          "count": 0,
+          "status": "timeout"
+        }
+      },
+      {
+        "index": 10,
+        "key": "jszyapi.com",
+        "name": "🎬极速资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.3846571,
+        "requests": 3,
+        "metadataBytes": 105866,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 48,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 28012,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 11,
+        "key": "www.moduzy.net",
+        "name": "🎬魔都资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 13.6229907,
+        "requests": 3,
+        "metadataBytes": 69449,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 42,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 38380,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 12,
+        "key": "ffzyapi.com",
+        "name": "🎬非凡资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.7570348,
+        "requests": 3,
+        "metadataBytes": 82371,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 31,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 29337,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 13,
+        "key": "bfzy.tv",
+        "name": "🎬暴风资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.8314998,
+        "requests": 3,
+        "metadataBytes": 104648,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 49,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 150,
+          "mime": "text/html",
+          "status": 403
+        }
+      },
+      {
+        "index": 14,
+        "key": "zuida.xyz",
+        "name": "🎬最大资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.3630125,
+        "requests": 3,
+        "metadataBytes": 145207,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 59,
+          "status": ""
+        },
+        "coverHead": {
+          "length": -1,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 15,
+        "key": "wujinzy.me",
+        "name": "🎬无尽资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.2580715,
+        "requests": 3,
+        "metadataBytes": 41876,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 63,
+          "status": ""
+        },
+        "coverHead": {
+          "length": -1,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 16,
+        "key": "xinlangapi.com",
+        "name": "🎬新浪资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.3012248,
+        "requests": 3,
+        "metadataBytes": 71006,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 48,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 32283,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 18,
+        "key": "www.subozy.com",
+        "name": "🎬速播资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 14.0469151,
+        "requests": 3,
+        "metadataBytes": 70600,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 44,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 32283,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 19,
+        "key": "jinyingzy.com",
+        "name": "🎬金鹰资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.4816397,
+        "requests": 3,
+        "metadataBytes": 69719,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 44,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 32283,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 21,
+        "key": "api.ukuapi88.com",
+        "name": "🎬U酷资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.2906008,
+        "requests": 3,
+        "metadataBytes": 76553,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 29,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 21906,
+          "mime": "image/webp",
+          "status": 200
+        }
+      },
+      {
+        "index": 22,
+        "key": "api.guangsuapi.com",
+        "name": "🎬光速资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.3935229,
+        "requests": 3,
+        "metadataBytes": 87012,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 44,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 36767,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 23,
+        "key": "www.hongniuzy.com",
+        "name": "🎬红牛资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.5217736,
+        "requests": 3,
+        "metadataBytes": 69851,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 44,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 32283,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 24,
+        "key": "caiji.moduapi.cc",
+        "name": "🎬魔都动漫",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 13.3548864,
+        "requests": 3,
+        "metadataBytes": 69449,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 42,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 38380,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 25,
+        "key": "www.ryzyw.com",
+        "name": "🎬如意资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 16.0477165,
+        "requests": 3,
+        "metadataBytes": 169346,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 39,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 24716,
+          "mime": "image/webp",
+          "status": 200
+        }
+      },
+      {
+        "index": 26,
+        "key": "www.haohuazy.com",
+        "name": "🎬豪华资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.6620844,
+        "requests": 3,
+        "metadataBytes": 69193,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 48,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 18458,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 27,
+        "key": "bdzy1.com",
+        "name": "🎬百度云资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.4505561,
+        "requests": 3,
+        "metadataBytes": 184700,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 54,
+          "status": ""
+        },
+        "coverHead": {
+          "length": -1,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 29,
+        "key": "api_1",
+        "name": "🎬1080资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.8646043,
+        "requests": 3,
+        "metadataBytes": 51694,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 62,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 37038,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 30,
+        "key": "api_4",
+        "name": "🎬CK资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.3932241,
+        "requests": 3,
+        "metadataBytes": 46108,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 2,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 87839,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 31,
+        "key": "api_9",
+        "name": "🎬丫丫点播",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 13.707104,
+        "requests": 3,
+        "metadataBytes": 139938,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 59,
+          "status": ""
+        },
+        "coverHead": {
+          "length": -1,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 34,
+        "key": "api_24",
+        "name": "🎬最大点播",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 17.9648775,
+        "requests": 3,
+        "metadataBytes": 149245,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 59,
+          "status": ""
+        },
+        "coverHead": {
+          "length": -1,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 35,
+        "key": "api_26",
+        "name": "🎬樱花资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 13.9992128,
+        "requests": 3,
+        "metadataBytes": 44933,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 33,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 27239,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 36,
+        "key": "api_27",
+        "name": "🎬步步高资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 14.5799249,
+        "requests": 3,
+        "metadataBytes": 32089,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 24,
+          "status": ""
+        },
+        "coverHead": {
+          "length": -1,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 37,
+        "key": "api_28",
+        "name": "🎬牛牛点播",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.5355442,
+        "requests": 3,
+        "metadataBytes": 40874,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 59,
+          "status": ""
+        },
+        "coverHead": {
+          "length": -1,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 38,
+        "key": "api_33",
+        "name": "🎬索尼资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.1865196,
+        "requests": 3,
+        "metadataBytes": 50046,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 61,
+          "status": ""
+        },
+        "coverHead": {
+          "length": -1,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 39,
+        "key": "api_36",
+        "name": "🎬虎牙资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.7197708,
+        "requests": 3,
+        "metadataBytes": 69537,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 44,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 28012,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 40,
+        "key": "api_41",
+        "name": "🎬量子资源2",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 14.169156,
+        "requests": 3,
+        "metadataBytes": 371993,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 44,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 24716,
+          "mime": "image/webp",
+          "status": 200
+        }
+      },
+      {
+        "index": 41,
+        "key": "api_43",
+        "name": "🎬金鹰资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 14.076668,
+        "requests": 3,
+        "metadataBytes": 68832,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 44,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 108414,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 42,
+        "key": "api_44",
+        "name": "🎬闪电资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.3674563,
+        "requests": 3,
+        "metadataBytes": 144124,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 59,
+          "status": ""
+        },
+        "coverHead": {
+          "length": -1,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 52,
+        "key": "youzhidianying",
+        "name": "🎬优质资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.5932835,
+        "requests": 3,
+        "metadataBytes": 29849,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 62,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 37038,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 83,
+        "key": "api_60",
+        "name": "🔞淫水机资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 13.0934299,
+        "requests": 3,
+        "metadataBytes": 73418,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 0,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 62976,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 84,
+        "key": "api_63",
+        "name": "🔞白嫖资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 14.7696329,
+        "requests": 3,
+        "metadataBytes": 35758,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 0,
+          "status": "timeout"
+        },
+        "coverHead": {
+          "length": -1,
+          "mime": "text/html",
+          "status": 404
+        }
+      },
+      {
+        "index": 85,
+        "key": "api_65",
+        "name": "🔞美少女资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 13.6838788,
+        "requests": 3,
+        "metadataBytes": 70826,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 0,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 52291,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 88,
+        "key": "api_70",
+        "name": "🔞香奶儿资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.3635839,
+        "requests": 3,
+        "metadataBytes": 71360,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 0,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 20105,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      },
+      {
+        "index": 89,
+        "key": "api_72",
+        "name": "🔞黄AV资源",
+        "stage": "cover-head",
+        "status": "head_response_received",
+        "seconds": 12.4215696,
+        "requests": 3,
+        "metadataBytes": 71158,
+        "mediaBytes": 0,
+        "imagesBodyBytes": 0,
+        "catalogCount": 20,
+        "categories": {
+          "count": 0,
+          "status": ""
+        },
+        "coverHead": {
+          "length": 70326,
+          "mime": "image/jpeg",
+          "status": 200
+        }
+      }
+    ],
+    "semantics": "HTTP 200 confirms HEAD metadata response only; EOF/timeout is unconfirmed; 405 would mean method unsupported, not broken image; catalog failures do not imply cover failures"
+  },
+  "public_html_text_followup": {
+    "initial_requests": 7,
+    "redirect_request_count": "not instrumented; not included in exact transport request totals",
+    "image_body_bytes": 0,
+    "maximum_text_bytes_per_response": 65536,
+    "sources": [
+      {
+        "key": "wolongzyw.com",
+        "status": 200,
+        "mime": "text/html",
+        "server": "Angie",
+        "cf_mitigated": null,
+        "bytes": 6987,
+        "sha256": "9db3a50548f3a7f051e56e278d4933e0fca3bb8244d1dbc33744949b4c800f27",
+        "title": "",
+        "forms": 1,
+        "password_field": false,
+        "challenge_markers": [],
+        "seconds": 7.131223800010048
+      },
+      {
+        "key": "api.wwzy.tv",
+        "status": 200,
+        "mime": "text/html",
+        "server": "cloudflare",
+        "cf_mitigated": null,
+        "bytes": 38084,
+        "sha256": "9ebcab41e1e5a6d7ca20374099c69445931cf3d5d6f0716355e3afc5294c642d",
+        "title": "天涯影视资源 | 海量资源永久免费",
+        "forms": 1,
+        "password_field": false,
+        "challenge_markers": [],
+        "seconds": 12.39271820000431
+      },
+      {
+        "key": "api_21",
+        "status": 200,
+        "mime": "text/html",
+        "server": "cloudflare",
+        "cf_mitigated": null,
+        "bytes": 38084,
+        "sha256": "9ebcab41e1e5a6d7ca20374099c69445931cf3d5d6f0716355e3afc5294c642d",
+        "title": "天涯影视资源 | 海量资源永久免费",
+        "forms": 1,
+        "password_field": false,
+        "challenge_markers": [],
+        "seconds": 12.339031199997407
+      },
+      {
+        "key": "www.yyzywcj.com",
+        "status": 200,
+        "mime": "text/html",
+        "server": "openresty",
+        "cf_mitigated": null,
+        "bytes": 5578,
+        "sha256": "d7eb81f85ab0fa2a128abf230f1754f5c2d198c6112da2e0c625ed6cb727aa4a",
+        "title": "Redirecting...",
+        "forms": 0,
+        "password_field": false,
+        "challenge_markers": [],
+        "seconds": 5.923391899996204
+      },
+      {
+        "key": "api_50",
+        "status": 200,
+        "mime": "text/html",
+        "server": "nginx",
+        "cf_mitigated": null,
+        "bytes": 13514,
+        "sha256": "d7420c1d8132b66250075a5d56aac93c5e7a9a47029880df0d75cd85befe6e37",
+        "title": "welcome",
+        "forms": 0,
+        "password_field": false,
+        "challenge_markers": [],
+        "seconds": 5.8744527000089874
+      },
+      {
+        "key": "api_51",
+        "status": 200,
+        "mime": "text/html",
+        "server": "nginx",
+        "cf_mitigated": null,
+        "bytes": 13514,
+        "sha256": "d7420c1d8132b66250075a5d56aac93c5e7a9a47029880df0d75cd85befe6e37",
+        "title": "welcome",
+        "forms": 0,
+        "password_field": false,
+        "challenge_markers": [],
+        "seconds": 6.125646200001938
+      },
+      {
+        "key": "huangguo-video",
+        "status": 403,
+        "mime": "text/html",
+        "server": "cloudflare",
+        "cf_mitigated": null,
+        "bytes": 8155,
+        "sha256": "3cfda3b8214533fa32aaf64bee0cbaaa967649dc18a9a9fb1c1c0441a35a0647",
+        "title": "Access denied | huangguo.video used Cloudflare to restrict access | huangguo.video | Cloudflare",
+        "forms": 0,
+        "password_field": false,
+        "challenge_markers": [
+          "challenge-platform",
+          "access denied",
+          "cloudflare ray id"
+        ],
+        "seconds": 6.26480889999948
+      }
+    ],
+    "semantics": "Small public text structure only; no random endpoint guesses or configuration replacements"
+  }
+}
