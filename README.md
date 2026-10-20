@@ -1,12 +1,20 @@
 # VideoResource
 
+## 259 当前108项审计与公共接口备选（2026-10-21）
+
+[逐项阶段与线路矩阵](audits/source-audit259-status.json)覆盖5个内置来源及当前103个导入来源。45个有成人标识或restricted身份的项目只做静态与HEAD健康检查，不取媒体；另有2项因既有成人参考或实际成人分类停在元数据边界，未取媒体。其余按实际接口检查目录、分类、搜索、详情和返回线路。分类元数据共返回1789项，其中29项随实际成人分类来源停止取样，其余逐项检查1760个真实分类首屏；实际返回45条线路分别记录解析、起播与前缀下载结果，28条确认解码起播、27条取得有界下载前缀。错误、拒绝、超时、未支持与未验证均保留，不将108项写成全通过。
+
+封面只检查HEAD响应与URL元数据，HEAD成功不等于图片显示或解码通过。清单分片若触发图片地址保护，保持未验证，不判成海报错误或放宽图片正文限制。媒体只取必要key/init、少量分片或Range前缀，不下载整部视频，不绕过验证码、权限、登录或加密授权。检查为Windows宿主原生核心及隔离本地流的libmpv小样本，不代表安装版Flutter界面、Android/TV或物理掌机验收。
+
+8个上游公共候选经过本客户端消费者检查，其中1项在两轮有界小样本中均确认起播与下载前缀，并逐项检查42个分类首屏。仅该项收入独立可选的[public-alternatives259.json](public-alternatives259.json)，不合入默认订阅，不覆盖现有个人配置；导入仍只新增。它是本环境重复取样可用的备选，不承诺全局更快或永久可用，也不能替代已有来源的全部分类/线路。其他候选的403、404与消费者拒绝留在矩阵，不添加占位配置。
+
 ## 原生适配资料（任务243）
 
-短剧汇 `0.0.163+242` 保留 B站、红果、影视、影视2、奈飞五个内置来源。其余11个原生适配器的名称、说明、入口、API、备用域、分类及线路资料由本仓库配置提供，客户端只保留适配方法、稳定来源身份和权限规则。当前新增资料发布在 `codex/tvbox-jianpian` 分支，不代表 `main` 已更新。
+短剧汇 `0.0.163+242` 保留 B站、红果、影视、影视2、奈飞五个内置来源。其余11个原生适配器的名称、说明、入口、API、备用域、分类及线路资料由本仓库配置提供，客户端只保留适配方法、稳定来源身份和权限规则。2026-10-21核对时，`main` 已包含 `codex/tvbox-jianpian` 的全部历史提交，且另有2个提交；本轮审计与备选资料位于 `codex/source-audit259`，不自动合入 `main`。
 
-- [native.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/native.json)：原10项可选原生配置，内容与本分支 `config.json` 一致。
-- [tencent.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/tencent.json)：独立腾讯原生配置。
-- [integrated.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/integrated.json)：原50项合集，保留原来源和稳定键，仅为其中10项可选原生配置补齐资料。
+- [native.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/native.json)：原10项可选原生配置，内容与本分支 `config.json` 一致。
+- [tencent.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/tencent.json)：独立腾讯原生配置。
+- [integrated.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/integrated.json)：原50项合集，保留原来源和稳定键，仅为其中10项可选原生配置补齐资料。
 
 每项 `api` 是站点根，`native.version` 为 `1`。可选字段包括独立 `apiUrl` / `cdnUrl`、按角色组织的 `endpoints`、备用 `mirrors`、`allowedHosts` / `allowedSuffixes`、旧输入 `aliases`、分类 `categories`、`playbackLine`、发现入口 `transitSites` / `seedWords`、`generatedMirrorSuffix`、`description` / `warning`。封面引用来源由 `endpoints.coverReferer` 与 `coverRefererHosts` 配套限定。角色路径与站点根不可混用；资料缺失不会回退到客户端内置旧地址。
 
@@ -51,11 +59,11 @@ https://raw.githubusercontent.com/Grails125/VideoResource/main/config.json
 
 | 配置 | 用途 |
 | --- | --- |
-| [integrated.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/integrated.json) | 50项合集：原生10＋影视2原生适配1＋JSON28＋XML11，一次预览确认共同安装 |
-| [jianpian.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/jianpian.json) | 影视2原生适配配置，需要支持`jianpian`适配器的新客户端；旧默认配置不追加此项 |
-| [tvbox-json.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/tvbox-json.json) | TVBox type1标准JSON采集接口 |
-| [tvbox-xml.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/tvbox-xml.json) | TVBox type0标准XML采集接口 |
-| [tvbox-pending.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/tvbox-pending.json) | 21项待验证配置，全部默认禁用；仅供手动选择，不作为快捷推荐 |
+| [integrated.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/integrated.json) | 50项合集：原生10＋影视2原生适配1＋JSON28＋XML11，一次预览确认共同安装 |
+| [jianpian.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/jianpian.json) | 影视2原生适配配置，需要支持`jianpian`适配器的新客户端；旧默认配置不追加此项 |
+| [tvbox-json.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/tvbox-json.json) | TVBox type1标准JSON采集接口 |
+| [tvbox-xml.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/tvbox-xml.json) | TVBox type0标准XML采集接口 |
+| [tvbox-pending.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/tvbox-pending.json) | 21项待验证配置，全部默认禁用；仅供手动选择，不作为快捷推荐 |
 
 短剧汇`0.0.148+227`源码为影视2增加发现页封面目录、推荐／电影／电视剧／动漫／综艺分类及连续分页，保留关键词搜索；旧`0.0.147+226`仍仅支持搜索。已安装的`jianpian`配置无需修改或重新导入，能力以客户端实际版本为准。荐片H5独立短剧入口使用另一套ID与播放消费者，当前未接入，不混用普通影视详情；`jianpian://`、荐片账号及付费授权仍未实现。目录元数据成功不代表图片或媒体实播已验收。
 
@@ -74,3 +82,9 @@ JSON／XML配置只面向客户端支持的标准采集接口及标准直连媒�
 初轮、16项诊断补采、分集编号夹具修正后补采分别记录，不把重复请求或后续单项成功累加成初轮通过数。黄果视频不在原93项中，单独记录：本轮自动代理路径首页返回Cloudflare访问拒绝页面，未获取媒体；没有改用户代理或绕过访问限制。审计文件仅保留来源标识、状态、时间、计数和摘要，不含影片名称、媒体地址或密钥；状态具有时效性，不构成上游长期可用承诺。
 
 初轮封面HEAD限3秒，40次超时、1次EOF，不能据此认定封面失效。另以12秒、最多3来源并发补测41项：39项实际发出HEAD，36项200、1项403、1项404、1项EOF；2项目录重取失败未取得封面。仅响应元数据，不读取图片正文，200也不代表已验证图片解码；405若出现仅表示不支持HEAD。本轮没有405，补测不请求媒体正文，独立记录在`coverFollowUp`。
+
+### 259定向失败补查
+
+公开审计JSON另列 `followupDiagnostics`，原108入口、1760分类首屏、45条线路的历史结果与覆盖计数保留。红果漫剧／AI剧实际出现HTTP200空body，AI小样本曾返回18条后再次为空；ryzyw三分类明确返回code=1、list=null、pagecount=0、total=0，客户端已按严格空终态修复，后续仅记空结果。其他失败区分网页响应、非JSON对象、API失败码1002、HTTP503、HTTPS协议不符、HTTP/2 INTERNAL_ERROR和无公开直连分集。
+
+奈飞／新浪的后续1080p小样本与五条影视2线路的前缀检查独立记录，不把不同时间或无法核同一剧集／线路的成功覆盖为原全量通过。旧探针未保留的错误细节和选中线路身份仍明确未知。来源15发现成人分类后仅静态核对、未再发网络请求；45项静态限制与另外15／43／65的后续只查metadata边界分别记录。封面HEAD不等于显示或解码验证。
