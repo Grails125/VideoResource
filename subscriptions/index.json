@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "classification_policy": "仅分影视、短剧、动漫、未知四类；成人来源和无法确认内容类型的来源统一放入未知。依据现有配置声明和已有审计，未进行本轮在线分类或媒体验证。",
+  "groups": [
+    {
+      "id": "film-tv",
+      "name": "影视",
+      "path": "subscriptions/film-tv.json",
+      "count": 105,
+      "disabled_count": 17,
+      "basis": "通用影视、韩剧与恐怖专题来源，保留接口原有站内分类。"
+    },
+    {
+      "id": "short-drama",
+      "name": "短剧",
+      "path": "subscriptions/short-drama.json",
+      "count": 6,
+      "disabled_count": 0,
+      "basis": "原生资料明确标注短剧，包含 AI 短剧与漫剧。"
+    },
+    {
+      "id": "animation",
+      "name": "动漫",
+      "path": "subscriptions/animation.json",
+      "count": 3,
+      "disabled_count": 0,
+      "basis": "青空原生分类，以及原配置明确标注的魔都动漫接口。"
+    },
+    {
+      "id": "unknown",
+      "name": "未知",
+      "path": "subscriptions/unknown.json",
+      "count": 51,
+      "disabled_count": 3,
+      "basis": "成人来源及原待分类来源；包含资料不足、旧审计入口与名称不一致或仅提供网页首页的来源。"
+    }
+  ],
+  "legacy_files": {
+    "config.json": {
+      "count": 12,
+      "content_sha256": "11bbcb24cf45c6173c508e51fce3dedd77f893b7937d9e2e6bf9f67289d331d3"
+    },
+    "native.json": {
+      "count": 12,
+      "content_sha256": "11bbcb24cf45c6173c508e51fce3dedd77f893b7937d9e2e6bf9f67289d331d3"
+    },
+    "tencent.json": {
+      "count": 1,
+      "content_sha256": "163dc4320dfdd63ebb57ed5403baf56693cfe859495a1bba6624f6ae453f892d"
+    },
+    "jianpian.json": {
+      "count": 1,
+      "content_sha256": "95be883346f35e4d7749c4add4fe7e63e29526581e45ddee3a225dbabfa666b1"
+    },
+    "plugin20261016.json": {
+      "count": 93,
+      "content_sha256": "704854dd5b719cf5dc2e72a80a8ce72cf4dd083385c72f46a5deb68e8d75b18a"
+    },
+    "tvbox-json.json": {
+      "count": 28,
+      "content_sha256": "f3a902af2b400b1b5f799784002e352d393a624a42f308c46db60fbcdfee9466"
+    },
+    "tvbox-xml.json": {
+      "count": 11,
+      "content_sha256": "bea8f47d8fb953ec33e87b0741c2deff5400306973b828168c1734180751bcc4"
+    },
+    "tvbox-pending.json": {
+      "count": 21,
+      "content_sha256": "8fcdbb6352a3aefcf10bd05e2b6ce3f13c06c5e4e059ec99cdffce75a4741865"
+    },
+    "gnoix-api.json": {
+      "count": 15,
+      "content_sha256": "a16b81cc96cf1be9f3f3de6b611240dba149db860ccbf85dfcb5bafab91867d8"
+    },
+    "integrated.json": {
+      "count": 52,
+      "content_sha256": "51b2fe3fdd039ce23592d3f6c828e0ce8ac7224813ab4bd01c22684dab449f54"
+    }
+  },
+  "aliases": {
+    "tvbox-c95160479ba0bb3b2c292b46": "api_41",
+    "tvbox-6ddcd1c9d3eca1b09daeffc2": "tvbox-77ba3e2e3d3c7a779ff4a0f6",
+    "tvbox-10ee9009c31aca814d2a6de8": "tvbox-0cb9919474cc77e7ce42fcc3"
+  },
+  "total_sources": 165,
+  "legacy_stable_keys": 167,
+  "classification_evidence": {
+    "adult_audit": "audits/plugin20261016-status.json#initial.sources",
+    "adult_endpoint_variants": [
+      "tvbox-3a207c730034f6b1dc003c00",
+      "tvbox-60a8a8d127afcd27b2ae81d8",
+      "tvbox-d5597ba670618a92b45d158f"
+    ],
+    "animation_keys": [
+      "caiji.moduapi.cc",
+      "sorani",
+      "tvbox-b7990671ab43eae391b9e2cc"
+    ],
+    "short_drama_keys": [
+      "huangdou",
+      "huangguoai",
+      "huangju",
+      "jinguo",
+      "jinguoduanju",
+      "yeguo"
+    ],
+    "unknown_keys": [
+      "aiduanjucc",
+      "api.wwzy.tv",
+      "api_21",
+      "cloudfront",
+      "dsd",
+      "huangguo-video",
+      "tvbox-dfaa8e71bccb3d910803980d",
+      "heitao"
+    ],
+    "adult_keys_in_unknown": [
+      "lovedan.net",
+      "dadiziy",
+      "91md.me",
+      "91jpzyw.com",
+      "lbapiby.com",
+      "155zy2.com",
+      "apiyutu.com",
+      "fhapi9.com",
+      "apilsbzy1.com",
+      "www.yyzywcj.com",
+      "xiaojizy.live",
+      "hsckzy.xyz",
+      "apidanaizi.com",
+      "jkunzyapi.com",
+      "lbapi9.com",
+      "Naixxzy.com",
+      "slapibf.com",
+      "apilj.com",
+      "shayuapi.com",
+      "xzytv.com",
+      "doudouzy.com",
+      "didizy.com",
+      "heiliaozy.cc",
+      "api.bwzym3u8.com",
+      "thzy8.me",
+      "www.jingpinx.com",
+      "souavzyw.com",
+      "api_50",
+      "api_51",
+      "api_57",
+      "api_60",
+      "api_63",
+      "api_65",
+      "api_67",
+      "api_68",
+      "api_70",
+      "api_72",
+      "xingbaziyuan",
+      "huangseziy",
+      "xibaocaiji",
+      "tvbox-60a8a8d127afcd27b2ae81d8",
+      "tvbox-d5597ba670618a92b45d158f",
+      "tvbox-3a207c730034f6b1dc003c00"
+    ]
+  },
+  "additional_sources": {
+    "heitao": {
+      "repository": "Xanerix/guoapp",
+      "commit": "2e7388cc0c2a41180503e2b98fb283e8dbe35b78",
+      "path": "native/core/provider_heitao.go",
+      "group": "unknown",
+      "status": "CLIENT_SYNTHETIC_VALIDATION_PASSED_LIVE_UNVERIFIED",
+      "validation": "客户端实际解析、配置权限、目录分类、分页搜索、详情分集与直接媒体地址编码通过合成回归；未请求站源图片、真实媒体或实物设备。"
+    }
+  },
+  "maintenance_policy": "固定四份订阅地址。新增来源先按稳定键和完整接口身份去重，再追加到对应文件末尾；不自动覆盖、重命名或重排旧来源，不新增分类，成人和待分类均归未知。"
+}

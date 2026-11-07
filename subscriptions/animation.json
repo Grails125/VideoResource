@@ -1,0 +1,55 @@
+{
+  "cache_time": 7200,
+  "api_site": {
+    "sorani": {
+      "name": "青空",
+      "api": "https://www.sorani.net",
+      "adapter": "sorani",
+      "native": {
+        "version": 1,
+        "description": "番剧 · 剧场动画 · 特摄",
+        "apiUrl": "https://api.sorani.cc/sorani-cms/api",
+        "endpoints": {
+          "api": "https://api.sorani.cc/sorani-cms/api"
+        },
+        "aliases": [
+          "sorani",
+          "sorani.net",
+          "www.sorani.net",
+          "api.sorani.cc",
+          "sorani.cc"
+        ],
+        "allowedHosts": [
+          "sorani.net",
+          "www.sorani.net",
+          "api.sorani.cc",
+          "sorani.cc"
+        ],
+        "categories": [
+          {
+            "id": "1",
+            "name": "TV番剧"
+          },
+          {
+            "id": "2",
+            "name": "剧场动画"
+          },
+          {
+            "id": "5",
+            "name": "特摄剧场"
+          }
+        ],
+        "playbackLine": "anime_jp_m3u8"
+      }
+    },
+    "caiji.moduapi.cc": {
+      "name": "🎬魔都动漫",
+      "api": "https://caiji.moduapi.cc/api.php/provide/vod",
+      "detail": "https://caiji.moduapi.cc"
+    },
+    "tvbox-b7990671ab43eae391b9e2cc": {
+      "name": "34-魔都",
+      "api": "https://caiji.moduapi.cc/api.php/provide/vod"
+    }
+  }
+}
