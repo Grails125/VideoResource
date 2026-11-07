@@ -6,8 +6,8 @@
       "id": "film-tv",
       "name": "影视",
       "path": "subscriptions/film-tv.json",
-      "count": 105,
-      "disabled_count": 17,
+      "count": 107,
+      "disabled_count": 19,
       "basis": "通用影视、韩剧与恐怖专题来源，保留接口原有站内分类。"
     },
     {
@@ -82,7 +82,7 @@
     "tvbox-6ddcd1c9d3eca1b09daeffc2": "tvbox-77ba3e2e3d3c7a779ff4a0f6",
     "tvbox-10ee9009c31aca814d2a6de8": "tvbox-0cb9919474cc77e7ce42fcc3"
   },
-  "total_sources": 165,
+  "total_sources": 167,
   "legacy_stable_keys": 167,
   "classification_evidence": {
     "adult_audit": "audits/plugin20261016-status.json#initial.sources",
@@ -168,6 +168,18 @@
       "group": "unknown",
       "status": "CLIENT_SYNTHETIC_VALIDATION_PASSED_LIVE_UNVERIFIED",
       "validation": "客户端实际解析、配置权限、目录分类、分页搜索、详情分集与直接媒体地址编码通过合成回归；未请求站源图片、真实媒体或实物设备。"
+    },
+    "cinejoy": {
+      "group": "film-tv",
+      "status": "CLIENT_SYNTHETIC_AND_PUBLIC_PROTOCOL_VALIDATED_PLAYBACK_UNVERIFIED",
+      "validation": "2026-11-08：实际core解析器及合成线路、画质、字幕、权限、取消、封包与沙箱回归通过。公开电影目录20项；动态服务器5条，默认HLS主清单4档实际画质，电影及电视剧样本各1条字幕；Nebula取流响应成功且本样本无字幕。未请求图片、媒体分片或字幕正文，未完成真实播放和实机验收。",
+      "website": "https://cinejoy.pk/"
+    },
+    "movy": {
+      "group": "film-tv",
+      "status": "CLIENT_SYNTHETIC_AND_PUBLIC_PROTOCOL_VALIDATED_PLAYBACK_UNVERIFIED",
+      "validation": "2026-11-08：实际core解析器及合成线路、画质、字幕、权限、取消、会话解码回归通过。公开电影目录20项；配置13条原声线路，Miami返回2160p／1080p／720p／480p及1条字幕；Boise取流成功。一次连接失败后单独复测通过，电视剧首集有资源而本样本无字幕。未请求图片、媒体分片或字幕正文，未完成真实播放和实机验收。",
+      "website": "https://www.movy.sx/"
     }
   },
   "maintenance_policy": "固定四份订阅地址。新增来源先按稳定键和完整接口身份去重，再追加到对应文件末尾；不自动覆盖、重命名或重排旧来源，不新增分类，成人和待分类均归未知。"

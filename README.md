@@ -8,12 +8,12 @@
 
 | 分类 | 固定订阅文件 | 来源数 | 默认禁用 |
 | --- | --- | ---: | ---: |
-| 影视 | [subscriptions/film-tv.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/film-tv.json) | 105 | 17 |
+| 影视 | [subscriptions/film-tv.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/film-tv.json) | 107 | 19 |
 | 短剧 | [subscriptions/short-drama.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/short-drama.json) | 6 | 0 |
 | 动漫 | [subscriptions/animation.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/animation.json) | 3 | 0 |
 | 未知 | [subscriptions/unknown.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/unknown.json) | 51 | 3 |
 
-四份主订阅共有165项，每个稳定身份只归属一类。影视包含综合影视、韩剧和恐怖专题；短剧包含已有资料明确标注的短剧、AI短剧与漫剧；动漫包含青空及原配置明确标注的魔都动漫接口。未知包含43个已有明确成人标记或历史审计记录的接口、7个类型尚不明确的旧来源，以及新收录但内容范围未核实的黑桃。
+四份主订阅共有167项，每个稳定身份只归属一类。影视包含综合影视、韩剧和恐怖专题；短剧包含已有资料明确标注的短剧、AI短剧与漫剧；动漫包含青空及原配置明确标注的魔都动漫接口。未知包含43个已有明确成人标记或历史审计记录的接口、7个类型尚不明确的旧来源，以及新收录但内容范围未核实的黑桃。
 
 分类依据是现有配置声明和已有审计，不代表本轮已在线核实全部站点内容。综合采集接口继续展示服务端返回的电影、电视剧、综艺等分类，同一接口不会分别复制到多个订阅。JSON/XML和不同线路仅在接口语义、详情配置均相同的情况下去重。
 
@@ -23,7 +23,7 @@
 
 ## 去重与兼容
 
-本次从旧文件的167个不同稳定键整理出164个来源，另追加黑桃1项。主分类订阅删除3个严格等价的重复键：
+本次从旧文件的167个不同稳定键整理出164个来源，另追加黑桃、Cinejoy、Movy各1项。主分类订阅删除3个严格等价的重复键：
 
 | 旧重复键 | 主分类保留键 |
 | --- | --- |
@@ -57,6 +57,14 @@ URL身份规范化主机大小写、默认端口、末尾斜线及 `ac=list`，�
 禁果及禁果短剧入口资料参考上游提交 `219405676fd6da4d4b05e99b7ad4a2d1814cd38e`，保持两个独立适配器与身份。黄豆6个域名池参考提交 `36c9eb9c72c9c8ae0ba8e46331a8b6c0268671b9`；此前有界目录元数据成功不等于媒体可播。
 
 TVBox旧配置参考 `hebijunge/tvbox-config` 提交 `7d5a8d531cd8be71c1299c054a4234b0302b4a1c`。Gnoix旧精选对应 [rules.json](https://gnoix.277722.xyz/rules.json) 的20261102快照；12个JS规则不执行，未证实等价的新地址不替换旧资料。[既有逐源审计](audits/plugin20261016-status.json)保留历史采样阶段和限制，本次不把旧检查累加为当前通过数。
+
+## Cinejoy与Movy
+
+两站追加在影视订阅末尾，稳定身份为 `cinejoy`、`movy`，默认禁用，不覆盖旧站源及排序。需要本次更新后的客户端；在站源管理读取影视订阅预览、确认导入，再按既有来源权限启用。支持电影／电视剧、季集详情、按需服务器切换、该线路实际画质和SRT／WebVTT字幕；可用档位及字幕随影片和线路变化。
+
+元数据使用配置中的公开TMDB兼容接口。Cinejoy服务器由公开接口返回，封包模块固定HTTPS地址与SHA-256；客户端只在限时、限内存、无宿主能力的解释器中执行，不保存模块或临时响应密钥。Movy按官方Vidy播放器公开协议处理短期会话，配置13条原声音频服务器线路；不将未适配的本地化音频服务器加入配置。所有地址与固定线路仅在本仓库维护。
+
+2026-11-08公开协议核验中，两站电影目录均返回20项；Cinejoy默认服务器5条、Movy配置13条，当前影片均能提取4档实际画质。Cinejoy Nebula和Movy Boise备用服务器有取流响应；Cinejoy的电影及电视剧样本返回独立字幕，Nebula当前样本没有字幕。接口有过一次连接失败，不能视为全站或持续可用保证。完整证据、合成回归和未验收范围见客户端README；未请求站源图片或媒体分片，未完成实际播放及物理设备验收。
 
 ## 后续维护
 

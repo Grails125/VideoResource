@@ -639,6 +639,118 @@
           }
         ]
       }
+    },
+    "cinejoy": {
+      "name": "Cinejoy",
+      "api": "https://cinejoy.pk",
+      "adapter": "cinejoy",
+      "disabled": true,
+      "native": {
+        "version": 1,
+        "cdnUrl": "https://image.tmdb.org/t/p/w500",
+        "endpoints": {
+          "metadata": "https://db.wecollege.net/3"
+        },
+        "categories": [
+          {
+            "id": "movie",
+            "name": "电影"
+          },
+          {
+            "id": "tv",
+            "name": "电视剧"
+          }
+        ],
+        "apiUrl": "https://api.wing.st",
+        "description": "电影 · 电视剧 · 服务器线路 · HLS实际画质 · 站源字幕",
+        "warning": "使用配置中的公开TMDB兼容元数据接口；封包模块需通过固定SHA-256校验，在无宿主能力、限时限内存的解释器中运行。站点接口变更时需更新配置；不处理账号、付费、DRM或访问验证。",
+        "requestCodec": {
+          "kind": "cinejoy-seal-v1",
+          "url": "https://api.wing.st/crush.wasm",
+          "sha256": "40c923580779e2a850fc5ab3f0046be565ed717883cf4547ed3a87de2450bdcf"
+        }
+      }
+    },
+    "movy": {
+      "name": "Movy",
+      "api": "https://www.movy.sx",
+      "adapter": "movy",
+      "disabled": true,
+      "native": {
+        "version": 1,
+        "cdnUrl": "https://image.tmdb.org/t/p/w500",
+        "endpoints": {
+          "metadata": "https://db.wecollege.net/3",
+          "playerReferer": "https://www.vidy.st"
+        },
+        "categories": [
+          {
+            "id": "movie",
+            "name": "电影"
+          },
+          {
+            "id": "tv",
+            "name": "电视剧"
+          }
+        ],
+        "apiUrl": "https://api.wecollege.net",
+        "description": "电影 · 电视剧 · Vidy原声线路 · 实际画质 · 站源字幕",
+        "warning": "只使用公开播放会话，逐线路按需解析；画质和字幕依本集该线路实际返回，不保证每条线路或每部影片可用。",
+        "playbackLines": [
+          {
+            "id": "miami",
+            "name": "Miami"
+          },
+          {
+            "id": "boise",
+            "name": "Boise"
+          },
+          {
+            "id": "nashville",
+            "name": "Nashville"
+          },
+          {
+            "id": "chicago",
+            "name": "Chicago"
+          },
+          {
+            "id": "vegas",
+            "name": "Vegas"
+          },
+          {
+            "id": "reno",
+            "name": "Reno"
+          },
+          {
+            "id": "oakland",
+            "name": "Oakland"
+          },
+          {
+            "id": "seattle",
+            "name": "Seattle"
+          },
+          {
+            "id": "phoenix",
+            "name": "Phoenix"
+          },
+          {
+            "id": "atlanta",
+            "name": "Atlanta"
+          },
+          {
+            "id": "portland",
+            "name": "Portland"
+          },
+          {
+            "id": "austin",
+            "name": "Austin"
+          },
+          {
+            "id": "dallas",
+            "name": "Dallas"
+          }
+        ]
+      }
     }
   }
 }
