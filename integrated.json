@@ -178,22 +178,38 @@
     },
     "huangdou": {
       "name": "黄豆",
-      "api": "https://tideember.cc",
+      "api": "https://ferncider.cc",
       "adapter": "huangdou",
       "native": {
         "version": 1,
         "description": "精选短剧",
         "mirrors": [
-          "https://xqjurgek.top"
+          "https://onyxripple.cc",
+          "https://reeflumen.cc",
+          "https://niniharbor.top",
+          "https://halomeadow.top",
+          "https://larksummit.icu"
         ],
         "aliases": [
           "huangdou",
           "tideember.cc",
-          "xqjurgek.top"
+          "xqjurgek.top",
+          "ferncider.cc",
+          "onyxripple.cc",
+          "reeflumen.cc",
+          "niniharbor.top",
+          "halomeadow.top",
+          "larksummit.icu"
         ],
         "allowedHosts": [
           "tideember.cc",
-          "xqjurgek.top"
+          "xqjurgek.top",
+          "ferncider.cc",
+          "onyxripple.cc",
+          "reeflumen.cc",
+          "niniharbor.top",
+          "halomeadow.top",
+          "larksummit.icu"
         ],
         "playbackLine": "free"
       }

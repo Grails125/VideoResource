@@ -54,6 +54,8 @@ https://raw.githubusercontent.com/Grails125/VideoResource/main/config.json
 
 禁果和禁果短剧使用两个独立适配器与来源身份，入口、API、备用域和元数据角色地址参考 `Xanerix/guoapp` 提交 `219405676fd6da4d4b05e99b7ad4a2d1814cd38e`，仅迁入配置资料。本次验证配置解析、来源身份、分类ID和域名边界，没有请求站源图片或进行真实站点播放验证。已安装订阅请重新获取预览并确认新增；已有同键项继续保留，更新已有项需明确确认。
 
+黄豆配置同步6个域名池入口，参考 `Xanerix/guoapp` 提交 `36c9eb9c72c9c8ae0ba8e46331a8b6c0268671b9`；主入口为 ferncider.cc，其余5个按配置顺序备用。2026-11-07本机通过当前客户端协议逐一请求有界目录元数据，6个均返回可解码资料；未请求图片或媒体，不代表全站播放通过。已安装的黄豆资料需要预览订阅更新并确认，普通重复导入保留个人旧配置。
+
 配置收录不代表站点当前可播放，实际可用性取决于站点状态及客户端适配器。本仓库不存账号、Cookie、私钥或设备配置。
 
 ## 分类可选订阅
@@ -66,6 +68,7 @@ https://raw.githubusercontent.com/Grails125/VideoResource/main/config.json
 | [jianpian.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/jianpian.json) | 影视2原生适配配置，需要支持`jianpian`适配器的新客户端；旧默认配置不追加此项 |
 | [tvbox-json.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/tvbox-json.json) | TVBox type1标准JSON采集接口 |
 | [tvbox-xml.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/tvbox-xml.json) | TVBox type0标准XML采集接口 |
+| [gnoix-api.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/gnoix-api.json) | Gnoix API 精选15项，复用既有稳定键，茅台和如意继续默认禁用 |
 | [tvbox-pending.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/tvbox-pending.json) | 21项待验证配置，全部默认禁用；仅供手动选择，不作为快捷推荐 |
 
 短剧汇`0.0.148+227`源码为影视2增加发现页封面目录、推荐／电影／电视剧／动漫／综艺分类及连续分页，保留关键词搜索；旧`0.0.147+226`仍仅支持搜索。已安装的`jianpian`配置无需修改或重新导入，能力以客户端实际版本为准。荐片H5独立短剧入口使用另一套ID与播放消费者，当前未接入，不混用普通影视详情；`jianpian://`、荐片账号及付费授权仍未实现。目录元数据成功不代表图片或媒体实播已验收。
@@ -85,3 +88,9 @@ JSON／XML配置只面向客户端支持的标准采集接口及标准直连媒�
 初轮、16项诊断补采、分集编号夹具修正后补采分别记录，不把重复请求或后续单项成功累加成初轮通过数。黄果视频不在原93项中，单独记录：本轮自动代理路径首页返回Cloudflare访问拒绝页面，未获取媒体；没有改用户代理或绕过访问限制。审计文件仅保留来源标识、状态、时间、计数和摘要，不含影片名称、媒体地址或密钥；状态具有时效性，不构成上游长期可用承诺。
 
 初轮封面HEAD限3秒，40次超时、1次EOF，不能据此认定封面失效。另以12秒、最多3来源并发补测41项：39项实际发出HEAD，36项200、1项403、1项404、1项EOF；2项目录重取失败未取得封面。仅响应元数据，不读取图片正文，200也不代表已验证图片解码；405若出现仅表示不支持HEAD。本轮没有405，补测不请求媒体正文，独立记录在`coverFollowUp`。
+
+## Gnoix API 精选订阅
+
+[gnoix-api.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/gnoix-api.json) 对照 [Gnoix rules.json](https://gnoix.277722.xyz/rules.json) 的20261102快照整理。33项中，13个API与既有接口同址，另2项已核对目录请求等价；这15项直接复用本仓库的稳定键、地址、名称及禁用状态，茅台和如意仍为待验证禁用项。已导入旧订阅的同键项继续保留；新版客户端也按标准采集接口去重，不覆盖个人名称和配置。
+
+非凡、最大、索尼、天涯、无尽的5个不同入口尚未证明内容身份一致，本订阅未新增或替换这些地址；天翼返回停放网页，未收录。12个JS规则不执行，也不作为API导入；可选原生来源继续使用对应原生订阅。这是兼容子集，不是新增15个独立提供方，也不表示15项均已实播或内容范围已核实。未读取图片或播放媒体。
