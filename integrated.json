@@ -556,6 +556,88 @@
     "tvbox-fa9d471e5171936cad0840e6": {
       "name": "红牛云",
       "api": "https://www.hongniuzy2.com/api.php/provide/vod/from/hnyun/at/xml"
+    },
+    "jinguo": {
+      "name": "禁果",
+      "api": "https://d1wyuxwdrlykj1.cloudfront.net",
+      "adapter": "jinguo",
+      "native": {
+        "version": 1,
+        "description": "精选 · 最新 · 分类短剧 · 在线搜索",
+        "warning": "播放权限以原站返回为准，受金币或会员限制的分集可能不可用。",
+        "apiUrl": "https://d1wyuxwdrlykj1.cloudfront.net",
+        "endpoints": {
+          "api": "https://d1wyuxwdrlykj1.cloudfront.net",
+          "coverPrimary": "https://pic.zdmhyg.cn",
+          "coverFallback": "https://zzzznnn.lkkwip.cn"
+        },
+        "mirrors": [
+          "https://hghts.rlkfus.cn"
+        ],
+        "aliases": [
+          "jinguo",
+          "d1wyuxwdrlykj1.cloudfront.net",
+          "hghts.rlkfus.cn"
+        ],
+        "allowedHosts": [
+          "d1wyuxwdrlykj1.cloudfront.net",
+          "hghts.rlkfus.cn",
+          "pic.zdmhyg.cn",
+          "zzzznnn.lkkwip.cn"
+        ],
+        "categories": [
+          {
+            "id": "choose",
+            "name": "精选"
+          },
+          {
+            "id": "new",
+            "name": "最新"
+          }
+        ]
+      }
+    },
+    "jinguoduanju": {
+      "name": "禁果短剧",
+      "api": "https://jinguoduanju.app",
+      "adapter": "jinguoduanju",
+      "native": {
+        "version": 1,
+        "description": "推荐 · 热度 · 分类短剧 · 在线搜索",
+        "warning": "播放权限以原站返回为准，受会员、付费或地区限制的分集可能不可用。",
+        "apiUrl": "https://jinguoduanju.app/api/v1",
+        "endpoints": {
+          "api": "https://jinguoduanju.app/api/v1"
+        },
+        "mirrors": [
+          "https://play.jinguoduanju.app"
+        ],
+        "aliases": [
+          "jinguoduanju",
+          "jinguoduanju.app",
+          "www.jinguoduanju.app",
+          "play.jinguoduanju.app",
+          "jgdj.app",
+          "www.jgdj.app"
+        ],
+        "allowedHosts": [
+          "jinguoduanju.app",
+          "www.jinguoduanju.app",
+          "play.jinguoduanju.app",
+          "jgdj.app",
+          "www.jgdj.app"
+        ],
+        "categories": [
+          {
+            "id": "home",
+            "name": "推荐"
+          },
+          {
+            "id": "heat",
+            "name": "热度"
+          }
+        ]
+      }
     }
   }
 }
