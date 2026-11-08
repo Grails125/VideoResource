@@ -49,6 +49,8 @@ def source_identity(site):
 def check():
     _, index = read_json(ROOT / "subscriptions/index.json")
     expected = {"film-tv": "影视", "short-drama": "短剧", "animation": "动漫", "unknown": "未知"}
+    if index.get("default_enabled") is not True:
+        raise ValueError("Repository sources must be enabled by default")
     if [(group["id"], group["name"]) for group in index["groups"]] != list(expected.items()):
         raise ValueError("Subscriptions must use the four agreed content groups")
     legacy = {}
@@ -77,6 +79,8 @@ def check():
             raise ValueError("Invalid subscription envelope")
         sites = document["api_site"]
         disabled = sum(site.get("disabled", False) for site in sites.values())
+        if disabled:
+            raise ValueError("Primary subscription must not disable sources by default")
         if len(sites) != group["count"] or disabled != group["disabled_count"]:
             raise ValueError(f"Group count mismatch: {group['id']}")
         for key, site in sites.items():

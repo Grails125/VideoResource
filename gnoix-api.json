@@ -9,7 +9,7 @@
     "tvbox-9f84c0615646e2dd1da56475": {
       "name": "Clun📚在线·茅台 | 采集",
       "api": "https://mtzy.me/api.php/provide/vod",
-      "disabled": true
+      "disabled": false
     },
     "tvbox-a9e4bb24a20f8020831c6860": {
       "name": "64-牛牛",
@@ -46,7 +46,7 @@
     "tvbox-14bb2fa3370824aaffd62d2c": {
       "name": "如意｜采集",
       "api": "https://cj.rycjapi.com/api.php/provide/vod/at/json",
-      "disabled": true
+      "disabled": false
     },
     "tvbox-e86eec9ebd2867ab9a4c12be": {
       "name": "360 | 采集",

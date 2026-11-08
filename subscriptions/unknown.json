@@ -305,18 +305,18 @@
     "tvbox-d5597ba670618a92b45d158f": {
       "name": "[137ms|zy] 🍊鸡坤",
       "api": "https://jkunzyapi.com/api.php/provide/vod/at/json",
-      "disabled": true
+      "disabled": false
     },
     "tvbox-3a207c730034f6b1dc003c00": {
       "name": "💕jkun(直连)",
       "api": "https://jkunzyapi.com/api.php/provide/vod?ac=list",
-      "disabled": true
+      "disabled": false
     },
     "heitao": {
       "name": "黑桃",
       "api": "https://heitaodj.com",
       "adapter": "heitao",
-      "disabled": true,
+      "disabled": false,
       "native": {
         "version": 1,
         "description": "分类短剧 · 在线搜索；内容类型待核实",

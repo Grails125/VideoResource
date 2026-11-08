@@ -8,12 +8,12 @@
 
 | 分类 | 固定订阅文件 | 来源数 | 默认禁用 |
 | --- | --- | ---: | ---: |
-| 影视 | [subscriptions/film-tv.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/film-tv.json) | 107 | 19 |
+| 影视 | [subscriptions/film-tv.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/film-tv.json) | 107 | 0 |
 | 短剧 | [subscriptions/short-drama.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/short-drama.json) | 6 | 0 |
 | 动漫 | [subscriptions/animation.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/animation.json) | 3 | 0 |
-| 未知 | [subscriptions/unknown.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/unknown.json) | 51 | 3 |
+| 未知 | [subscriptions/unknown.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/unknown.json) | 51 | 0 |
 
-四份主订阅共有167项，每个稳定身份只归属一类。影视包含综合影视、韩剧和恐怖专题；短剧包含已有资料明确标注的短剧、AI短剧与漫剧；动漫包含青空及原配置明确标注的魔都动漫接口。未知包含43个已有明确成人标记或历史审计记录的接口、7个类型尚不明确的旧来源，以及新收录但内容范围未核实的黑桃。
+四份主订阅共有167项，全部默认启用，每个稳定身份只归属一类。健康检测失败只记录结果，不自动禁用；已安装资料保留用户手动关闭选择。影视包含综合影视、韩剧和恐怖专题；短剧包含已有资料明确标注的短剧、AI短剧与漫剧；动漫包含青空及原配置明确标注的魔都动漫接口。未知包含43个已有明确成人标记或历史审计记录的接口、7个类型尚不明确的旧来源，以及新收录但内容范围未核实的黑桃。
 
 分类依据是现有配置声明和已有审计，不代表本轮已在线核实全部站点内容。综合采集接口继续展示服务端返回的电影、电视剧、综艺等分类，同一接口不会分别复制到多个订阅。JSON/XML和不同线路仅在接口语义、详情配置均相同的情况下去重。
 
@@ -43,7 +43,7 @@ URL身份规范化主机大小写、默认端口、末尾斜线及 `ac=list`，�
 | [integrated.json](integrated.json) | 旧合集52项 |
 | [plugin20261016.json](plugin20261016.json) | 历史批次93项 |
 | [tvbox-json.json](tvbox-json.json)、[tvbox-xml.json](tvbox-xml.json) | 旧JSON28项、XML11项 |
-| [tvbox-pending.json](tvbox-pending.json) | 旧待验证21项，全部默认禁用 |
+| [tvbox-pending.json](tvbox-pending.json) | 旧待验证21项，统一默认启用，验证结果另列 |
 | [gnoix-api.json](gnoix-api.json) | 旧Gnoix API精选15项，复用已有键 |
 
 旧文件之间的重合属于兼容视图，不计为新增提供方。`archive/source_repository/` 保留94个历史文本文件，其中86个Kazumi JSON，仅供追溯，不恢复已退休的脚本执行器。
@@ -52,7 +52,7 @@ URL身份规范化主机大小写、默认端口、末尾斜线及 `ac=list`，�
 
 [Xanerix/guoapp](https://github.com/Xanerix/guoapp/tree/2e7388cc0c2a41180503e2b98fb283e8dbe35b78) 本次核对至提交 `2e7388cc0c2a41180503e2b98fb283e8dbe35b78`。其已有来源中，红果由客户端内置，其余既有可选来源已经收录；本次新增差项为[黑桃协议参考](https://github.com/Xanerix/guoapp/blob/2e7388cc0c2a41180503e2b98fb283e8dbe35b78/native/core/provider_heitao.go)。仅提取入口与协议行为，客户端独立实现，不复制其应用源码或资产。
 
-黑桃使用稳定身份 `heitao`、`native.version=1`，入口和域名边界只维护于未知订阅。需要本次更新后支持 `heitao` 的客户端，默认禁用；旧客户端无法识别新适配器时不会被标记为已接入。站点要求年龄确认、登录或其他授权时保留原站拒绝，不自动注入确认Cookie。实际验证状态见索引和客户端README。
+黑桃使用稳定身份 `heitao`、`native.version=1`，入口和域名边界只维护于未知订阅。需要本次更新后支持 `heitao` 的客户端，默认启用；旧客户端无法识别新适配器时不会被标记为已接入。站点要求年龄确认、登录或其他授权时保留原站拒绝，不自动注入确认Cookie。实际验证状态见索引和客户端README。
 
 禁果及禁果短剧入口资料参考上游提交 `219405676fd6da4d4b05e99b7ad4a2d1814cd38e`，保持两个独立适配器与身份。黄豆6个域名池参考提交 `36c9eb9c72c9c8ae0ba8e46331a8b6c0268671b9`；此前有界目录元数据成功不等于媒体可播。
 
@@ -60,16 +60,18 @@ TVBox旧配置参考 `hebijunge/tvbox-config` 提交 `7d5a8d531cd8be71c1299c054a
 
 ## Cinejoy与Movy
 
-两站追加在影视订阅末尾，稳定身份为 `cinejoy`、`movy`，默认禁用，不覆盖旧站源及排序。需要本次更新后的客户端；在站源管理读取影视订阅预览、确认导入，再按既有来源权限启用。支持电影／电视剧、季集详情、按需服务器切换、该线路实际画质和SRT／WebVTT字幕；可用档位及字幕随影片和线路变化。
+两站追加在影视订阅末尾，稳定身份为 `cinejoy`、`movy`，默认启用，不覆盖旧站源及排序。需要本次更新后的客户端；在站源管理读取影视订阅预览、确认导入，按既有来源权限使用。支持电影／电视剧、季集详情、按需服务器切换、该线路实际画质和SRT／WebVTT字幕；可用档位及字幕随影片和线路变化。
 
 元数据使用配置中的公开TMDB兼容接口。Cinejoy服务器由公开接口返回，封包模块固定HTTPS地址与SHA-256；客户端只在限时、限内存、无宿主能力的解释器中执行，不保存模块或临时响应密钥。Movy按官方Vidy播放器公开协议处理短期会话，配置13条原声音频服务器线路；不将未适配的本地化音频服务器加入配置。所有地址与固定线路仅在本仓库维护。
 
-2026-11-08公开协议核验中，两站电影目录均返回20项；Cinejoy默认服务器5条、Movy配置13条，当前影片均能提取4档实际画质。Cinejoy Nebula和Movy Boise备用服务器有取流响应；Cinejoy的电影及电视剧样本返回独立字幕，Nebula当前样本没有字幕。接口有过一次连接失败，不能视为全站或持续可用保证。完整证据、合成回归和未验收范围见客户端README；未请求站源图片或媒体分片，未完成实际播放及物理设备验收。
+2026-11-08全量匿名采样覆盖本仓库167项及额外内置4项，共171个身份：媒体连接成功65项，目录失败36项、详情失败10项、解析失败50项、媒体失败1项、详情超时1项、需要授权2项、因禁图规则媒体未测6项。逐源仅采样单个标题／首个非VIP分集，所选视频和独立音频分别最多读取1024字节，不解码播放；未逐条验证所有线路、画质、字幕或搜索。完整逐源HTML、CSV和JSON结果在客户端 `build/source-audit-20261108/`，计数不累加旧审计。
+
+本轮Cinejoy样本解析5条已知线路、4档实际画质、3条字幕，媒体路径命中禁图规则而未测试媒体连接；Movy样本13条已知线路、3档实际画质、无字幕，媒体连接成功。此前secret及403错误未在当前公开样本重现。黑桃目录及详情可读，原站要求年龄确认，当前原生会话仍无法播放。默认启用与检测状态分开，检测失败不自动禁用；未请求站源图片，未完成完整播放或物理设备验收。
 
 ## 后续维护
 
 1. 固定使用四份主分类配置，不新增协议、日期、题材或其他分类文件。成人和待分类全部放入未知。
-2. 新源先查稳定键及完整接口身份，确认客户端支持后在相应 `api_site` 末尾追加。保留旧条目的排序前缀、原生元数据、禁用状态与身份。新来源默认禁用，另记验证状态。
+2. 新源先查稳定键及完整接口身份，确认客户端支持后在相应 `api_site` 末尾追加。保留旧条目的排序前缀、原生元数据与身份。全部发布配置默认启用，检测失败不自动禁用，另记验证状态；客户端保留已有用户手动关闭选择。
 3. 只有明确更新任务才修改旧来源或迁类。需继续维护的旧兼容配置同步其合法变更和索引内容指纹；新源不要求追加到旧合集。
 4. 更新索引和本文计数；来源名称、API、CDN、镜像、分类和固定线路不回填客户端。可选原生配置保留完整 `native.version=1` 资料，配置收录不自动解锁来源。
 5. 执行 `py -X utf8 scripts/check_subscriptions.py`，再由客户端实际解析器验证主分类。校验检查跨文件去重、别名等价、分类、旧配置保留、计数和客户端文档容量。

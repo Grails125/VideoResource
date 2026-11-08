@@ -7,7 +7,7 @@
       "name": "影视",
       "path": "subscriptions/film-tv.json",
       "count": 107,
-      "disabled_count": 19,
+      "disabled_count": 0,
       "basis": "通用影视、韩剧与恐怖专题来源，保留接口原有站内分类。"
     },
     {
@@ -31,7 +31,7 @@
       "name": "未知",
       "path": "subscriptions/unknown.json",
       "count": 51,
-      "disabled_count": 3,
+      "disabled_count": 0,
       "basis": "成人来源及原待分类来源；包含资料不足、旧审计入口与名称不一致或仅提供网页首页的来源。"
     }
   ],
@@ -66,11 +66,11 @@
     },
     "tvbox-pending.json": {
       "count": 21,
-      "content_sha256": "8fcdbb6352a3aefcf10bd05e2b6ce3f13c06c5e4e059ec99cdffce75a4741865"
+      "content_sha256": "164a452371fe5a876991d4961d948fac79cc85d00a2f92a4c3c018bbdc28b3d2"
     },
     "gnoix-api.json": {
       "count": 15,
-      "content_sha256": "a16b81cc96cf1be9f3f3de6b611240dba149db860ccbf85dfcb5bafab91867d8"
+      "content_sha256": "531506abd69e5d560144c4aee27933a88935c46457b7476de58262168f1ed044"
     },
     "integrated.json": {
       "count": 52,
@@ -166,21 +166,22 @@
       "commit": "2e7388cc0c2a41180503e2b98fb283e8dbe35b78",
       "path": "native/core/provider_heitao.go",
       "group": "unknown",
-      "status": "CLIENT_SYNTHETIC_VALIDATION_PASSED_LIVE_UNVERIFIED",
-      "validation": "客户端实际解析、配置权限、目录分类、分页搜索、详情分集与直接媒体地址编码通过合成回归；未请求站源图片、真实媒体或实物设备。"
+      "status": "AGE_CONFIRMATION_REQUIRED_NATIVE_PLAYBACK_UNAVAILABLE",
+      "validation": "2026-11-08：客户端实际解析与合成回归通过；匿名公开目录30项、详情成功，正确play页面明确要求年龄确认，当前原生会话不能播放。没有注入年龄确认Cookie或读取受限iframe，未请求站源图片。默认启用不代表可播。"
     },
     "cinejoy": {
       "group": "film-tv",
       "status": "CLIENT_SYNTHETIC_AND_PUBLIC_PROTOCOL_VALIDATED_PLAYBACK_UNVERIFIED",
-      "validation": "2026-11-08：实际core解析器及合成线路、画质、字幕、权限、取消、封包与沙箱回归通过。公开电影目录20项；动态服务器5条，默认HLS主清单4档实际画质，电影及电视剧样本各1条字幕；Nebula取流响应成功且本样本无字幕。未请求图片、媒体分片或字幕正文，未完成真实播放和实机验收。",
+      "validation": "2026-11-08：合成线路、画质、字幕、权限、取消、封包与沙箱检查通过；增加同线路5xx一次重试并兼容字符串200状态。匿名全量采样目录20项、详情成功、5条已知线路、4档当前实际画质、3条字幕，资源引用可读；媒体路径命中禁图规则，未读取媒体字节。用户此前secret错误未复现，未完成解码播放或实机验收。",
       "website": "https://cinejoy.pk/"
     },
     "movy": {
       "group": "film-tv",
       "status": "CLIENT_SYNTHETIC_AND_PUBLIC_PROTOCOL_VALIDATED_PLAYBACK_UNVERIFIED",
-      "validation": "2026-11-08：实际core解析器及合成线路、画质、字幕、权限、取消、会话解码回归通过。公开电影目录20项；配置13条原声线路，Miami返回2160p／1080p／720p／480p及1条字幕；Boise取流成功。一次连接失败后单独复测通过，电视剧首集有资源而本样本无字幕。未请求图片、媒体分片或字幕正文，未完成真实播放和实机验收。",
+      "validation": "2026-11-08：合成线路、画质、字幕、权限、取消与会话解码检查通过；短期媒体地址普通403同线路重新解析一次，保留明确画质，挑战与接口授权拒绝不触发新增的媒体重解析。匿名全量采样目录20项、详情和解析成功、13条已知线路、3档当前实际画质、本样本无字幕，选定媒体读取1024字节成功。未逐条取流或解码播放，用户此前403在当前公开样本未重现。",
       "website": "https://www.movy.sx/"
     }
   },
-  "maintenance_policy": "固定四份订阅地址。新增来源先按稳定键和完整接口身份去重，再追加到对应文件末尾；不自动覆盖、重命名或重排旧来源，不新增分类，成人和待分类均归未知。"
+  "maintenance_policy": "固定四份订阅地址。新增来源先按稳定键和完整接口身份去重，再追加到对应文件末尾，默认启用；检测失败不自动禁用。已有用户手动关闭的配置仍按用户选择保留，不新增分类，不自动重排或改写来源身份；成人和待分类归未知。",
+  "default_enabled": true
 }
