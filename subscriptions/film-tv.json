@@ -649,7 +649,8 @@
         "version": 1,
         "cdnUrl": "https://image.tmdb.org/t/p/w500",
         "endpoints": {
-          "metadata": "https://db.wecollege.net/3"
+          "metadata": "https://db.wecollege.net/3",
+          "subtitles": "https://subs.wing.st"
         },
         "categories": [
           {

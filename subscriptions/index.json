@@ -38,11 +38,11 @@
   "legacy_files": {
     "config.json": {
       "count": 12,
-      "content_sha256": "11bbcb24cf45c6173c508e51fce3dedd77f893b7937d9e2e6bf9f67289d331d3"
+      "content_sha256": "85f2f43ae874e5ca04106a87dfaf8812e7c45370c3825a0ba14ce19a242c63d5"
     },
     "native.json": {
       "count": 12,
-      "content_sha256": "11bbcb24cf45c6173c508e51fce3dedd77f893b7937d9e2e6bf9f67289d331d3"
+      "content_sha256": "85f2f43ae874e5ca04106a87dfaf8812e7c45370c3825a0ba14ce19a242c63d5"
     },
     "tencent.json": {
       "count": 1,
@@ -74,7 +74,7 @@
     },
     "integrated.json": {
       "count": 52,
-      "content_sha256": "51b2fe3fdd039ce23592d3f6c828e0ce8ac7224813ab4bd01c22684dab449f54"
+      "content_sha256": "e7c1427f776afc4bc21910ea23be2a6e659dfcd498f8d58bd5dfc6a5b6f8c5da"
     }
   },
   "aliases": {
@@ -166,20 +166,25 @@
       "commit": "2e7388cc0c2a41180503e2b98fb283e8dbe35b78",
       "path": "native/core/provider_heitao.go",
       "group": "unknown",
-      "status": "AGE_CONFIRMATION_REQUIRED_NATIVE_PLAYBACK_UNAVAILABLE",
-      "validation": "2026-11-08：客户端实际解析与合成回归通过；匿名公开目录30项、详情成功，正确play页面明确要求年龄确认，当前原生会话不能播放。没有注入年龄确认Cookie或读取受限iframe，未请求站源图片。默认启用不代表可播。"
+      "status": "WINDOWS_DEBUG_PLAYBACK_CONFIRMED_AFTER_MANUAL_DECLARATION",
+      "validation": "2026-11-09：账号管理展示原站声明，由用户本人确认；修复确认后普通同源iframe解析，Windows Debug客户端已实际播放并由用户确认。确认只在当前用户进程会话内保留，可撤销，不传媒体CDN。未验证全部影片、安装版或物理设备。"
     },
     "cinejoy": {
       "group": "film-tv",
-      "status": "CLIENT_SYNTHETIC_AND_PUBLIC_PROTOCOL_VALIDATED_PLAYBACK_UNVERIFIED",
-      "validation": "2026-11-08：合成线路、画质、字幕、权限、取消、封包与沙箱检查通过；增加同线路5xx一次重试并兼容字符串200状态。匿名全量采样目录20项、详情成功、5条已知线路、4档当前实际画质、3条字幕，资源引用可读；媒体路径命中禁图规则，未读取媒体字节。用户此前secret错误未复现，未完成解码播放或实机验收。",
+      "status": "WINDOWS_DEBUG_4K_AND_FULL_SUBTITLE_INDEX_VALIDATED",
+      "validation": "2026-11-09：Windows Debug原生客户端样本输出3840×2160，进度超过9分钟；画质顺序2160/1080/720/360。独立字幕索引366项加附带3项，共369项／46种语言，中文选择并显示。新增配置中的subtitles入口，目录不预取正文，所选字幕才读取；未遍历全部影片或线路，源站偶发5xx和分片连接失败仍可能发生。",
       "website": "https://cinejoy.pk/"
     },
     "movy": {
       "group": "film-tv",
-      "status": "CLIENT_SYNTHETIC_AND_PUBLIC_PROTOCOL_VALIDATED_PLAYBACK_UNVERIFIED",
-      "validation": "2026-11-08：合成线路、画质、字幕、权限、取消与会话解码检查通过；短期媒体地址普通403同线路重新解析一次，保留明确画质，挑战与接口授权拒绝不触发新增的媒体重解析。匿名全量采样目录20项、详情和解析成功、13条已知线路、3档当前实际画质、本样本无字幕，选定媒体读取1024字节成功。未逐条取流或解码播放，用户此前403在当前公开样本未重现。",
+      "status": "WINDOWS_DEBUG_PLAYBACK_PROGRESS_VALIDATED",
+      "validation": "2026-11-09：Windows Debug原生客户端样本输出1920×1000，修复慢加载误恢复后进度8.4秒至60.6秒，观察期间没有自动重开。短期普通403仍仅同线路重解析一次，挑战和接口授权拒绝不触发重解析。未验证全部影片或线路。",
       "website": "https://www.movy.sx/"
+    },
+    "sorani": {
+      "group": "animation",
+      "status": "AUTHENTICATED_CLIENT_MEDIA_TLS_TIMEOUT",
+      "validation": "2026-11-09：用户在隔离Windows Debug客户端手动登录，目录、详情和播放接口成功；实际返回媒体主机加入allowedHosts并同步旧原生兼容视图，已有备用DNS重试后仍TLS超时，未得到首帧。未修改系统或代理路由，不能标记为可播。"
     }
   },
   "maintenance_policy": "固定四份订阅地址。新增来源先按稳定键和完整接口身份去重，再追加到对应文件末尾，默认启用；检测失败不自动禁用。已有用户手动关闭的配置仍按用户选择保留，不新增分类，不自动重排或改写来源身份；成人和待分类归未知。",

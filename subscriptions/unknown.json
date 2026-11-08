@@ -320,13 +320,14 @@
       "native": {
         "version": 1,
         "description": "分类短剧 · 在线搜索；内容类型待核实",
-        "warning": "需要支持 heitao 适配器的客户端；默认禁用。站点要求年龄确认、登录或其他授权时保留拒绝，不自动设置确认 Cookie。",
+        "warning": "需要支持 heitao 适配器的客户端；默认启用。请在账号管理阅读原站访问声明并由本人确认，确认仅对当前用户会话有效，可随时撤销；登录、付费及其他授权仍需按原站要求完成。",
         "aliases": [
           "heitao",
           "heitaodj.com"
         ],
         "allowedHosts": [
-          "heitaodj.com"
+          "heitaodj.com",
+          "play.djqiepian.app"
         ]
       }
     }
