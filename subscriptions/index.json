@@ -30,7 +30,7 @@
       "id": "unknown",
       "name": "未知",
       "path": "subscriptions/unknown.json",
-      "count": 51,
+      "count": 52,
       "disabled_count": 0,
       "basis": "成人来源及原待分类来源；包含资料不足、旧审计入口与名称不一致或仅提供网页首页的来源。"
     }
@@ -82,7 +82,7 @@
     "tvbox-6ddcd1c9d3eca1b09daeffc2": "tvbox-77ba3e2e3d3c7a779ff4a0f6",
     "tvbox-10ee9009c31aca814d2a6de8": "tvbox-0cb9919474cc77e7ce42fcc3"
   },
-  "total_sources": 167,
+  "total_sources": 168,
   "legacy_stable_keys": 167,
   "classification_evidence": {
     "adult_audit": "audits/plugin20261016-status.json#initial.sources",
@@ -185,6 +185,14 @@
       "group": "animation",
       "status": "AUTHENTICATED_CLIENT_MEDIA_TLS_TIMEOUT",
       "validation": "2026-11-09：用户在隔离Windows Debug客户端手动登录，目录、详情和播放接口成功；实际返回媒体主机加入allowedHosts并同步旧原生兼容视图，已有备用DNS重试后仍TLS超时，未得到首帧。未修改系统或代理路由，不能标记为可播。"
+    },
+    "beabox": {
+      "repository": "Xanerix/guoapp",
+      "commit": "90e653d42c4955a6efa5d36308f3276b9c0699ea",
+      "path": "native/core/provider_beabox.go",
+      "group": "unknown",
+      "status": "SYNTHETIC_PROTOCOL_VALIDATED",
+      "validation": "2026-11-09：客户端独立实现目录、标签、搜索、详情、分集与解析，覆盖公开响应封包、来源代际、拒绝不换域、镜像和重启复用。镜像发现不扩大配置域名边界。未请求站源图片，未验证真实站源播放、特殊封面格式或安装包。"
     }
   },
   "maintenance_policy": "固定四份订阅地址。新增来源先按稳定键和完整接口身份去重，再追加到对应文件末尾，默认启用；检测失败不自动禁用。已有用户手动关闭的配置仍按用户选择保留，不新增分类，不自动重排或改写来源身份；成人和待分类归未知。",

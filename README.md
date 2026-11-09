@@ -11,9 +11,9 @@
 | 影视 | [subscriptions/film-tv.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/film-tv.json) | 107 | 0 |
 | 短剧 | [subscriptions/short-drama.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/short-drama.json) | 6 | 0 |
 | 动漫 | [subscriptions/animation.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/animation.json) | 3 | 0 |
-| 未知 | [subscriptions/unknown.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/unknown.json) | 51 | 0 |
+| 未知 | [subscriptions/unknown.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/unknown.json) | 52 | 0 |
 
-四份主订阅共有167项，全部默认启用，每个稳定身份只归属一类。健康检测失败只记录结果，不自动禁用；已安装资料保留用户手动关闭选择。影视包含综合影视、韩剧和恐怖专题；短剧包含已有资料明确标注的短剧、AI短剧与漫剧；动漫包含青空及原配置明确标注的魔都动漫接口。未知包含43个已有明确成人标记或历史审计记录的接口、7个类型尚不明确的旧来源，以及新收录但内容范围未核实的黑桃。
+四份主订阅共有168项，全部默认启用，每个稳定身份只归属一类。健康检测失败只记录结果，不自动禁用；已安装资料保留用户手动关闭选择。影视包含综合影视、韩剧和恐怖专题；短剧包含已有资料明确标注的短剧、AI短剧与漫剧；动漫包含青空及原配置明确标注的魔都动漫接口。未知包含43个已有明确成人标记或历史审计记录的接口、7个类型尚不明确的旧来源，以及新收录但内容范围未核实的黑桃和笔盒。
 
 分类依据是现有配置声明和已有审计，不代表本轮已在线核实全部站点内容。综合采集接口继续展示服务端返回的电影、电视剧、综艺等分类，同一接口不会分别复制到多个订阅。JSON/XML和不同线路仅在接口语义、详情配置均相同的情况下去重。
 
@@ -23,7 +23,7 @@
 
 ## 去重与兼容
 
-本次从旧文件的167个不同稳定键整理出164个来源，另追加黑桃、Cinejoy、Movy各1项。主分类订阅删除3个严格等价的重复键：
+本次从旧文件的167个不同稳定键整理出164个来源，另追加黑桃、Cinejoy、Movy、笔盒各1项。主分类订阅删除3个严格等价的重复键：
 
 | 旧重复键 | 主分类保留键 |
 | --- | --- |
@@ -57,6 +57,12 @@ URL身份规范化主机大小写、默认端口、末尾斜线及 `ac=list`，�
 禁果及禁果短剧入口资料参考上游提交 `219405676fd6da4d4b05e99b7ad4a2d1814cd38e`，保持两个独立适配器与身份。黄豆6个域名池参考提交 `36c9eb9c72c9c8ae0ba8e46331a8b6c0268671b9`；此前有界目录元数据成功不等于媒体可播。
 
 TVBox旧配置参考 `hebijunge/tvbox-config` 提交 `7d5a8d531cd8be71c1299c054a4234b0302b4a1c`。Gnoix旧精选对应 [rules.json](https://gnoix.277722.xyz/rules.json) 的20261102快照；12个JS规则不执行，未证实等价的新地址不替换旧资料。[既有逐源审计](audits/plugin20261016-status.json)保留历史采样阶段和限制，本次不把旧检查累加为当前通过数。
+
+## 笔盒
+
+笔盒使用独立原生身份 `beabox`，默认启用，追加在未知订阅末尾。入口、API、发布页、允许域名与默认线路全部由此配置维护。客户端支持最新视频、标签分类、在线搜索、详情及分集解析，记忆配置内可用镜像并在重启后按配置指纹复用。仅在连接失败后读取发布页，发现结果仍须通过配置域名边界，业务拒绝不触发换域。新增域名需更新订阅并由用户确认。
+
+协议行为参考 [Xanerix/guoapp 的固定快照](https://github.com/Xanerix/guoapp/tree/90e653d42c4955a6efa5d36308f3276b9c0699ea)，由本项目独立实现。当前验证使用合成 JSON、HTTP 和封包向量，未请求站源图片、真实媒体或特殊封面格式，不能据此宣称站源当前可播。
 
 ## Cinejoy与Movy
 
