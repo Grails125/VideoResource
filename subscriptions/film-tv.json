@@ -752,6 +752,118 @@
           }
         ]
       }
+    },
+    "yszzq-216": {
+      "name": "茅台资源站",
+      "api": "https://caiji.maotaizy.cc/api.php/provide/vod/at/josn/"
+    },
+    "yszzq-251": {
+      "name": "新芒果资源站",
+      "api": "https://caiji.mgzyapi.com/api.php/provide/vod/at/xml/"
+    },
+    "yszzq-250": {
+      "name": "巨量资源网",
+      "api": "https://api.juliang.live/api/provide/vod/at/xml/"
+    },
+    "yszzq-119": {
+      "name": "红牛资源",
+      "api": "https://www.hongniuzy2.com/api.php/provide/vod/at/xml/"
+    },
+    "yszzq-135": {
+      "name": "光速资源站",
+      "api": "https://api.guangsuapi.com/api.php/provide/vod/"
+    },
+    "yszzq-140": {
+      "name": "新浪资源采集网",
+      "api": "https://api.xinlangapi.com/xinlangapi.php/provide/vod/at/xml/"
+    },
+    "yszzq-156": {
+      "name": "速播资源",
+      "api": "https://subocj.com/api.php/provide/vod"
+    },
+    "yszzq-180": {
+      "name": "豪华资源网",
+      "api": "https://hhzyapi.com/api.php/provide/vod"
+    },
+    "yszzq-230": {
+      "name": "虎牙资源采集网",
+      "api": "https://www.huyaapi.com/api.php/provide/vod/at/json"
+    },
+    "yszzq-220": {
+      "name": "爱奇艺资源站",
+      "api": "https://www.iqiyizyapi.com/api.php/provide/vod/at/xml/"
+    },
+    "yszzq-207": {
+      "name": "豆瓣资源采集站",
+      "api": "https://caiji.dbzy5.com/api.php/provide/vod/at/josn/"
+    },
+    "yszzq-252": {
+      "name": "厂长资源",
+      "api": "https://api.changzhang.tv/api.php/provide/vod/"
+    },
+    "yszzq-244": {
+      "name": "西瓜资源",
+      "api": "https://caiji.xgzyapi.com/api.php/provide/vod/?ac=list"
+    },
+    "yszzq-243": {
+      "name": "无水印资源网",
+      "api": "https://api.wsyzy.net/api.php/provide/vod/from/wsym3u8/at/xml/"
+    },
+    "yszzq-224": {
+      "name": "猫眼资源站",
+      "api": "https://api.maoyanapi.top/api.php/provide/vod"
+    },
+    "yszzq-149": {
+      "name": "优质资源库",
+      "api": "https://api.yzzy-api.com/inc/api_mac10_all.php"
+    },
+    "yszzq-127": {
+      "name": "U酷资源网",
+      "api": "https://api.ukuapi88.com/api.php/provide/vod/?ac=list"
+    },
+    "yszzq-236": {
+      "name": "最大资源网",
+      "api": "https://api.zuidapi.com/api.php/provide/vod/?ac=list"
+    },
+    "yszzq-221": {
+      "name": "天涯影视资源网",
+      "api": "https://tyyszyapi.com/api.php/provide/vod/at/xml/?ac=list/"
+    },
+    "yszzq-218": {
+      "name": "电影天堂",
+      "api": "http://caiji.dyttzyapi.com/api.php/provide/vod/?ac=list"
+    },
+    "yszzq-176": {
+      "name": "鸭鸭（丫丫）资源网",
+      "api": "https://cj.yayazy.net/api.php/provide/vod/from/yym3u8/at/xml"
+    },
+    "yszzq-166": {
+      "name": "360资源站",
+      "api": "https://360zyzz.com/api.php/provide/vod"
+    },
+    "yszzq-183": {
+      "name": "极速资源网",
+      "api": "https://jszyapi.com/api.php/provide/vod"
+    },
+    "yszzq-184": {
+      "name": "暴风资源网",
+      "api": "https://bfzyapi.com/api.php/provide/vod/"
+    },
+    "yszzq-186": {
+      "name": "非凡资源网",
+      "api": "http://api.ffzyapi.com/api.php/provide/vod/?ac=list"
+    },
+    "yszzq-192": {
+      "name": "麒麟资源站全站",
+      "api": "https://www.qilinzyz.com/api.php/provide/vod/at/json/"
+    },
+    "yszzq-195": {
+      "name": "无尽资源网",
+      "api": "https://api.wujinapi.me/api.php/provide/vod/?ac=list"
+    },
+    "yszzq-112": {
+      "name": "1717云资源网采集api",
+      "api": "http://zy.itono.cn/inc/api.php"
     }
   }
 }

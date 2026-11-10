@@ -1,6 +1,7 @@
 import hashlib
+import ipaddress
 import json
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
@@ -33,6 +34,15 @@ def source_identity(site):
     parsed = urlsplit(site["api"].strip())
     if parsed.scheme not in {"http", "https"} or not parsed.hostname or parsed.username is not None or parsed.fragment:
         raise ValueError("Invalid public source URL")
+    hostname = parsed.hostname.lower().rstrip(".")
+    if hostname in {"localhost", "localhost.localdomain"} or hostname.endswith((".localhost", ".local")):
+        raise ValueError("Source URL points to a local hostname")
+    try:
+        address = ipaddress.ip_address(hostname)
+    except ValueError:
+        address = None
+    if address is not None and not address.is_global:
+        raise ValueError("Source URL points to a non-public address")
     authority = parsed.netloc.lower()
     if parsed.port == {"http": 80, "https": 443}[parsed.scheme]:
         authority = parsed.hostname.lower()
@@ -44,6 +54,52 @@ def source_identity(site):
     encoded_query = urlencode([(key, value) for key in sorted(query) for value in query[key]])
     address = urlunsplit((parsed.scheme, authority, parsed.path.rstrip("/"), encoded_query, ""))
     return "api", address, site.get("detail", "").strip()
+
+
+def check_directory_imports(index, primary, memberships):
+    accepted = {"ADDED", "EXISTING_INTERFACE", "DUPLICATE_DIRECTORY_INTERFACE"}
+    rejected = {"WITHDRAWN_BY_DIRECTORY", "NO_SUPPORTED_PUBLIC_CATALOG"}
+    for batch in index.get("directory_imports", []):
+        path = (ROOT / batch["audit"]).resolve()
+        if path.parent != (ROOT / "audits").resolve():
+            raise ValueError("Directory audit path escapes audits directory")
+        _, audit = read_json(path)
+        if content_hash(audit) != batch["content_sha256"]:
+            raise ValueError("Directory audit fingerprint differs from index")
+        entries = audit["entries"]
+        if len(entries) != batch["entry_count"] or audit["directory"] != batch["directory"]:
+            raise ValueError("Directory audit inventory differs from index")
+        if Counter(row["status"] for row in entries) != batch["status_counts"]:
+            raise ValueError("Directory audit status counts differ from index")
+        ids, added = set(), set()
+        for row in entries:
+            source_id = row["directory_id"]
+            if not source_id.isdecimal() or source_id in ids:
+                raise ValueError("Duplicate or invalid directory entry")
+            ids.add(source_id)
+            if row["directory_page"] != audit["directory"] + source_id + ".html":
+                raise ValueError("Directory entry URL differs from its identity")
+            status = row["status"]
+            if status in rejected:
+                if "source_key" in row or not row.get("reason"):
+                    raise ValueError("Rejected directory entry claims an imported identity")
+                if status == "WITHDRAWN_BY_DIRECTORY" and row["interfaces"]:
+                    raise ValueError("Withdrawn entry contains a fabricated interface")
+                continue
+            if status not in accepted or row["source_key"] not in primary:
+                raise ValueError("Directory entry has no supported repository identity")
+            key = row["source_key"]
+            selected = source_identity({"api": row["selected_api"]})
+            if selected != source_identity(primary[key]) or memberships[key] != row["group"]:
+                raise ValueError("Directory mapping changes API identity or content group")
+            if row["selected_api"] not in {endpoint["url"] for endpoint in row["interfaces"]}:
+                raise ValueError("Selected API was not published by the directory entry")
+            if status == "ADDED":
+                if key in added:
+                    raise ValueError("Duplicate added directory identity")
+                added.add(key)
+        if sorted(added) != sorted(batch["added_keys"]):
+            raise ValueError("Added directory identities differ from index")
 
 
 def check():
@@ -114,6 +170,7 @@ def check():
     files = {path.name for path in (ROOT / "subscriptions").glob("*.json")}
     if files != {"index.json", *(key + ".json" for key in expected)}:
         raise ValueError("Unexpected subscription file outside the four fixed groups")
+    check_directory_imports(index, primary, memberships)
     print(json.dumps({"status": "PASSED", "sources": len(primary), "aliases": len(aliases), "groups": summary}, ensure_ascii=False))
 
 

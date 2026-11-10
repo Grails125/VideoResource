@@ -8,12 +8,12 @@
 
 | 分类 | 固定订阅文件 | 来源数 | 默认禁用 |
 | --- | --- | ---: | ---: |
-| 影视 | [subscriptions/film-tv.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/film-tv.json) | 107 | 0 |
+| 影视 | [subscriptions/film-tv.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/film-tv.json) | 135 | 0 |
 | 短剧 | [subscriptions/short-drama.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/short-drama.json) | 6 | 0 |
-| 动漫 | [subscriptions/animation.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/animation.json) | 3 | 0 |
-| 未知 | [subscriptions/unknown.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/unknown.json) | 52 | 0 |
+| 动漫 | [subscriptions/animation.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/animation.json) | 4 | 0 |
+| 未知 | [subscriptions/unknown.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/unknown.json) | 62 | 0 |
 
-四份主订阅共有168项，全部默认启用，每个稳定身份只归属一类。健康检测失败只记录结果，不自动禁用；已安装资料保留用户手动关闭选择。影视包含综合影视、韩剧和恐怖专题；短剧包含已有资料明确标注的短剧、AI短剧与漫剧；动漫包含青空及原配置明确标注的魔都动漫接口。未知包含43个已有明确成人标记或历史审计记录的接口、7个类型尚不明确的旧来源，以及新收录但内容范围未核实的黑桃和笔盒。
+四份主订阅共有207项，全部默认启用，每个稳定身份只归属一类。健康检测失败只记录结果，不自动禁用；已安装资料保留用户手动关闭选择。影视包含综合影视、韩剧和恐怖专题；短剧包含已有资料明确标注的短剧、AI短剧与漫剧；动漫包含青空及原配置明确标注的魔都动漫接口。未知包含50个有明确成人文本分类或历史审计记录的接口，以及12个内容范围待核实的来源。
 
 分类依据是现有配置声明和已有审计，不代表本轮已在线核实全部站点内容。综合采集接口继续展示服务端返回的电影、电视剧、综艺等分类，同一接口不会分别复制到多个订阅。JSON/XML和不同线路仅在接口语义、详情配置均相同的情况下去重。
 
@@ -23,7 +23,7 @@
 
 ## 去重与兼容
 
-本次从旧文件的167个不同稳定键整理出164个来源，另追加黑桃、Cinejoy、Movy、笔盒各1项。主分类订阅删除3个严格等价的重复键：
+旧文件的167个不同稳定键整理为164个来源，后续追加黑桃、Cinejoy、Movy、笔盒各1项及本次目录核对新增39项。旧配置去重映射保持如下。
 
 | 旧重复键 | 主分类保留键 |
 | --- | --- |
@@ -49,6 +49,28 @@ URL身份规范化主机大小写、默认端口、末尾斜线及 `ac=list`，�
 旧文件之间的重合属于兼容视图，不计为新增提供方。`archive/source_repository/` 保留94个历史文本文件，其中86个Kazumi JSON，仅供追溯，不恢复已退休的脚本执行器。
 
 ## 上游来源核对
+
+### 影视站长圈113条目录
+
+2026-11-10逐页读取[影视站长圈采集接口目录](https://www.yszzq.com/ziyuan/api/)的8页列表及113条详情，逐条结果保存在[覆盖审计](audits/yszzq-20261110.json)。每条有效记录选择一个受支持的公开视频目录接口，优先JSON或苹果CMS接口，其他CMS格式保留为来源证据。来源名称与接口地址均取自公开页面，协议由客户端已有JSON/XML适配器处理。
+
+| 目录记录结果 | 条数 |
+| --- | ---: |
+| 新增到主分类订阅 | 39 |
+| 接口身份与已收录项一致 | 8 |
+| 与本次另一条目录记录使用同一接口 | 1 |
+| 网站明确标记接口已失效并撤下地址 | 63 |
+| 缺少受支持的公开视频目录 | 2 |
+
+39项新增包括影视28项、动漫1项、未知10项，追加于各自分类末尾。茅台与影剧的公开目录接口相同，二者在审计中映射同一站源。UU页面只有localhost地址，云解析页面只公布解析接口，均保留原始证据与原因。原站撤下地址的63条继续完整记录于审计，后续补齐有效接口时再按明确配置接入。
+
+47个独立公开接口各请求一次有界目录文本，26份JSON和14份XML通过客户端真实解析器；其余5项TLS连接失败、1项HTTP 502、1项明确要求IP授权。失败结果单列，新增配置仍默认启用。分类文本确认的7项成人来源标记🔞并归未知，另外3项继续待分类。未请求图片、媒体、登录资料或尝试处理授权限制，目录成功只代表该次文本元数据可解析。
+
+对40个目录成功接口继续分别采样分类、单条详情和“测试”关键词搜索。分类38项、详情38项、搜索32项通过原生正常请求入口的响应验证，6项明确不支持搜索，另有连接失败。客户端为明确的搜索限制与IP授权拒绝展示对应提示，目录浏览沿既有行为。实际收到的155份响应在受控HTTP回放中确认148份可解析及7条明确限制，完整结果随逐源审计保存。
+
+四份主订阅共207项通过客户端原生接口的离线配置解析、逐份预览与确认导入、重启恢复测试；已有个人稳定键、名称、接口、详情配置、停用选择和顺序均保留。仓库校验同时检查113条审计覆盖、公开地址、来源映射、分类与索引指纹。执行方式为 `py -X utf8 scripts/check_subscriptions.py` 和 `py -X utf8 scripts/test_check_subscriptions.py`。
+
+### 既有协议来源
 
 [Xanerix/guoapp](https://github.com/Xanerix/guoapp/tree/2e7388cc0c2a41180503e2b98fb283e8dbe35b78) 本次核对至提交 `2e7388cc0c2a41180503e2b98fb283e8dbe35b78`。其已有来源中，红果由客户端内置，其余既有可选来源已经收录；本次新增差项为[黑桃协议参考](https://github.com/Xanerix/guoapp/blob/2e7388cc0c2a41180503e2b98fb283e8dbe35b78/native/core/provider_heitao.go)。仅提取入口与协议行为，客户端独立实现，不复制其应用源码或资产。
 
@@ -82,4 +104,4 @@ TVBox旧配置参考 `hebijunge/tvbox-config` 提交 `7d5a8d531cd8be71c1299c054a
 4. 更新索引和本文计数；来源名称、API、CDN、镜像、分类和固定线路不回填客户端。可选原生配置保留完整 `native.version=1` 资料，配置收录不自动解锁来源。
 5. 执行 `py -X utf8 scripts/check_subscriptions.py`，再由客户端实际解析器验证主分类。校验检查跨文件去重、别名等价、分类、旧配置保留、计数和客户端文档容量。
 
-当前计数仍为167项，四份订阅及旧原生兼容视图通过客户端真实配置解析；青空合法媒体域边界同步到既有兼容配置与索引指纹。验证不请求站源图片，真实客户端与历史匿名连接采样分别记录；未遍历所有影片、线路、字幕或物理设备，不宣称全站健康。仓库不存账号、Cookie、密钥、个人设备资料或媒体；不绕过TLS、登录、付费、DRM或访问限制。
+当前计数为207项，四份订阅及旧原生兼容视图通过客户端真实配置解析；青空合法媒体域边界同步到既有兼容配置与索引指纹。验证不请求站源图片，真实客户端与历史匿名连接采样分别记录；未遍历所有影片、线路、字幕或物理设备，不宣称全站健康。仓库不存账号、Cookie、密钥、个人设备资料或媒体；不绕过TLS、登录、付费、DRM或访问限制。

@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "classification_policy": "仅分影视、短剧、动漫、未知四类；成人来源和无法确认内容类型的来源统一放入未知。依据现有配置声明和已有审计，未进行本轮在线分类或媒体验证。",
+  "classification_policy": "仅分影视、短剧、动漫、未知四类；成人来源和无法确认内容类型的来源统一放入未知。依据既有配置声明、历史审计及明确记录的匿名文本分类采样，文本采样与媒体验证分别记录。",
   "groups": [
     {
       "id": "film-tv",
       "name": "影视",
       "path": "subscriptions/film-tv.json",
-      "count": 107,
+      "count": 135,
       "disabled_count": 0,
       "basis": "通用影视、韩剧与恐怖专题来源，保留接口原有站内分类。"
     },
@@ -22,7 +22,7 @@
       "id": "animation",
       "name": "动漫",
       "path": "subscriptions/animation.json",
-      "count": 3,
+      "count": 4,
       "disabled_count": 0,
       "basis": "青空原生分类，以及原配置明确标注的魔都动漫接口。"
     },
@@ -30,7 +30,7 @@
       "id": "unknown",
       "name": "未知",
       "path": "subscriptions/unknown.json",
-      "count": 52,
+      "count": 62,
       "disabled_count": 0,
       "basis": "成人来源及原待分类来源；包含资料不足、旧审计入口与名称不一致或仅提供网页首页的来源。"
     }
@@ -82,7 +82,7 @@
     "tvbox-6ddcd1c9d3eca1b09daeffc2": "tvbox-77ba3e2e3d3c7a779ff4a0f6",
     "tvbox-10ee9009c31aca814d2a6de8": "tvbox-0cb9919474cc77e7ce42fcc3"
   },
-  "total_sources": 168,
+  "total_sources": 207,
   "legacy_stable_keys": 167,
   "classification_evidence": {
     "adult_audit": "audits/plugin20261016-status.json#initial.sources",
@@ -94,7 +94,8 @@
     "animation_keys": [
       "caiji.moduapi.cc",
       "sorani",
-      "tvbox-b7990671ab43eae391b9e2cc"
+      "tvbox-b7990671ab43eae391b9e2cc",
+      "yszzq-181"
     ],
     "short_drama_keys": [
       "huangdou",
@@ -112,7 +113,10 @@
       "dsd",
       "huangguo-video",
       "tvbox-dfaa8e71bccb3d910803980d",
-      "heitao"
+      "heitao",
+      "yszzq-162",
+      "yszzq-165",
+      "yszzq-202"
     ],
     "adult_keys_in_unknown": [
       "lovedan.net",
@@ -157,7 +161,14 @@
       "xibaocaiji",
       "tvbox-60a8a8d127afcd27b2ae81d8",
       "tvbox-d5597ba670618a92b45d158f",
-      "tvbox-3a207c730034f6b1dc003c00"
+      "tvbox-3a207c730034f6b1dc003c00",
+      "yszzq-254",
+      "yszzq-253",
+      "yszzq-233",
+      "yszzq-185",
+      "yszzq-155",
+      "yszzq-169",
+      "yszzq-147"
     ]
   },
   "additional_sources": {
@@ -196,5 +207,61 @@
     }
   },
   "maintenance_policy": "固定四份订阅地址。新增来源先按稳定键和完整接口身份去重，再追加到对应文件末尾，默认启用；检测失败不自动禁用。已有用户手动关闭的配置仍按用户选择保留，不新增分类，不自动重排或改写来源身份；成人和待分类归未知。",
-  "default_enabled": true
+  "default_enabled": true,
+  "directory_imports": [
+    {
+      "directory": "https://www.yszzq.com/ziyuan/api/",
+      "audit": "audits/yszzq-20261110.json",
+      "entry_count": 113,
+      "status_counts": {
+        "ADDED": 39,
+        "EXISTING_INTERFACE": 8,
+        "DUPLICATE_DIRECTORY_INTERFACE": 1,
+        "NO_SUPPORTED_PUBLIC_CATALOG": 2,
+        "WITHDRAWN_BY_DIRECTORY": 63
+      },
+      "added_keys": [
+        "yszzq-216",
+        "yszzq-254",
+        "yszzq-253",
+        "yszzq-251",
+        "yszzq-250",
+        "yszzq-233",
+        "yszzq-119",
+        "yszzq-135",
+        "yszzq-140",
+        "yszzq-156",
+        "yszzq-180",
+        "yszzq-230",
+        "yszzq-220",
+        "yszzq-207",
+        "yszzq-185",
+        "yszzq-181",
+        "yszzq-155",
+        "yszzq-169",
+        "yszzq-252",
+        "yszzq-244",
+        "yszzq-243",
+        "yszzq-224",
+        "yszzq-149",
+        "yszzq-127",
+        "yszzq-236",
+        "yszzq-221",
+        "yszzq-218",
+        "yszzq-176",
+        "yszzq-166",
+        "yszzq-183",
+        "yszzq-184",
+        "yszzq-147",
+        "yszzq-186",
+        "yszzq-192",
+        "yszzq-195",
+        "yszzq-112",
+        "yszzq-162",
+        "yszzq-165",
+        "yszzq-202"
+      ],
+      "content_sha256": "082be71cc4c6871bde68509cbd368cf68d49622010b075f332a101880d782a75"
+    }
+  ]
 }

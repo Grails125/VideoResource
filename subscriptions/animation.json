@@ -51,6 +51,10 @@
     "tvbox-b7990671ab43eae391b9e2cc": {
       "name": "34-魔都",
       "api": "https://caiji.moduapi.cc/api.php/provide/vod"
+    },
+    "yszzq-181": {
+      "name": "魔都动漫资源采集网",
+      "api": "https://www.mdzyapi.com/api.php/provide/vod/at/xml/"
     }
   }
 }
