@@ -9,5 +9,6 @@
 - 普通采集接口使用合法公开 HTTP／HTTPS 地址。原生来源必须使用客户端已支持的稳定适配器；提供原生配置时使用 `native.version=1`，不把未实现协议伪装成普通 API。
 - 来源入口、API、镜像、分类、域名边界与固定线路维护于本仓库；客户端仅保留协议及稳定身份，不增加真实地址兜底。Cinejoy封包模块继续固定 HTTPS 地址及 SHA-256，变化后须复核协议与沙箱兼容性，不存模块、密钥或播放会话。
 - 不查看、下载或处理站源图片。验证使用合成资料，离线配置检查与真实文本元数据、播放或设备验收分别报告。不提交账号、Cookie、密钥、个人配置或媒体，不绕过 TLS、登录、付费、DRM 或访问拒绝。
+- 在线健康检测统一由 `scripts/check_health.py` 和 `.github/workflows/source-health.yml` 维护，每日计划与网页手动运行仅更新 README 的检测标记区。封面只检查 HEAD 响应头，不读取图片正文；合成回归不访问真实站源。播放仅报告有界样本首帧结果，原生协议和未支持媒体明确标为未验证；不以 HTTP 200 推断可播，不修改订阅启停状态。网络 job 只读，README 写回在独立 job 执行；不新增报告 JSON、账号或媒体存档。
 - 维护 README 当前使用说明与准确分类数量。数量变动时同步更新 `scripts/check_subscriptions.py`；执行 `python -B scripts/check_subscriptions.py` 与 `python -B scripts/test_check_subscriptions.py`。客户端同时修改时另用其实际解析器验证四份订阅。
 - 未经明确要求，不创建备份分支、不推送、不发布或触发 Actions。只提交本次授权修改，不混入其他仓库的应用源码或资产；不改写历史。

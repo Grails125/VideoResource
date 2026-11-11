@@ -1,0 +1,76 @@
+name: Source health
+
+on:
+  schedule:
+    - cron: '17 22 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: source-health-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - name: Prepare media decoder
+        run: |
+          if ! command -v ffmpeg >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install --no-install-recommends -y ffmpeg
+          fi
+          ffmpeg -version
+      - name: Validate subscriptions and run synthetic tests
+        run: |
+          python -B scripts/check_subscriptions.py
+          python -B -m unittest discover -s scripts -p 'test_*.py'
+      - name: Check sources and update report
+        run: python -B scripts/check_health.py --summary "$GITHUB_STEP_SUMMARY"
+      - name: Confirm subscriptions remain unchanged
+        run: git diff --exit-code -- subscriptions
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: source-health-readme
+          path: README.md
+          if-no-files-found: error
+          retention-days: 7
+
+  update-readme:
+    needs: probe
+    if: github.repository == 'yingchuan-media/yingchuan-sources' && github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: source-health-readme
+          path: ${{ runner.temp }}/source-health
+      - name: Commit only the README report
+        env:
+          REPORT_PATH: ${{ runner.temp }}/source-health/README.md
+          TARGET_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          cp -- "$REPORT_PATH" README.md
+          git add -- README.md
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -c core.hooksPath=/dev/null commit -m 'chore: update daily source health report'
+          git push origin "HEAD:refs/heads/$TARGET_BRANCH"
