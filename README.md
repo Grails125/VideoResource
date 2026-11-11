@@ -1,107 +1,36 @@
-# 映川站源 · YingChuan Sources
+# 映川 · 站源订阅
 
-映川（YingChuan）的站源配置仓库。主订阅固定为影视、短剧、动漫、未知四类；成人来源和待分类来源统一归入未知。后续来源去重后直接追加到对应文件，分类和地址保持稳定。
+映川（YingChuan）的四份站源订阅，供客户端按分类选择导入。仓库只保留下表四个 JSON 文件，不提供旧批次、合集、索引或归档订阅。
 
-## 订阅使用
+| 分类 | 订阅地址 | 来源数 |
+| --- | --- | ---: |
+| 影视 | [subscriptions/film-tv.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/film-tv.json) | 135 |
+| 短剧 | [subscriptions/short-drama.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/short-drama.json) | 6 |
+| 动漫 | [subscriptions/animation.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/animation.json) | 4 |
+| 未知 | [subscriptions/unknown.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/unknown.json) | 62 |
 
-在应用「设置 → 站源管理 → 添加 → 配置订阅」选择分类，或填写下表对应的地址，读取预览后确认导入。
+当前共 **207 项来源，全部默认启用**。成人标记来源及内容范围待确认的来源放在未知分类。分类依据配置中已有的信息，不代表当前已逐站在线核实内容或播放能力。
 
-| 分类 | 固定订阅文件 | 来源数 | 默认禁用 |
-| --- | --- | ---: | ---: |
-| 影视 | [subscriptions/film-tv.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/film-tv.json) | 135 | 0 |
-| 短剧 | [subscriptions/short-drama.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/short-drama.json) | 6 | 0 |
-| 动漫 | [subscriptions/animation.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/animation.json) | 4 | 0 |
-| 未知 | [subscriptions/unknown.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/unknown.json) | 62 | 0 |
+## 使用
 
-四份主订阅共有207项，全部默认启用，每个稳定身份只归属一类。健康检测失败只记录结果，不自动禁用；已安装资料保留用户手动关闭选择。影视包含综合影视、韩剧和恐怖专题；短剧包含已有资料明确标注的短剧、AI短剧与漫剧；动漫包含青空及原配置明确标注的魔都动漫接口。未知包含50个有明确成人文本分类或历史审计记录的接口，以及12个内容范围待核实的来源。
+在映川「设置 → 站源管理 → 添加 → 配置订阅」选择分类，或填写对应地址；读取预览后确认导入。更新已有配置时检查差异并明确确认，个人停用选择、来源身份、权限与观看下载资料由客户端管理。
 
-分类依据是现有配置声明和已有审计，不代表本轮已在线核实全部站点内容。综合采集接口继续展示服务端返回的电影、电视剧、综艺等分类，同一接口不会分别复制到多个订阅。JSON/XML和不同线路仅在接口语义、详情配置均相同的情况下去重。
+四份订阅统一使用 `cache_time: 7200` 与 `api_site` 外层结构。普通采集接口使用 HTTP／HTTPS；原生来源通过客户端已支持的稳定适配器接入，可选配置使用 `native.version: 1`。仅使用客户端内置配置的影视2适配器可不提供 `native` 覆盖。
 
-[subscriptions/index.json](subscriptions/index.json) 是维护索引，记录计数、分类依据、兼容文件指纹及去重映射，不是可导入的订阅。订阅文档只包含 `cache_time` 和 `api_site`，缓存时间保持7200秒。
+## 维护与校验
 
-导入仅新增，不覆盖已安装的稳定键、个人名称、配置、禁用状态、权限和观看下载资料。更新已有来源仍需检查差异并明确确认；切换到分类订阅不会自动删除用户旧来源或更改订阅归属。
+- 每个稳定来源键及接口身份只在一份订阅中维护。新增前检查键、适配器或规范化接口地址与独立详情配置，去重后追加到对应文件末尾；保留其他条目的内容和顺序。
+- URL 去重仅统一主机大小写、默认端口、末尾斜线和 `ac=list`，保留其他查询参数、转义路径、HTTP／HTTPS 及独立详情配置。
+- 所有发布来源默认启用；检查失败只记录结果，不自动禁用来源。不提交账号、Cookie、密钥、个人配置、媒体或站源图片。
+- 不新增其他 JSON 文件。来源数量变化时同步更新本文及校验脚本中的分类数量；旧内容需要追溯时查看 Git 历史。
 
-## 去重与兼容
+在仓库根目录执行：
 
-旧文件的167个不同稳定键整理为164个来源，后续追加黑桃、Cinejoy、Movy、笔盒各1项及本次目录核对新增39项。旧配置去重映射保持如下。
+```sh
+python -B scripts/check_subscriptions.py
+python -B scripts/test_check_subscriptions.py
+```
 
-| 旧重复键 | 主分类保留键 |
-| --- | --- |
-| `tvbox-c95160479ba0bb3b2c292b46` | `api_41` |
-| `tvbox-6ddcd1c9d3eca1b09daeffc2` | `tvbox-77ba3e2e3d3c7a779ff4a0f6` |
-| `tvbox-10ee9009c31aca814d2a6de8` | `tvbox-0cb9919474cc77e7ce42fcc3` |
+校验器检查仅有四份订阅 JSON、外层结构与字段类型、各分类数量、稳定键和接口去重、公开 HTTP／HTTPS 地址、原生适配器身份及版本、默认启用状态与明确成人标记的分类。当前四份配置共 207 项通过这些离线检查，维护脚本的 18 项测试通过。
 
-URL身份规范化主机大小写、默认端口、末尾斜线及 `ac=list`，保留其他查询参数、转义路径、HTTP/HTTPS、JSON/XML线路和独立 `detail` 配置。别名的禁用状态保持一致。客户端重复导入保留用户已经安装的旧键，不借去重重建历史身份。
-
-以下原地址继续提供兼容，内容未被本次分组覆盖；新来源只追加到上面的固定主分类，不再向旧批次或合集重复追加。
-
-| 旧配置 | 保留内容 |
-| --- | --- |
-| [config.json](config.json)、[native.json](native.json) | 12个旧默认原生来源，含禁果和禁果短剧 |
-| [tencent.json](tencent.json) | 腾讯原生配置1项 |
-| [jianpian.json](jianpian.json) | 影视2兼容配置1项；新版客户端已经内置 |
-| [integrated.json](integrated.json) | 旧合集52项 |
-| [plugin20261016.json](plugin20261016.json) | 历史批次93项 |
-| [tvbox-json.json](tvbox-json.json)、[tvbox-xml.json](tvbox-xml.json) | 旧JSON28项、XML11项 |
-| [tvbox-pending.json](tvbox-pending.json) | 旧待验证21项，统一默认启用，验证结果另列 |
-| [gnoix-api.json](gnoix-api.json) | 旧Gnoix API精选15项，复用已有键 |
-
-旧文件之间的重合属于兼容视图，不计为新增提供方。`archive/source_repository/` 保留94个历史文本文件，其中86个Kazumi JSON，仅供追溯，不恢复已退休的脚本执行器。
-
-## 上游来源核对
-
-### 影视站长圈113条目录
-
-2026-11-10逐页读取[影视站长圈采集接口目录](https://www.yszzq.com/ziyuan/api/)的8页列表及113条详情，逐条结果保存在[覆盖审计](audits/yszzq-20261110.json)。每条有效记录选择一个受支持的公开视频目录接口，优先JSON或苹果CMS接口，其他CMS格式保留为来源证据。来源名称与接口地址均取自公开页面，协议由客户端已有JSON/XML适配器处理。
-
-| 目录记录结果 | 条数 |
-| --- | ---: |
-| 新增到主分类订阅 | 39 |
-| 接口身份与已收录项一致 | 8 |
-| 与本次另一条目录记录使用同一接口 | 1 |
-| 网站明确标记接口已失效并撤下地址 | 63 |
-| 缺少受支持的公开视频目录 | 2 |
-
-39项新增包括影视28项、动漫1项、未知10项，追加于各自分类末尾。茅台与影剧的公开目录接口相同，二者在审计中映射同一站源。UU页面只有localhost地址，云解析页面只公布解析接口，均保留原始证据与原因。原站撤下地址的63条继续完整记录于审计，后续补齐有效接口时再按明确配置接入。
-
-47个独立公开接口各请求一次有界目录文本，26份JSON和14份XML通过客户端真实解析器；其余5项TLS连接失败、1项HTTP 502、1项明确要求IP授权。失败结果单列，新增配置仍默认启用。分类文本确认的7项成人来源标记🔞并归未知，另外3项继续待分类。未请求图片、媒体、登录资料或尝试处理授权限制，目录成功只代表该次文本元数据可解析。
-
-对40个目录成功接口继续分别采样分类、单条详情和“测试”关键词搜索。分类38项、详情38项、搜索32项通过原生正常请求入口的响应验证，6项明确不支持搜索，另有连接失败。客户端为明确的搜索限制与IP授权拒绝展示对应提示，目录浏览沿既有行为。实际收到的155份响应在受控HTTP回放中确认148份可解析及7条明确限制，完整结果随逐源审计保存。
-
-四份主订阅共207项通过客户端原生接口的离线配置解析、逐份预览与确认导入、重启恢复测试；已有个人稳定键、名称、接口、详情配置、停用选择和顺序均保留。仓库校验同时检查113条审计覆盖、公开地址、来源映射、分类与索引指纹。执行方式为 `py -X utf8 scripts/check_subscriptions.py` 和 `py -X utf8 scripts/test_check_subscriptions.py`。
-
-### 既有协议来源
-
-[Xanerix/guoapp](https://github.com/Xanerix/guoapp/tree/2e7388cc0c2a41180503e2b98fb283e8dbe35b78) 本次核对至提交 `2e7388cc0c2a41180503e2b98fb283e8dbe35b78`。其已有来源中，红果由客户端内置，其余既有可选来源已经收录；本次新增差项为[黑桃协议参考](https://github.com/Xanerix/guoapp/blob/2e7388cc0c2a41180503e2b98fb283e8dbe35b78/native/core/provider_heitao.go)。仅提取入口与协议行为，客户端独立实现，不复制其应用源码或资产。
-
-黑桃使用稳定身份 `heitao`、`native.version=1`，入口和域名边界只维护于未知订阅，默认启用。新版客户端在账号管理展示原站访问声明，由本人确认后才请求同源、同视频同分集的播放器；确认限当前用户进程会话、最长8小时，可撤销，不持久化或发送到媒体CDN。2026-11-09修复原站确认后iframe属性变化，Windows Debug客户端已实际播放，用户确认恢复；登录、付费等其他授权仍按原站要求完成。
-
-禁果及禁果短剧入口资料参考上游提交 `219405676fd6da4d4b05e99b7ad4a2d1814cd38e`，保持两个独立适配器与身份。黄豆6个域名池参考提交 `36c9eb9c72c9c8ae0ba8e46331a8b6c0268671b9`；此前有界目录元数据成功不等于媒体可播。
-
-TVBox旧配置参考 `hebijunge/tvbox-config` 提交 `7d5a8d531cd8be71c1299c054a4234b0302b4a1c`。Gnoix旧精选对应 [rules.json](https://gnoix.277722.xyz/rules.json) 的20261102快照；12个JS规则不执行，未证实等价的新地址不替换旧资料。[既有逐源审计](audits/plugin20261016-status.json)保留历史采样阶段和限制，本次不把旧检查累加为当前通过数。
-
-## 笔盒
-
-笔盒使用独立原生身份 `beabox`，默认启用，追加在未知订阅末尾。入口、API、发布页、允许域名与默认线路全部由此配置维护。客户端支持最新视频、标签分类、在线搜索、详情及分集解析，记忆配置内可用镜像并在重启后按配置指纹复用。仅在连接失败后读取发布页，发现结果仍须通过配置域名边界，业务拒绝不触发换域。新增域名需更新订阅并由用户确认。
-
-协议行为参考 [Xanerix/guoapp 的固定快照](https://github.com/Xanerix/guoapp/tree/90e653d42c4955a6efa5d36308f3276b9c0699ea)，由本项目独立实现。当前验证使用合成 JSON、HTTP 和封包向量，特殊封面封包也使用本地合成资料验证。未请求站源图片或真实媒体，不能据此宣称站源当前可播。
-
-## Cinejoy与Movy
-
-两站追加在影视订阅末尾，稳定身份为 `cinejoy`、`movy`，默认启用，不覆盖旧站源及排序。需要本次更新后的客户端；在站源管理读取影视订阅预览、确认导入，按既有来源权限使用。支持电影／电视剧、季集详情、按需服务器切换、该线路实际画质和SRT／WebVTT字幕；可用档位及字幕随影片和线路变化。
-
-元数据使用配置中的公开TMDB兼容接口。Cinejoy服务器由公开接口返回，封包模块固定HTTPS地址与SHA-256；客户端只在限时、限内存、无宿主能力的解释器中执行，不保存模块或临时响应密钥。Movy按官方Vidy播放器公开协议处理短期会话，配置13条原声音频服务器线路；不将未适配的本地化音频服务器加入配置。所有地址与固定线路仅在本仓库维护。
-
-2026-11-08全量匿名采样覆盖本仓库167项及额外内置4项，共171个身份：媒体连接成功65项，目录失败36项、详情失败10项、解析失败50项、媒体失败1项、详情超时1项、需要授权2项、因禁图规则媒体未测6项。逐源仅采样单个标题／首个非VIP分集，所选视频和独立音频分别最多读取1024字节，不解码播放；未逐条验证所有线路、画质、字幕或搜索。完整逐源HTML、CSV和JSON结果在客户端 `build/source-audit-20261108/`，计数不累加旧审计。
-
-2026-11-09 Windows Debug真实客户端复测：Cinejoy样本输出3840×2160、进度超过9分钟，独立字幕索引366项加接口附带3项，共369项／46种语言，中文字幕已显示；本次在Cinejoy的 `native.endpoints.subtitles` 增加原站独立字幕入口。Movy样本输出1920×1000、修复后进度8.4秒至60.6秒，观察期间没有自动重开。黑桃由用户确认访问声明后已实际播放。青空由用户在隔离客户端手动登录，目录及取流接口成功，但实际媒体连接在备用DNS重试后仍TLS超时，未得到首帧；只补充实际返回的媒体域名边界，未绕过TLS或改变系统路由。媒体主机也用于已有的有界DNS回退，不扩大账号凭据发送范围。
-
-## 后续维护
-
-1. 固定使用四份主分类配置，不新增协议、日期、题材或其他分类文件。成人和待分类全部放入未知。
-2. 新源先查稳定键及完整接口身份，确认客户端支持后在相应 `api_site` 末尾追加。保留旧条目的排序前缀、原生元数据与身份。全部发布配置默认启用，检测失败不自动禁用，另记验证状态；客户端保留已有用户手动关闭选择。
-3. 只有明确更新任务才修改旧来源或迁类。需继续维护的旧兼容配置同步其合法变更和索引内容指纹；新源不要求追加到旧合集。
-4. 更新索引和本文计数；来源名称、API、CDN、镜像、分类和固定线路不回填客户端。可选原生配置保留完整 `native.version=1` 资料，配置收录不自动解锁来源。
-5. 执行 `py -X utf8 scripts/check_subscriptions.py`，再由客户端实际解析器验证主分类。校验检查跨文件去重、别名等价、分类、旧配置保留、计数和客户端文档容量。
-
-当前计数为207项，四份订阅及旧原生兼容视图通过客户端真实配置解析；青空合法媒体域边界同步到既有兼容配置与索引指纹。验证不请求站源图片，真实客户端与历史匿名连接采样分别记录；未遍历所有影片、线路、字幕或物理设备，不宣称全站健康。仓库不存账号、Cookie、密钥、个人设备资料或媒体；不绕过TLS、登录、付费、DRM或访问限制。
+这些检查不请求站源图片、账号或媒体，也不等同于当前站点可用性、真实播放、完整原生配置行为或物理设备验收；来源访问条件仍由对应服务决定，不绕过 TLS、登录、付费、DRM 或访问拒绝。

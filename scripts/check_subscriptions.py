@@ -1,12 +1,23 @@
-import hashlib
 import ipaddress
 import json
-from collections import Counter, defaultdict
+import re
+from collections import defaultdict
 from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 
 ROOT = Path(__file__).resolve().parents[1]
+GROUPS = {
+    "film-tv": ("影视", 135),
+    "short-drama": ("短剧", 6),
+    "animation": ("动漫", 4),
+    "unknown": ("未知", 62),
+}
+ADAPTERS = {
+    "tencent", "jianpian", "hanxiaoquan", "guipian", "cinejoy", "movy",
+    "huangdou", "huangju", "yeguo", "huangguoai", "jinguo", "jinguoduanju",
+    "sorani", "dsd", "huangguo-video", "cloudfront", "heitao", "beabox",
+}
 
 
 def unique_object(pairs):
@@ -19,23 +30,26 @@ def unique_object(pairs):
 
 
 def read_json(path):
-    text = path.read_text(encoding="utf-8-sig")
-    return text, json.loads(text, object_pairs_hook=unique_object)
+    body = path.read_bytes()
+    if len(body) > 2 * 1024 * 1024:
+        raise ValueError("Subscription exceeds client document limit")
+    return json.loads(body.decode("utf-8-sig"), object_pairs_hook=unique_object)
 
 
-def content_hash(value):
-    encoded = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
-    return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
-
-
-def source_identity(site):
-    if site.get("adapter"):
-        return "native", site["adapter"]
-    parsed = urlsplit(site["api"].strip())
-    if parsed.scheme not in {"http", "https"} or not parsed.hostname or parsed.username is not None or parsed.fragment:
+def public_url(value):
+    if not isinstance(value, str) or not value or re.search(r"[\s\\\x00-\x1f\x7f]", value):
         raise ValueError("Invalid public source URL")
+    parsed = urlsplit(value)
+    if (parsed.scheme not in {"http", "https"} or not parsed.hostname
+            or parsed.username is not None or parsed.password is not None or parsed.fragment):
+        raise ValueError("Invalid public source URL")
+    if parsed.port is not None and not 1 <= parsed.port <= 65535:
+        raise ValueError("Invalid source URL port")
+    if parsed.netloc.endswith(":"):
+        raise ValueError("Invalid source URL port")
     hostname = parsed.hostname.lower().rstrip(".")
-    if hostname in {"localhost", "localhost.localdomain"} or hostname.endswith((".localhost", ".local")):
+    if (hostname in {"localhost", "localhost.localdomain"}
+            or hostname.endswith((".localhost", ".local", ".localdomain"))):
         raise ValueError("Source URL points to a local hostname")
     try:
         address = ipaddress.ip_address(hostname)
@@ -43,9 +57,40 @@ def source_identity(site):
         address = None
     if address is not None and not address.is_global:
         raise ValueError("Source URL points to a non-public address")
-    authority = parsed.netloc.lower()
-    if parsed.port == {"http": 80, "https": 443}[parsed.scheme]:
-        authority = parsed.hostname.lower()
+    return parsed
+
+
+def source_identity(site):
+    if not isinstance(site, dict) or set(site) - {"name", "api", "detail", "disabled", "adapter", "native"}:
+        raise ValueError("Invalid source schema")
+    if not isinstance(site.get("name"), str) or not site["name"].strip():
+        raise ValueError("Source name is required")
+    parsed = public_url(site.get("api"))
+    if "disabled" in site and type(site["disabled"]) is not bool:
+        raise ValueError("Disabled state must be boolean")
+    if site.get("disabled", False):
+        raise ValueError("Published sources must be enabled by default")
+    detail = site.get("detail", "")
+    if not isinstance(detail, str):
+        raise ValueError("Detail endpoint must be a string")
+    if detail:
+        public_url(detail)
+    if "adapter" in site:
+        adapter = site["adapter"]
+        if not isinstance(adapter, str) or adapter not in ADAPTERS:
+            raise ValueError("Unsupported native adapter")
+        native = site.get("native")
+        if native is None and "native" not in site and adapter == "jianpian":
+            return "native", adapter
+        if not isinstance(native, dict) or type(native.get("version")) is not int or native["version"] != 1:
+            raise ValueError("Native configuration must use version 1")
+        return "native", adapter
+    if "native" in site:
+        raise ValueError("Native configuration requires an adapter")
+    hostname = parsed.hostname.lower().rstrip(".")
+    authority = f"[{hostname}]" if ":" in hostname else hostname
+    if parsed.port is not None and parsed.port != {"http": 80, "https": 443}[parsed.scheme]:
+        authority += f":{parsed.port}"
     query = defaultdict(list)
     for key, value in parse_qsl(parsed.query, keep_blank_values=True):
         query[key].append(value)
@@ -53,126 +98,46 @@ def source_identity(site):
         query.pop("ac")
     encoded_query = urlencode([(key, value) for key in sorted(query) for value in query[key]])
     address = urlunsplit((parsed.scheme, authority, parsed.path.rstrip("/"), encoded_query, ""))
-    return "api", address, site.get("detail", "").strip()
+    return "api", address, detail
 
 
-def check_directory_imports(index, primary, memberships):
-    accepted = {"ADDED", "EXISTING_INTERFACE", "DUPLICATE_DIRECTORY_INTERFACE"}
-    rejected = {"WITHDRAWN_BY_DIRECTORY", "NO_SUPPORTED_PUBLIC_CATALOG"}
-    for batch in index.get("directory_imports", []):
-        path = (ROOT / batch["audit"]).resolve()
-        if path.parent != (ROOT / "audits").resolve():
-            raise ValueError("Directory audit path escapes audits directory")
-        _, audit = read_json(path)
-        if content_hash(audit) != batch["content_sha256"]:
-            raise ValueError("Directory audit fingerprint differs from index")
-        entries = audit["entries"]
-        if len(entries) != batch["entry_count"] or audit["directory"] != batch["directory"]:
-            raise ValueError("Directory audit inventory differs from index")
-        if Counter(row["status"] for row in entries) != batch["status_counts"]:
-            raise ValueError("Directory audit status counts differ from index")
-        ids, added = set(), set()
-        for row in entries:
-            source_id = row["directory_id"]
-            if not source_id.isdecimal() or source_id in ids:
-                raise ValueError("Duplicate or invalid directory entry")
-            ids.add(source_id)
-            if row["directory_page"] != audit["directory"] + source_id + ".html":
-                raise ValueError("Directory entry URL differs from its identity")
-            status = row["status"]
-            if status in rejected:
-                if "source_key" in row or not row.get("reason"):
-                    raise ValueError("Rejected directory entry claims an imported identity")
-                if status == "WITHDRAWN_BY_DIRECTORY" and row["interfaces"]:
-                    raise ValueError("Withdrawn entry contains a fabricated interface")
-                continue
-            if status not in accepted or row["source_key"] not in primary:
-                raise ValueError("Directory entry has no supported repository identity")
-            key = row["source_key"]
-            selected = source_identity({"api": row["selected_api"]})
-            if selected != source_identity(primary[key]) or memberships[key] != row["group"]:
-                raise ValueError("Directory mapping changes API identity or content group")
-            if row["selected_api"] not in {endpoint["url"] for endpoint in row["interfaces"]}:
-                raise ValueError("Selected API was not published by the directory entry")
-            if status == "ADDED":
-                if key in added:
-                    raise ValueError("Duplicate added directory identity")
-                added.add(key)
-        if sorted(added) != sorted(batch["added_keys"]):
-            raise ValueError("Added directory identities differ from index")
-
-
-def check():
-    _, index = read_json(ROOT / "subscriptions/index.json")
-    expected = {"film-tv": "影视", "short-drama": "短剧", "animation": "动漫", "unknown": "未知"}
-    if index.get("default_enabled") is not True:
-        raise ValueError("Repository sources must be enabled by default")
-    if [(group["id"], group["name"]) for group in index["groups"]] != list(expected.items()):
-        raise ValueError("Subscriptions must use the four agreed content groups")
-    legacy = {}
-    for name, record in index["legacy_files"].items():
-        path = (ROOT / name).resolve()
-        if path.parent != ROOT:
-            raise ValueError("Legacy path escapes repository root")
-        _, document = read_json(path)
-        if content_hash(document) != record["content_sha256"]:
-            raise ValueError(f"Compatibility snapshot changed: {name}")
-        if len(document["api_site"]) != record["count"]:
-            raise ValueError(f"Compatibility count changed: {name}")
-        for key, site in document["api_site"].items():
-            if key in legacy and site != legacy[key]:
-                raise ValueError(f"Conflicting legacy source: {key}")
-            legacy[key] = site
-    primary, identities, summary, memberships = {}, {}, {}, {}
-    for group in index["groups"]:
-        path = (ROOT / group["path"]).resolve()
-        if path != ROOT / "subscriptions" / (group["id"] + ".json"):
-            raise ValueError("Group path does not match its content type")
-        text, document = read_json(path)
-        if len(text.encode("utf-8")) > 2 * 1024 * 1024:
-            raise ValueError("Subscription exceeds client document limit")
-        if set(document) != {"cache_time", "api_site"} or document["cache_time"] != 7200:
+def check(root=ROOT):
+    root = Path(root).resolve()
+    expected = {f"subscriptions/{group}.json" for group in GROUPS}
+    actual = {
+        path.relative_to(root).as_posix()
+        for path in root.rglob("*")
+        if path.is_file() and path.suffix.lower() == ".json"
+        and ".git" not in path.relative_to(root).parts
+    }
+    if actual != expected:
+        raise ValueError(f"Only the four subscription JSON files are allowed; missing={sorted(expected - actual)}, extra={sorted(actual - expected)}")
+    keys, identities, summary = set(), set(), {}
+    for group, (name, count) in GROUPS.items():
+        path = root / "subscriptions" / f"{group}.json"
+        if path.is_symlink():
+            raise ValueError("Subscription must be a regular repository file")
+        document = read_json(path)
+        if (not isinstance(document, dict) or set(document) != {"cache_time", "api_site"}
+                or type(document["cache_time"]) is not int or document["cache_time"] != 7200
+                or not isinstance(document["api_site"], dict)):
             raise ValueError("Invalid subscription envelope")
         sites = document["api_site"]
-        disabled = sum(site.get("disabled", False) for site in sites.values())
-        if disabled:
-            raise ValueError("Primary subscription must not disable sources by default")
-        if len(sites) != group["count"] or disabled != group["disabled_count"]:
-            raise ValueError(f"Group count mismatch: {group['id']}")
+        if len(sites) != count:
+            raise ValueError(f"Group count mismatch: {group}; expected {count}, got {len(sites)}")
         for key, site in sites.items():
+            if not key or re.search(r"[\s\x00-\x1f\x7f]", key):
+                raise ValueError("Invalid stable source key")
             identity = source_identity(site)
-            if "🔞" in site["name"] and group["id"] != "unknown":
+            if "🔞" in site["name"] and group != "unknown":
                 raise ValueError("Explicit adult sources must remain in the unknown group")
-            if key in primary or identity in identities:
-                raise ValueError(f"Duplicate source across primary subscriptions: {key}")
-            if key in legacy and site != legacy[key]:
-                raise ValueError(f"Source configuration or disabled state changed: {key}")
-            primary[key], identities[identity] = site, key
-            memberships[key] = group["id"]
-        summary[group["name"]] = {"sources": len(sites), "disabled": disabled}
-    aliases = index["aliases"]
-    if len(legacy) != index["legacy_stable_keys"] or len(primary) != index["total_sources"]:
-        raise ValueError("Inventory totals differ from index")
-    if set(legacy) - set(primary) != set(aliases):
-        raise ValueError("Legacy sources missing without an explicit alias")
-    for old_key, canonical_key in aliases.items():
-        if old_key in primary or canonical_key not in primary:
-            raise ValueError("Invalid canonical source alias")
-        old, current = legacy[old_key], primary[canonical_key]
-        if source_identity(old) != source_identity(current):
-            raise ValueError("Alias changes API semantics or independent detail configuration")
-        if old.get("disabled", False) != current.get("disabled", False):
-            raise ValueError("Alias changes disabled state")
-    evidence = index["classification_evidence"]
-    for field, group in [("adult_keys_in_unknown", "unknown"), ("unknown_keys", "unknown"), ("short_drama_keys", "short-drama"), ("animation_keys", "animation")]:
-        if any(memberships.get(key) != group for key in evidence[field]):
-            raise ValueError(f"Classification evidence does not match group: {field}")
-    files = {path.name for path in (ROOT / "subscriptions").glob("*.json")}
-    if files != {"index.json", *(key + ".json" for key in expected)}:
-        raise ValueError("Unexpected subscription file outside the four fixed groups")
-    check_directory_imports(index, primary, memberships)
-    print(json.dumps({"status": "PASSED", "sources": len(primary), "aliases": len(aliases), "groups": summary}, ensure_ascii=False))
+            if key in keys or identity in identities:
+                raise ValueError(f"Duplicate source across subscriptions: {key}")
+            keys.add(key)
+            identities.add(identity)
+        summary[name] = {"sources": len(sites), "disabled": 0}
+    return {"status": "PASSED", "files": len(expected), "sources": len(keys), "groups": summary}
 
 
 if __name__ == "__main__":
-    check()
+    print(json.dumps(check(), ensure_ascii=False))
