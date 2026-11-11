@@ -1,6 +1,6 @@
 # VideoResource
 
-短剧汇的站源配置仓库。主订阅固定为影视、短剧、动漫、未知四类；成人来源和待分类来源统一归入未知。后续来源去重后直接追加到对应文件，分类和地址保持稳定。
+映川（YingChuan）的站源配置仓库。主订阅固定为影视、短剧、动漫、未知四类；成人来源和待分类来源统一归入未知。后续来源去重后直接追加到对应文件，分类和地址保持稳定。
 
 ## 订阅使用
 
@@ -8,10 +8,10 @@
 
 | 分类 | 固定订阅文件 | 来源数 | 默认禁用 |
 | --- | --- | ---: | ---: |
-| 影视 | [subscriptions/film-tv.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/film-tv.json) | 135 | 0 |
-| 短剧 | [subscriptions/short-drama.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/short-drama.json) | 6 | 0 |
-| 动漫 | [subscriptions/animation.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/animation.json) | 4 | 0 |
-| 未知 | [subscriptions/unknown.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/subscriptions/unknown.json) | 62 | 0 |
+| 影视 | [subscriptions/film-tv.json](https://raw.githubusercontent.com/yingchuan-media/VideoResource/main/subscriptions/film-tv.json) | 135 | 0 |
+| 短剧 | [subscriptions/short-drama.json](https://raw.githubusercontent.com/yingchuan-media/VideoResource/main/subscriptions/short-drama.json) | 6 | 0 |
+| 动漫 | [subscriptions/animation.json](https://raw.githubusercontent.com/yingchuan-media/VideoResource/main/subscriptions/animation.json) | 4 | 0 |
+| 未知 | [subscriptions/unknown.json](https://raw.githubusercontent.com/yingchuan-media/VideoResource/main/subscriptions/unknown.json) | 62 | 0 |
 
 四份主订阅共有207项，全部默认启用，每个稳定身份只归属一类。健康检测失败只记录结果，不自动禁用；已安装资料保留用户手动关闭选择。影视包含综合影视、韩剧和恐怖专题；短剧包含已有资料明确标注的短剧、AI短剧与漫剧；动漫包含青空及原配置明确标注的魔都动漫接口。未知包含50个有明确成人文本分类或历史审计记录的接口，以及12个内容范围待核实的来源。
 
