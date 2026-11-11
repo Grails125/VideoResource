@@ -1,12 +1,12 @@
-# VideoResource
+# 映川站源 · YingChuan Sources
 
 ## 原生适配资料（任务243）
 
-短剧汇 `0.0.163+242` 保留 B站、红果、影视、影视2、奈飞五个内置来源。其余11个原生适配器的名称、说明、入口、API、备用域、分类及线路资料由本仓库配置提供，客户端只保留适配方法、稳定来源身份和权限规则。当前新增资料发布在 `codex/tvbox-jianpian` 分支，不代表 `main` 已更新。
+映川 `0.0.163+242` 保留 B站、红果、影视、影视2、奈飞五个内置来源。其余11个原生适配器的名称、说明、入口、API、备用域、分类及线路资料由本仓库配置提供，客户端只保留适配方法、稳定来源身份和权限规则。当前新增资料发布在 `codex/tvbox-jianpian` 分支，不代表 `main` 已更新。
 
-- [native.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/native.json)：原10项可选原生配置，内容与本分支 `config.json` 一致。
-- [tencent.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/tencent.json)：独立腾讯原生配置。
-- [integrated.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/integrated.json)：原50项合集，保留原来源和稳定键，仅为其中10项可选原生配置补齐资料。
+- [native.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/codex/tvbox-jianpian/native.json)：原10项可选原生配置，内容与本分支 `config.json` 一致。
+- [tencent.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/codex/tvbox-jianpian/tencent.json)：独立腾讯原生配置。
+- [integrated.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/codex/tvbox-jianpian/integrated.json)：原50项合集，保留原来源和稳定键，仅为其中10项可选原生配置补齐资料。
 
 每项 `api` 是站点根，`native.version` 为 `1`。可选字段包括独立 `apiUrl` / `cdnUrl`、按角色组织的 `endpoints`、备用 `mirrors`、`allowedHosts` / `allowedSuffixes`、旧输入 `aliases`、分类 `categories`、`playbackLine`、发现入口 `transitSites` / `seedWords`、`generatedMirrorSuffix`、`description` / `warning`。封面引用来源由 `endpoints.coverReferer` 与 `coverRefererHosts` 配套限定。角色路径与站点根不可混用；资料缺失不会回退到客户端内置旧地址。
 
@@ -14,14 +14,14 @@
 
 `archive/source_repository/` 保存从客户端移出的94个历史文本文件，其中86个 Kazumi JSON。归档用于追溯，不是当前可安装的原生配置，也不恢复已退休的脚本执行器。配置迁移和文本解析检查不等于站源健康或实际媒体播放验收。
 
-短剧汇在线源配置仓库，提供十个可选原生来源的订阅配置。
+映川在线源配置仓库，提供十个可选原生来源的订阅配置。
 
 ## 使用方法
 
-在应用「设置 → 站源管理 → 添加 → 配置订阅」选择「VideoResource 源仓库」，或填写以下订阅地址，获取后检查预览再确认：
+在应用「设置 → 站源管理 → 添加 → 配置订阅」选择「yingchuan-sources 源仓库」，或填写以下订阅地址，获取后检查预览再确认：
 
 ```text
-https://raw.githubusercontent.com/Grails125/VideoResource/main/config.json
+https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/config.json
 ```
 
 配置安装仍需客户端支持对应的原生适配器，不会自动解锁来源，也不支持通过填写任意网站地址自动接入。
@@ -30,8 +30,8 @@ https://raw.githubusercontent.com/Grails125/VideoResource/main/config.json
 
 | 配置                                                                                                     | 内容                                     |
 | -------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| [config.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/config.json)                 | 默认订阅，包含十个可选原生来源           |
-| [plugin20261016.json](https://raw.githubusercontent.com/Grails125/VideoResource/main/plugin20261016.json) | 2026-10-16新增配置 |
+| [config.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/config.json)                 | 默认订阅，包含十个可选原生来源           |
+| [plugin20261016.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/plugin20261016.json) | 2026-10-16新增配置 |
 
 配置中的 `cache_time` 为 `7200`；`api_site` 按来源稳定键组织，每个条目包含显示名称 `name`、站点地址 `api` 和客户端适配器标识 `adapter`。稳定键直接使用 `hanxiaoquan`、`sorani` 等名称。
 
@@ -47,17 +47,17 @@ https://raw.githubusercontent.com/Grails125/VideoResource/main/config.json
 
 ## 分类可选订阅
 
-短剧汇`0.0.149+228`起直接内置影视2，默认位于B站、红果、影视之后，无需导入或来源解锁。下方荐片配置及合集中的相同条目继续兼容旧客户端；新客户端保留原配置记录并使用内置入口，不增加重复来源。请勿将荐片H5网页首页作为普通JSON／XML采集接口；旧误配会提示使用内置影视2，不放宽XML解析校验。
+映川`0.0.149+228`起直接内置影视2，默认位于B站、红果、影视之后，无需导入或来源解锁。下方荐片配置及合集中的相同条目继续兼容旧客户端；新客户端保留原配置记录并使用内置入口，不增加重复来源。请勿将荐片H5网页首页作为普通JSON／XML采集接口；旧误配会提示使用内置影视2，不放宽XML解析校验。
 
 | 配置 | 用途 |
 | --- | --- |
-| [integrated.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/integrated.json) | 50项合集：原生10＋影视2原生适配1＋JSON28＋XML11，一次预览确认共同安装 |
-| [jianpian.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/jianpian.json) | 影视2原生适配配置，需要支持`jianpian`适配器的新客户端；旧默认配置不追加此项 |
-| [tvbox-json.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/tvbox-json.json) | TVBox type1标准JSON采集接口 |
-| [tvbox-xml.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/tvbox-xml.json) | TVBox type0标准XML采集接口 |
-| [tvbox-pending.json](https://raw.githubusercontent.com/Grails125/VideoResource/codex/tvbox-jianpian/tvbox-pending.json) | 21项待验证配置，全部默认禁用；仅供手动选择，不作为快捷推荐 |
+| [integrated.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/codex/tvbox-jianpian/integrated.json) | 50项合集：原生10＋影视2原生适配1＋JSON28＋XML11，一次预览确认共同安装 |
+| [jianpian.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/codex/tvbox-jianpian/jianpian.json) | 影视2原生适配配置，需要支持`jianpian`适配器的新客户端；旧默认配置不追加此项 |
+| [tvbox-json.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/codex/tvbox-jianpian/tvbox-json.json) | TVBox type1标准JSON采集接口 |
+| [tvbox-xml.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/codex/tvbox-jianpian/tvbox-xml.json) | TVBox type0标准XML采集接口 |
+| [tvbox-pending.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/codex/tvbox-jianpian/tvbox-pending.json) | 21项待验证配置，全部默认禁用；仅供手动选择，不作为快捷推荐 |
 
-短剧汇`0.0.148+227`源码为影视2增加发现页封面目录、推荐／电影／电视剧／动漫／综艺分类及连续分页，保留关键词搜索；旧`0.0.147+226`仍仅支持搜索。已安装的`jianpian`配置无需修改或重新导入，能力以客户端实际版本为准。荐片H5独立短剧入口使用另一套ID与播放消费者，当前未接入，不混用普通影视详情；`jianpian://`、荐片账号及付费授权仍未实现。目录元数据成功不代表图片或媒体实播已验收。
+映川`0.0.148+227`源码为影视2增加发现页封面目录、推荐／电影／电视剧／动漫／综艺分类及连续分页，保留关键词搜索；旧`0.0.147+226`仍仅支持搜索。已安装的`jianpian`配置无需修改或重新导入，能力以客户端实际版本为准。荐片H5独立短剧入口使用另一套ID与播放消费者，当前未接入，不混用普通影视详情；`jianpian://`、荐片账号及付费授权仍未实现。目录元数据成功不代表图片或媒体实播已验收。
 
 TVBox配置固定参考`hebijunge/tvbox-config`提交`7d5a8d531cd8be71c1299c054a4234b0302b4a1c`，按API规范化去重，保留名称和语义查询参数。上游adult.json明确归类的API／主机排除；名称存在疑问的条目另按待确认保守排除，不将名称当作已确认内容证据。分类文件按接口协议组织，不代表影视题材分类或全部来源内容性质已核实。
 
