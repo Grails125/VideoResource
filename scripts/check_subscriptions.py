@@ -1,6 +1,7 @@
 import ipaddress
 import json
 import re
+import unicodedata
 from collections import defaultdict
 from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
@@ -18,6 +19,26 @@ ADAPTERS = {
     "huangdou", "huangju", "yeguo", "huangguoai", "jinguo", "jinguoduanju",
     "sorani", "dsd", "huangguo-video", "cloudfront", "heitao", "beabox",
 }
+NAME_BLOCKS = re.compile(r"\[[^\[\]]*\]|［[^［］]*］|【[^【】]*】|\([^()]*\)|（[^（）]*）")
+NAME_LATENCY = re.compile(
+    r"(?:测速|延迟|耗时|响应(?:时间)?)?\s*[:：]?\s*"
+    r"(?<![A-Za-z0-9])\d+(?:\.\d+)?\s*(?:毫秒(?:钟)?|msec|ms)(?![A-Za-z])",
+    re.IGNORECASE,
+)
+
+
+def clean_source_name(value):
+    value = unicodedata.normalize("NFC", value).replace("🔞", " 成人 ")
+    value = NAME_BLOCKS.sub(lambda match: " " if NAME_LATENCY.search(match[0]) else match[0], value)
+    value = NAME_LATENCY.sub(" ", value)
+    plain = []
+    for character in value:
+        codepoint = ord(character)
+        if (unicodedata.category(character) == "Cf" or character == "\u20e3"
+                or 0xFE00 <= codepoint <= 0xFE0F or 0xE0100 <= codepoint <= 0xE01EF):
+            continue
+        plain.append(character if unicodedata.category(character)[0] in {"L", "N", "M"} else " ")
+    return " ".join("".join(plain).split())
 
 
 def unique_object(pairs):
@@ -65,6 +86,8 @@ def source_identity(site):
         raise ValueError("Invalid source schema")
     if not isinstance(site.get("name"), str) or not site["name"].strip():
         raise ValueError("Source name is required")
+    if site["name"] != clean_source_name(site["name"]):
+        raise ValueError("Source name must use plain words and numbers without decoration or latency")
     parsed = public_url(site.get("api"))
     if "disabled" in site and type(site["disabled"]) is not bool:
         raise ValueError("Disabled state must be boolean")
@@ -113,6 +136,7 @@ def check(root=ROOT):
     if actual != expected:
         raise ValueError(f"Only the four subscription JSON files are allowed; missing={sorted(expected - actual)}, extra={sorted(actual - expected)}")
     keys, identities, summary = set(), set(), {}
+    names = defaultdict(list)
     for group, (name, count) in GROUPS.items():
         path = root / "subscriptions" / f"{group}.json"
         if path.is_symlink():
@@ -128,15 +152,19 @@ def check(root=ROOT):
         for key, site in sites.items():
             if not key or re.search(r"[\s\x00-\x1f\x7f]", key):
                 raise ValueError("Invalid stable source key")
-            identity = source_identity(site)
-            if "🔞" in site["name"] and group != "unknown":
+            display_name = site.get("name", "") if isinstance(site, dict) else ""
+            if (isinstance(display_name, str) and group != "unknown"
+                    and ("🔞" in display_name or re.search(r"(?:^|\s)成人(?:\s|$)", display_name))):
                 raise ValueError("Explicit adult sources must remain in the unknown group")
+            identity = source_identity(site)
             if key in keys or identity in identities:
                 raise ValueError(f"Duplicate source across subscriptions: {key}")
             keys.add(key)
             identities.add(identity)
+            names[site["name"]].append(f"{group}:{key}")
         summary[name] = {"sources": len(sites), "disabled": 0}
-    return {"status": "PASSED", "files": len(expected), "sources": len(keys), "groups": summary}
+    return {"status": "PASSED", "files": len(expected), "sources": len(keys), "groups": summary,
+            "duplicate_names": {name: entries for name, entries in names.items() if len(entries) > 1}}
 
 
 if __name__ == "__main__":
