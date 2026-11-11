@@ -1,4 +1,4 @@
-# 站源仓库维护约定
+# 映川站源仓库维护约定
 
 - 供用户选择的订阅固定为四类：影视、短剧、动漫、未知。文件分别为 `subscriptions/film-tv.json`、`subscriptions/short-drama.json`、`subscriptions/animation.json`、`subscriptions/unknown.json`，地址长期保持不变，不再按接口协议、导入批次或题材新增分类订阅。
 - 成人来源和待分类来源统一放入未知，保留原内容标记。不能从来源名称猜测接口协议或把类型未确认的来源放入其他类别。
