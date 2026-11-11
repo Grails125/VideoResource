@@ -1,103 +1,152 @@
+import contextlib
+import hashlib
+import io
 import os
 import shutil
 import subprocess
 import tempfile
 import unittest
+import zipfile
 from pathlib import Path
+from unittest.mock import patch
 
-
-ROOT = Path(__file__).resolve().parents[1]
+import setup_ffmpeg as setup
 
 
 class SetupFFmpegTests(unittest.TestCase):
-    def run_setup(self, installed=False, failure=""):
-        git = shutil.which("git")
-        bash = Path(git).parents[1] / "bin/bash.exe" if os.name == "nt" and git else shutil.which("bash")
-        self.assertTrue(bash and Path(bash).is_file(), "安装流程回归需要 Bash（Windows 可使用 Git Bash）")
-        with tempfile.TemporaryDirectory() as folder:
-            root = Path(folder)
-            binary = root / "bin"
-            binary.mkdir()
-            wrapper = '''#!/bin/bash
-case "${0##*/}" in
-  cat)
-    while IFS= read -r line || [[ -n "$line" ]]; do printf '%s\\n' "$line"; done ;;
-  sudo)
-    shift
-    if [[ "$1" == env ]]; then shift; export "$1"; shift; fi
-    "$@" ;;
-  timeout)
-    printf 'timeout %s\\n' "$*" >> "$SETUP_LOG"
-    [[ "$1" != --kill-after=* ]] || shift
-    shift
-    if [[ "$1" == ffmpeg && -f "$SETUP_MARKER" ]]; then printf 'ffmpeg fixture\\n'; exit 0; fi
-    "$@" ;;
-  apt-get)
-    printf 'apt %s\\n' "$*" >> "$SETUP_LOG"
-    if [[ " $* " == *" update "* ]]; then
-      [[ "$SETUP_FAILURE" != update ]] || exit 100
-    else
-      [[ "$SETUP_FAILURE" != install ]] || exit 124
-      : > "$SETUP_MARKER"
-    fi ;;
-  ffmpeg)
-    [[ "$SETUP_FAILURE" != version ]] || exit 1
-    printf 'ffmpeg fixture\\n' ;;
-esac
-'''
-            for name in ("cat", "sudo", "timeout", "apt-get") + (("ffmpeg",) if installed else ()):
-                path = binary / name
-                path.write_text(wrapper, encoding="utf-8", newline="\n")
-                path.chmod(0o755)
-            binary_path = binary.as_posix()
-            if os.name == "nt":
-                binary_path = "/" + binary_path[0].lower() + binary_path[2:]
-            environment = {**os.environ, "FIXTURE_BIN": binary_path,
-                           "RUNNER_TEMP": root.as_posix(), "SETUP_SCRIPT": (ROOT / "scripts/setup_ffmpeg.sh").as_posix(),
-                           "SETUP_LOG": (root / "commands.txt").as_posix(),
-                           "SETUP_MARKER": (root / "installed").as_posix(), "SETUP_FAILURE": failure}
-            result = subprocess.run([str(bash), "--noprofile", "--norc", "-c",
-                                     'export PATH="$FIXTURE_BIN"; source "$SETUP_SCRIPT"'],
-                                    env=environment, capture_output=True, text=True, timeout=10, check=False)
-            log = root / "commands.txt"
-            sources = root / "yingchuan-ubuntu.sources"
-            return result, log.read_text(encoding="utf-8") if log.exists() else "", sources.read_text(encoding="utf-8") if sources.exists() else ""
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name)
+        self.cache = self.root / "cache"
+        self.cache.mkdir()
+        self.installation = self.root / "installed"
+        self.wheel = self.cache / setup.WHEEL
+        self.binary = b"synthetic executable"
+        self.gpl = self.root / "GPL-3"
+        self.gpl.write_text("Synthetic GPL license", encoding="utf-8")
+        with zipfile.ZipFile(self.wheel, "w") as archive:
+            archive.writestr(setup.BINARY, self.binary)
+            archive.writestr(setup.PACKAGE_LICENSE, b"Synthetic package license")
+            archive.writestr("../must-not-extract", b"unselected entry")
+            archive.writestr("imageio_ffmpeg/__init__.py", b"must not import or install")
+        for attribute, value in (
+            ("WHEEL_SHA256", hashlib.sha256(self.wheel.read_bytes()).hexdigest()),
+            ("BINARY_SHA256", hashlib.sha256(self.binary).hexdigest()),
+            ("GPL_LICENSE", self.gpl),
+        ):
+            patcher = patch.object(setup, attribute, value)
+            patcher.start()
+            self.addCleanup(patcher.stop)
+        output = contextlib.redirect_stdout(io.StringIO())
+        output.__enter__()
+        self.addCleanup(output.__exit__, None, None, None)
 
-    def test_preinstalled_decoder_does_not_access_package_repositories(self):
-        result, log, sources = self.run_setup(installed=True)
-        self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertNotIn("apt ", log)
-        self.assertEqual(sources, "")
+    def version(self):
+        return subprocess.CompletedProcess([], 0, "ffmpeg version " + setup.BUILD + "\n", "")
 
-    def test_install_uses_signed_official_https_sources_and_time_limits(self):
-        result, log, sources = self.run_setup()
-        self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("https://archive.ubuntu.com/ubuntu", sources)
-        self.assertIn("https://security.ubuntu.com/ubuntu", sources)
-        self.assertIn("Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg", sources)
-        self.assertNotIn("azure.archive", sources)
-        self.assertIn("Dir::Etc::sourceparts=-", log)
-        self.assertIn("Acquire::Retries=0", log)
-        self.assertIn("Acquire::https::Timeout=15", log)
-        self.assertIn("--kill-after=10s 60s", log)
-        self.assertIn("--kill-after=10s 180s", log)
-        self.assertIn("ffmpeg fixture", result.stdout)
+    def test_cached_wheel_and_binary_are_verified_before_version_check(self):
+        with patch.object(setup.subprocess, "run", return_value=self.version()) as run:
+            executable = setup.prepare(self.cache, self.installation)
+        self.assertEqual(executable.read_bytes(), self.binary)
+        self.assertEqual(run.call_count, 1)
+        self.assertEqual(run.call_args.args[0], [str(executable), "-version"])
+        self.assertEqual((self.installation / "licenses/FFmpeg-GPL-3.0.txt").read_text(), "Synthetic GPL license")
+        self.assertFalse((self.root / "must-not-extract").exists())
+        self.assertFalse((self.installation / "imageio_ffmpeg").exists())
 
-    def test_failed_index_update_stops_installation(self):
-        result, log, _ = self.run_setup(failure="update")
-        self.assertNotEqual(result.returncode, 0)
-        self.assertNotIn(" install ", log)
-        self.assertNotIn("ffmpeg fixture", result.stdout)
+    def test_corrupt_cache_never_executes_or_downloads(self):
+        self.wheel.write_bytes(b"corrupt cache")
+        with patch.object(setup.subprocess, "run") as run, self.assertRaisesRegex(RuntimeError, "SHA-256"):
+            setup.prepare(self.cache, self.installation)
+        run.assert_not_called()
+        self.assertFalse(self.installation.exists())
 
-    def test_install_timeout_is_not_reported_as_success(self):
-        result, _, _ = self.run_setup(failure="install")
-        self.assertEqual(result.returncode, 124)
-        self.assertNotIn("ffmpeg fixture", result.stdout)
+    def test_wrong_binary_digest_preserves_previous_executable(self):
+        self.installation.mkdir()
+        executable = self.installation / "ffmpeg"
+        executable.write_bytes(b"previous executable")
+        with patch.object(setup, "BINARY_SHA256", "0" * 64), patch.object(setup.subprocess, "run") as run:
+            with self.assertRaisesRegex(RuntimeError, "SHA-256"):
+                setup.prepare(self.cache, self.installation)
+        self.assertEqual(executable.read_bytes(), b"previous executable")
+        run.assert_not_called()
 
-    def test_broken_preinstalled_decoder_fails_without_apt_fallback(self):
-        result, log, _ = self.run_setup(installed=True, failure="version")
-        self.assertNotEqual(result.returncode, 0)
-        self.assertNotIn("apt ", log)
+    def test_download_uses_fixed_url_hash_and_no_index_or_dependencies(self):
+        fixture = self.root / "fixture.whl"
+        shutil.move(self.wheel, fixture)
+
+        def download(command, **kwargs):
+            requirement = Path(command[command.index("--requirement") + 1]).read_text()
+            self.assertIn(setup.DOWNLOADS[0], requirement)
+            self.assertIn("--hash=sha256:" + setup.WHEEL_SHA256, requirement)
+            self.assertIn("--no-index", command)
+            self.assertIn("--no-deps", command)
+            self.assertIn("--require-hashes", command)
+            self.assertEqual(kwargs["timeout"], 120)
+            shutil.copyfile(fixture, Path(command[command.index("--dest") + 1]) / setup.WHEEL)
+            return subprocess.CompletedProcess(command, 0)
+
+        with patch.object(setup.subprocess, "run", side_effect=download):
+            self.assertEqual(setup.obtain_wheel(self.cache), self.wheel)
+        self.assertEqual(self.wheel.read_bytes(), fixture.read_bytes())
+
+    def test_download_timeout_uses_only_the_second_pinned_mirror(self):
+        fixture = self.root / "fixture.whl"
+        shutil.move(self.wheel, fixture)
+        attempts = []
+
+        def download(command, **kwargs):
+            requirement = Path(command[command.index("--requirement") + 1]).read_text()
+            attempts.append(requirement)
+            if len(attempts) == 1:
+                raise subprocess.TimeoutExpired(command, 120)
+            shutil.copyfile(fixture, Path(command[command.index("--dest") + 1]) / setup.WHEEL)
+            return subprocess.CompletedProcess(command, 0)
+
+        with patch.object(setup.subprocess, "run", side_effect=download):
+            setup.obtain_wheel(self.cache)
+        self.assertEqual(len(attempts), 2)
+        self.assertIn(setup.DOWNLOADS[1], attempts[1])
+        self.assertTrue(all(setup.WHEEL_SHA256 in attempt for attempt in attempts))
+
+    def test_all_network_failures_leave_no_cached_package_or_executable(self):
+        self.wheel.unlink()
+        with patch.object(setup.subprocess, "run", side_effect=subprocess.CalledProcessError(1, "pip")) as run:
+            with self.assertRaisesRegex(RuntimeError, "DNS"):
+                setup.prepare(self.cache, self.installation)
+        self.assertEqual(run.call_count, 2)
+        self.assertFalse(self.wheel.exists())
+        self.assertFalse(self.installation.exists())
+
+    def test_version_failure_does_not_advertise_path(self):
+        path_file = self.root / "github-path"
+        path_file.write_text("previous\n", encoding="utf-8")
+        with patch.object(setup.platform, "system", return_value="Linux"), \
+                patch.object(setup.platform, "machine", return_value="x86_64"), \
+                patch.dict(os.environ, {"GITHUB_PATH": str(path_file)}), \
+                patch("sys.argv", ["setup_ffmpeg.py", "--cache-dir", str(self.cache), "--install-dir", str(self.installation)]), \
+                patch.object(setup.subprocess, "run", side_effect=subprocess.CalledProcessError(1, "ffmpeg")):
+            with self.assertRaises(subprocess.CalledProcessError):
+                setup.main()
+        self.assertEqual(path_file.read_text(), "previous\n")
+
+    def test_main_adds_verified_executable_to_path(self):
+        path_file = self.root / "github-path"
+        with patch.object(setup.platform, "system", return_value="Linux"), \
+                patch.object(setup.platform, "machine", return_value="x86_64"), \
+                patch.dict(os.environ, {"GITHUB_PATH": str(path_file)}), \
+                patch("sys.argv", ["setup_ffmpeg.py", "--cache-dir", str(self.cache), "--install-dir", str(self.installation)]), \
+                patch.object(setup.subprocess, "run", return_value=self.version()):
+            self.assertEqual(setup.main(), 0)
+        self.assertEqual(path_file.read_text().strip(), str(self.installation.resolve()))
+
+    def test_unsupported_platform_fails_before_network(self):
+        with patch.object(setup.platform, "system", return_value="Windows"), \
+                patch("sys.argv", ["setup_ffmpeg.py"]), patch.object(setup.subprocess, "run") as run:
+            with self.assertRaisesRegex(RuntimeError, "Linux x64"):
+                setup.main()
+        run.assert_not_called()
 
 
 if __name__ == "__main__":
