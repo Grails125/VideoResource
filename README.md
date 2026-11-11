@@ -1,6 +1,8 @@
+<p align="center"><img src="assets/brand-icon.svg" width="80" alt="映川 · 澄青川流精修 A 图标"></p>
+
 # 映川 · 站源订阅
 
-映川（YingChuan）的四份站源订阅，供客户端按分类选择导入。仓库只保留下表四个 JSON 文件，不提供旧批次、合集、索引或归档订阅。
+映川（YingChuan）的四份站源订阅，供客户端按分类选择导入。品牌标识统一使用澄青川流精修 A 的[深墨双青图标](assets/brand-icon.svg)与[可编辑主标识](assets/brand-logo.svg)。仓库只保留下表四个 JSON 文件，不提供旧批次、合集、索引或归档订阅。
 
 | 分类 | 订阅地址 | 来源数 |
 | --- | --- | ---: |
