@@ -103,10 +103,14 @@ class HealthTests(unittest.TestCase):
         self.assertEqual(result["catalog"].status, "fail")
         self.assertTrue(all(result[field].status == "unknown" for field in health.FIELDS[1:]))
 
-    def test_native_adapter_does_not_probe_homepage(self):
+    def test_native_adapter_dispatches_to_native_protocol_runner(self):
         client = FakeClient({})
-        result = health.probe_site("film-tv", "native", {**self.site, "adapter": "cinejoy"}, client, None)
-        self.assertTrue(all(result[field].status == "unknown" for field in health.FIELDS))
+        expected = health.initial_result("film-tv", "native", self.site)
+        expected["catalog"] = health.Outcome("ok", "原生目录", 12)
+        with patch.object(health, "probe_native", return_value=expected) as native:
+            result = health.probe_site("film-tv", "native", {**self.site, "adapter": "cinejoy"}, client, None)
+        self.assertEqual(result["catalog"].status, "ok")
+        native.assert_called_once()
         self.assertEqual(client.calls, [])
 
     def test_api_query_preserves_meaning_and_escaped_path(self):
@@ -185,11 +189,11 @@ class HealthTests(unittest.TestCase):
             self.assertEqual(path.read_text(encoding="utf-8"), "Previous report")
 
     def test_cli_updates_all_groups_without_changing_subscriptions(self):
-        groups = {key: (label, 1) for key, (label, _) in health.GROUPS.items()}
+        groups = dict(health.GROUPS)
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
             (root / "subscriptions").mkdir()
-            (root / "README.md").write_text("Keep manual instructions\n", encoding="utf-8")
+            (root / "README.md").write_text("Keep manual instructions\n" + health.INVENTORY_START + "\n" + health.INVENTORY_END + "\n", encoding="utf-8")
             for group in groups:
                 (root / "subscriptions" / f"{group}.json").write_text(json.dumps({
                     "cache_time": 7200, "api_site": {group: {
@@ -223,6 +227,36 @@ class HealthTests(unittest.TestCase):
             self.assertEqual(report.count("未安装 FFmpeg，未验证首帧"), 4)
             self.assertEqual({path: path.read_bytes() for path in before}, before)
             self.assertNotIn("Keep manual instructions", (root / "summary.md").read_text(encoding="utf-8"))
+
+    def test_removed_rows_and_inventory_counts_are_replaced_from_current_json(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "README.md"
+            path.write_text(health.INVENTORY_START + "\nold inventory\n" + health.INVENTORY_END + "\n", encoding="utf-8")
+            first = [("film-tv", "old", {"name": "Removed"}), ("film-tv", "keep", {"name": "Kept"})]
+            health.write_report(path, [health.initial_result(*row) for row in first], "first", "none", None, first)
+            current = [("animation", "new", {"name": "Added"})]
+            health.write_report(path, [health.initial_result(*row) for row in current], "second", "none", None, current)
+            text = path.read_text(encoding="utf-8")
+        self.assertNotIn("Removed", text)
+        self.assertNotIn("Kept", text)
+        self.assertIn("Added", text)
+        self.assertIn("动漫（1 项）", text)
+        self.assertIn("影视（0 项）", text)
+        self.assertIn("1 项订阅来源", text)
+
+    def test_native_results_are_validated_and_not_inferred_from_http(self):
+        payload = {field: {"status": "ok", "message": "Native", "ms": 12} for field in health.FIELDS}
+        completed = subprocess.CompletedProcess([], 0, b"YINGCHUAN_HEALTH " + json.dumps(payload).encode() + b"\nPASS\n")
+        with patch.object(health.subprocess, "run", return_value=completed) as runner:
+            result = health.probe_native("film-tv", "cinejoy", {**self.site, "adapter": "cinejoy"}, None, "/fixture/runner")
+        self.assertEqual(result["playback"].status, "ok")
+        sent = json.loads(runner.call_args.kwargs["input"])
+        self.assertEqual(sent["site"]["adapter"], "cinejoy")
+        self.assertNotIn("GH_TOKEN", runner.call_args.kwargs["env"])
+        payload["playback"]["status"] = "pretend"
+        completed.stdout = b"YINGCHUAN_HEALTH " + json.dumps(payload).encode()
+        with patch.object(health.subprocess, "run", return_value=completed), self.assertRaisesRegex(RuntimeError, "状态无效"):
+            health.probe_native("film-tv", "cinejoy", self.site, None, "/fixture/runner")
 
 
 class LocalHTTPTests(unittest.TestCase):

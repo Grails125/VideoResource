@@ -1,3 +1,4 @@
+import argparse
 import ipaddress
 import json
 import re
@@ -9,16 +10,17 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 GROUPS = {
-    "film-tv": ("影视", 135),
-    "short-drama": ("短剧", 6),
-    "animation": ("动漫", 4),
-    "unknown": ("未知", 62),
+    "film-tv": "影视",
+    "short-drama": "短剧",
+    "animation": "动漫",
+    "unknown": "未知",
 }
 ADAPTERS = {
-    "tencent", "jianpian", "hanxiaoquan", "guipian", "cinejoy", "movy",
+    "tencent", "hanxiaoquan", "guipian", "cinejoy", "movy",
     "huangdou", "huangju", "yeguo", "huangguoai", "jinguo", "jinguoduanju",
     "sorani", "dsd", "huangguo-video", "cloudfront", "heitao", "beabox",
 }
+BUILTIN_ADAPTERS = {"bilibili", "hongguo", "kanju51", "jianpian", "netflixgc"}
 NAME_BLOCKS = re.compile(r"\[[^\[\]]*\]|［[^［］]*］|【[^【】]*】|\([^()]*\)|（[^（）]*）")
 NAME_LATENCY = re.compile(
     r"(?:测速|延迟|耗时|响应(?:时间)?)?\s*[:：]?\s*"
@@ -28,7 +30,7 @@ NAME_LATENCY = re.compile(
 
 
 def clean_source_name(value):
-    value = unicodedata.normalize("NFC", value).replace("🔞", " 成人 ")
+    value = unicodedata.normalize("NFC", value).replace("🔞", " ")
     value = NAME_BLOCKS.sub(lambda match: " " if NAME_LATENCY.search(match[0]) else match[0], value)
     value = NAME_LATENCY.sub(" ", value)
     plain = []
@@ -38,7 +40,7 @@ def clean_source_name(value):
                 or 0xFE00 <= codepoint <= 0xFE0F or 0xE0100 <= codepoint <= 0xE01EF):
             continue
         plain.append(character if unicodedata.category(character)[0] in {"L", "N", "M"} else " ")
-    return " ".join("".join(plain).split())
+    return " ".join("".join(plain).split()).removeprefix("成人 ")
 
 
 def unique_object(pairs):
@@ -100,11 +102,11 @@ def source_identity(site):
         public_url(detail)
     if "adapter" in site:
         adapter = site["adapter"]
+        if isinstance(adapter, str) and adapter in BUILTIN_ADAPTERS:
+            raise ValueError("Built-in adapters do not belong in source subscriptions")
         if not isinstance(adapter, str) or adapter not in ADAPTERS:
             raise ValueError("Unsupported native adapter")
         native = site.get("native")
-        if native is None and "native" not in site and adapter == "jianpian":
-            return "native", adapter
         if not isinstance(native, dict) or type(native.get("version")) is not int or native["version"] != 1:
             raise ValueError("Native configuration must use version 1")
         return "native", adapter
@@ -136,8 +138,9 @@ def check(root=ROOT):
     if actual != expected:
         raise ValueError(f"Only the four subscription JSON files are allowed; missing={sorted(expected - actual)}, extra={sorted(actual - expected)}")
     keys, identities, summary = set(), set(), {}
+    native_sources = 0
     names = defaultdict(list)
-    for group, (name, count) in GROUPS.items():
+    for group, name in GROUPS.items():
         path = root / "subscriptions" / f"{group}.json"
         if path.is_symlink():
             raise ValueError("Subscription must be a regular repository file")
@@ -147,25 +150,29 @@ def check(root=ROOT):
                 or not isinstance(document["api_site"], dict)):
             raise ValueError("Invalid subscription envelope")
         sites = document["api_site"]
-        if len(sites) != count:
-            raise ValueError(f"Group count mismatch: {group}; expected {count}, got {len(sites)}")
+        if len(sites) > 256:
+            raise ValueError(f"Subscription exceeds 256 source entries: {group}")
         for key, site in sites.items():
             if not key or re.search(r"[\s\x00-\x1f\x7f]", key):
                 raise ValueError("Invalid stable source key")
-            display_name = site.get("name", "") if isinstance(site, dict) else ""
-            if (isinstance(display_name, str) and group != "unknown"
-                    and ("🔞" in display_name or re.search(r"(?:^|\s)成人(?:\s|$)", display_name))):
-                raise ValueError("Explicit adult sources must remain in the unknown group")
             identity = source_identity(site)
+            native_sources += identity[0] == "native"
             if key in keys or identity in identities:
                 raise ValueError(f"Duplicate source across subscriptions: {key}")
             keys.add(key)
             identities.add(identity)
             names[site["name"]].append(f"{group}:{key}")
         summary[name] = {"sources": len(sites), "disabled": 0}
-    return {"status": "PASSED", "files": len(expected), "sources": len(keys), "groups": summary,
+    return {"status": "PASSED", "files": len(expected), "sources": len(keys), "native_sources": native_sources, "groups": summary,
             "duplicate_names": {name: entries for name, entries in names.items() if len(entries) > 1}}
 
 
 if __name__ == "__main__":
-    print(json.dumps(check(), ensure_ascii=False))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--github-output", type=Path)
+    options = parser.parse_args()
+    result = check()
+    if options.github_output:
+        with options.github_output.open("a", encoding="utf-8") as output:
+            output.write(f"native={'true' if result['native_sources'] else 'false'}\nsources={result['sources']}\nnative_sources={result['native_sources']}\n")
+    print(json.dumps(result, ensure_ascii=False))

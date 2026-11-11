@@ -19,7 +19,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 
-from check_subscriptions import GROUPS, ROOT, check, public_url, read_json
+from check_subscriptions import BUILTIN_ADAPTERS, GROUPS, ROOT, check, public_url, read_json
 
 
 TEXT_LIMIT = 2 * 1024 * 1024
@@ -27,6 +27,8 @@ MEDIA_LIMIT = 1024 * 1024
 FIELDS = ("catalog", "cover", "search", "playback")
 START = "<!-- source-health:start -->"
 END = "<!-- source-health:end -->"
+INVENTORY_START = "<!-- source-inventory:start -->"
+INVENTORY_END = "<!-- source-inventory:end -->"
 
 
 class ProbeError(Exception):
@@ -271,7 +273,7 @@ def probe_playback(client, url, executable):
     return Outcome("unknown", "HLS 层级超过探测上限")
 
 
-def initial_result(group, key, site, reason="待首次运行"):
+def initial_result(group, key, site, reason="待检测"):
     return {"group": group, "key": key, "name": site["name"],
             **{field: Outcome("unknown", reason) for field in FIELDS}}
 
@@ -286,10 +288,45 @@ def safe_probe(action):
         return Outcome("fail", "响应字段无效", round((time.monotonic() - started) * 1000))
 
 
-def probe_site(group, key, site, client, executable):
+def probe_native(group, key, site, executable, runner=None):
+    runner = runner or os.environ.get("YINGCHUAN_NATIVE_PROBE")
+    if not runner:
+        raise RuntimeError("原生检测器未准备，请先构建客户端协议检测程序")
+    with tempfile.TemporaryDirectory(prefix="yingchuan-native-health-") as state:
+        environment = {key: value for key, value in os.environ.items()
+                       if key.upper() in {"PATH", "SYSTEMROOT", "WINDIR", "TEMP", "TMP", "LD_LIBRARY_PATH", "SSL_CERT_FILE", "SSL_CERT_DIR"}}
+        environment.update({"HOME": state, "USERPROFILE": state,
+                            "YINGCHUAN_HEALTH_RUN": "1", "YINGCHUAN_HEALTH_FFMPEG": executable or ""})
+        try:
+            process = subprocess.run([str(runner), "-test.run=^TestSourceHealthProbe$", "-test.timeout=90s"],
+                                     input=json.dumps({"version": 1, "key": key, "site": site}).encode(),
+                                     stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+                                     env=environment, timeout=85, check=True)
+        except subprocess.TimeoutExpired:
+            raise RuntimeError("原生检测进程超时，阶段未确认；原报告保留") from None
+    lines = [line.removeprefix(b"YINGCHUAN_HEALTH ") for line in process.stdout.splitlines()
+             if line.startswith(b"YINGCHUAN_HEALTH ")]
+    if len(lines) != 1 or len(lines[0]) > 16384:
+        raise RuntimeError("原生检测器输出无效，原报告保留")
+    payload = json.loads(lines[0])
+    if not isinstance(payload, dict) or set(payload) != set(FIELDS):
+        raise RuntimeError("原生检测字段无效")
+    result = initial_result(group, key, site)
+    for field in FIELDS:
+        entry = payload[field]
+        if (not isinstance(entry, dict) or set(entry) - {"status", "message", "ms"}
+                or entry.get("status") not in {"ok", "fail", "unknown"}
+                or not isinstance(entry.get("message"), str) or len(entry["message"]) > 160
+                or entry.get("ms") is not None and (type(entry["ms"]) is not int or not 0 <= entry["ms"] <= 85000)):
+            raise RuntimeError("原生检测状态无效")
+        result[field] = Outcome(**entry)
+    return result
+
+
+def probe_site(group, key, site, client, executable, native_runner=None):
     result = initial_result(group, key, site, "目录不可用，未检测")
     if site.get("adapter"):
-        return initial_result(group, key, site, "原生协议需客户端验证")
+        return probe_native(group, key, site, executable, native_runner)
     rows = []
 
     def catalog():
@@ -372,8 +409,9 @@ def render_report(rows, checked_at, decoder_version):
     lines = [START, "", f"检测时间：{escape(checked_at)}；共 {len(rows)} 项，四项通过 {passed} 项，含失败 {failed} 项。",
              "", f"解码工具：{escape(decoder_version)}。延迟为运行节点的目录请求耗时（含 DNS、TLS 与正文），不代表本地延迟。",
              "", "✅ 通过 · ❌ 失败 · ⚪ 未验证。封面仅检查 HEAD；播放仅抽样一条线路的第一集和一个片段，首帧通过不保证整片、其他线路、音轨或设备可播。未验证和失败都不会禁用来源。", ""]
-    for group, (name, _) in GROUPS.items():
-        lines += [f"### {name}", "", "| 站点 / 稳定键 | 目录 | 封面 | 搜索 | 能否播放 | 目录延迟 |",
+    for group, name in GROUPS.items():
+        count = sum(row["group"] == group for row in rows)
+        lines += [f"### {name}（{count} 项）", "", "| 站点 / 稳定键 | 目录 | 封面 | 搜索 | 能否播放 | 目录延迟 |",
                   "| --- | --- | --- | --- | --- | ---: |"]
         for row in rows:
             if row["group"] != group:
@@ -390,7 +428,17 @@ def render_report(rows, checked_at, decoder_version):
     return "\n".join(lines + [END])
 
 
-def write_report(path, rows, checked_at, decoder_version, summary):
+def inventory_report(sites):
+    lines = [INVENTORY_START, "", "| 分类 | 订阅地址 | 来源数 |", "| --- | --- | ---: |"]
+    for group, name in GROUPS.items():
+        count = sum(candidate == group for candidate, _, _ in sites)
+        address = f"https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/{group}.json"
+        lines.append(f"| {name} | [subscriptions/{group}.json]({address}) | {count} |")
+    lines += ["", f"当前共 **{len(sites)} 项订阅来源，全部默认启用**。数量和检测清单从四份 JSON 逐次生成，随来源新增、移除及名称变更更新。", "", INVENTORY_END]
+    return "\n".join(lines)
+
+
+def write_report(path, rows, checked_at, decoder_version, summary, sites=None):
     original = path.read_text(encoding="utf-8")
     if original.count(START) != original.count(END) or original.count(START) > 1:
         raise ValueError("README 检测区标记损坏")
@@ -402,6 +450,13 @@ def write_report(path, rows, checked_at, decoder_version, summary):
         updated = original[:begin] + report + original[end + len(END):]
     else:
         updated = original.rstrip() + "\n\n" + report + "\n"
+    if sites is not None:
+        if updated.count(INVENTORY_START) != 1 or updated.count(INVENTORY_END) != 1:
+            raise ValueError("README 订阅统计标记损坏")
+        begin, end = updated.index(INVENTORY_START), updated.index(INVENTORY_END)
+        if end < begin:
+            raise ValueError("README 订阅统计标记顺序错误")
+        updated = updated[:begin] + inventory_report(sites) + updated[end + len(INVENTORY_END):]
     if summary:
         Path(summary).write_text(report.replace(START, "").replace(END, ""), encoding="utf-8")
     descriptor, temporary = tempfile.mkstemp(prefix=".health-", dir=path.parent)
@@ -419,26 +474,40 @@ def main():
     parser.add_argument("--workers", type=int, choices=range(1, 9), default=6)
     parser.add_argument("--timeout", type=int, choices=range(2, 16), default=8)
     parser.add_argument("--summary", type=Path, help="同时输出 GitHub Actions Markdown 摘要")
+    parser.add_argument("--native-probe", type=Path, default=os.environ.get("YINGCHUAN_NATIVE_PROBE"), help="客户端原生协议检测程序")
     options = parser.parse_args()
     check(ROOT)
     sites = [(group, key, site) for group in GROUPS
-             for key, site in read_json(ROOT / "subscriptions" / f"{group}.json")["api_site"].items()]
+             for key, site in read_json(ROOT / "subscriptions" / f"{group}.json")["api_site"].items()
+             if site.get("adapter") not in BUILTIN_ADAPTERS]
+    if not options.initialize and any(site.get("adapter") for _, _, site in sites) and not options.native_probe:
+        raise RuntimeError("订阅含原生协议来源，必须准备 --native-probe；未覆盖旧报告")
     executable = shutil.which("ffmpeg")
     version = "未安装 FFmpeg"
     if options.initialize:
         rows = [initial_result(*site) for site in sites]
-        checked_at, version = "尚未运行在线检测", "尚未执行"
+        checked_at, version = "本版配置尚未执行在线检测", "尚未执行"
     else:
         if executable:
             version = subprocess.run([executable, "-version"], capture_output=True, text=True, timeout=5, check=True).stdout.splitlines()[0]
+        if any(site.get("adapter") for _, _, site in sites):
+            version += "；原生协议核心 " + os.environ.get("YINGCHUAN_NATIVE_CORE_REVISION", "本地检测器")
+        completed = 0
+        progress_lock = threading.Lock()
         def run_site(site):
-            return probe_site(*site, Client(timeout=options.timeout), executable)
+            nonlocal completed
+            result = probe_site(*site, Client(timeout=options.timeout), executable, options.native_probe)
+            with progress_lock:
+                completed += 1
+                states = " ".join(f"{field}={result[field].status}" for field in FIELDS)
+                print(f"[{completed}/{len(sites)}] {site[0]}/{site[1]} {states}", flush=True)
+            return result
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=options.workers) as pool:
             futures = [pool.submit(run_site, site) for site in sites]
             rows = [future.result() for future in futures]
         checked_at = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
-    write_report(ROOT / "README.md", rows, checked_at, version, options.summary)
+    write_report(ROOT / "README.md", rows, checked_at, version, options.summary, sites=sites)
     print(f"已更新 {len(rows)} 项检测信息；订阅配置未修改。")
     return 0
 

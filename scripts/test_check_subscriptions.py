@@ -13,12 +13,12 @@ class SubscriptionTests(unittest.TestCase):
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name)
         (self.root / "subscriptions").mkdir()
-        self.groups = {group: (name, 1) for group, (name, _) in checks.GROUPS.items()}
+        self.groups = dict(checks.GROUPS)
         self.documents = {
             group: {"cache_time": 7200, "api_site": {
                 group: {"name": name, "api": f"https://{group}.example.test/vod"}
             }}
-            for group, (name, _) in self.groups.items()
+            for group, name in self.groups.items()
         }
 
     def validate(self):
@@ -49,10 +49,11 @@ class SubscriptionTests(unittest.TestCase):
                     self.validate()
                 path.unlink()
 
-    def test_inventory_count_change_is_rejected(self):
+    def test_inventory_additions_and_removals_update_counts(self):
         self.documents["film-tv"]["api_site"]["additional"] = {"name": "Extra", "api": "https://other.example.test/vod"}
-        with self.assertRaisesRegex(ValueError, "count mismatch"):
-            self.validate()
+        self.assertEqual(self.validate()["sources"], 5)
+        self.documents["animation"]["api_site"].clear()
+        self.assertEqual(self.validate()["groups"]["动漫"]["sources"], 0)
 
     def test_duplicate_stable_key_is_rejected(self):
         self.documents["unknown"]["api_site"] = {"film-tv": {"name": "Other", "api": "https://different.example.test/vod"}}
@@ -130,9 +131,16 @@ class SubscriptionTests(unittest.TestCase):
             with self.subTest(changes=changes), self.assertRaises(ValueError):
                 checks.source_identity(site | changes)
 
-    def test_builtin_jianpian_without_native_override_is_valid(self):
-        site = {"name": "Synthetic", "api": "https://catalog.example.test", "adapter": "jianpian"}
-        self.assertEqual(checks.source_identity(site), ("native", "jianpian"))
+    def test_builtins_cannot_be_added_to_subscriptions(self):
+        for adapter in checks.BUILTIN_ADAPTERS:
+            site = {"name": "Synthetic", "api": "https://catalog.example.test", "adapter": adapter}
+            with self.subTest(adapter=adapter), self.assertRaisesRegex(ValueError, "Built-in"):
+                checks.source_identity(site)
+
+    def test_document_capacity_is_still_bounded(self):
+        self.documents["film-tv"]["api_site"] = {str(i): {"name": "Sample", "api": f"https://site{i}.example/vod"} for i in range(257)}
+        with self.assertRaisesRegex(ValueError, "256"):
+            self.validate()
 
     def test_native_configuration_without_adapter_is_rejected(self):
         self.sample()["native"] = {"version": 1}
@@ -145,9 +153,9 @@ class SubscriptionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Duplicate source"):
             self.validate()
 
-    def test_explicit_adult_marker_stays_in_unknown(self):
+    def test_decorated_adult_marker_is_rejected(self):
         self.sample()["name"] = "Synthetic 🔞"
-        with self.assertRaisesRegex(ValueError, "unknown group"):
+        with self.assertRaisesRegex(ValueError, "Source name"):
             self.validate()
 
     def test_name_cleanup_preserves_words_numbers_and_adult_markers(self):
@@ -155,7 +163,8 @@ class SubscriptionTests(unittest.TestCase):
             "🎬爱奇艺": "爱奇艺",
             "影视 • 索尼[直连]": "影视 索尼 直连",
             "鸭鸭（丫丫）资源网": "鸭鸭 丫丫 资源网",
-            "🔞91精品": "成人 91精品",
+            "🔞91精品": "91精品",
+            "成人 91精品": "91精品",
             "66-360*": "66 360",
             "Clun📚在线·茅台 | 采集": "Clun 在线 茅台 采集",
             "1080资源库(切)": "1080资源库 切",
@@ -182,9 +191,9 @@ class SubscriptionTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "Source name"):
                     self.validate()
 
-    def test_plain_adult_marker_must_stay_in_unknown(self):
-        self.sample()["name"] = "成人 Synthetic"
-        with self.assertRaisesRegex(ValueError, "unknown group"):
+    def test_unknown_names_reject_added_adult_prefixes(self):
+        self.documents["unknown"]["api_site"]["unknown"]["name"] = "成人 Synthetic"
+        with self.assertRaisesRegex(ValueError, "Source name"):
             self.validate()
 
     def test_duplicate_display_names_are_reported_without_merging(self):
@@ -195,7 +204,9 @@ class SubscriptionTests(unittest.TestCase):
         self.assertEqual(len(result["duplicate_names"]["Same source"]), 4)
 
     def test_current_repository_inventory_passes(self):
-        self.assertEqual(checks.check()["sources"], 207)
+        result = checks.check()
+        actual = sum(len(checks.read_json(checks.ROOT / "subscriptions" / f"{group}.json")["api_site"]) for group in checks.GROUPS)
+        self.assertEqual(result["sources"], actual)
 
 
 if __name__ == "__main__":
