@@ -35,7 +35,7 @@ python -B scripts/test_check_subscriptions.py
 python -B -m unittest discover -s scripts -p 'test_*.py'
 ```
 
-校验器检查仅有四份订阅 JSON、外层结构与字段类型、各分类数量、稳定键和接口去重、显示名格式、公开 HTTP／HTTPS 地址、原生适配器身份及版本、默认启用状态与明确成人标记的分类，并报告同名来源。当前四份配置共 207 项通过这些离线检查；配置校验 23 项、健康检测 26 项，共 49 项测试通过。
+校验器检查仅有四份订阅 JSON、外层结构与字段类型、各分类数量、稳定键和接口去重、显示名格式、公开 HTTP／HTTPS 地址、原生适配器身份及版本、默认启用状态与明确成人标记的分类，并报告同名来源。当前四份配置共 207 项通过这些离线检查；配置校验 23 项、健康检测 26 项、解码工具准备 5 项，共 54 项测试通过。
 
 这些检查不请求站源图片、账号或媒体，也不等同于当前站点可用性、真实播放、完整原生配置行为或物理设备验收；来源访问条件仍由对应服务决定，不绕过 TLS、登录、付费、DRM 或访问拒绝。
 
@@ -43,7 +43,7 @@ python -B -m unittest discover -s scripts -p 'test_*.py'
 
 [检测工作流与网页手动运行入口](https://github.com/yingchuan-media/yingchuan-sources/actions/workflows/source-health.yml)。工作流进入默认分支后，计划每天 **06:17（香港时间，UTC+8）**运行；GitHub 定时任务可能排队延迟，公开仓库长期无活动时也可能停用计划。拥有仓库写入权限的维护者可打开该页面，点击 **Run workflow**，选择默认分支再运行。其他分支的手动运行只生成运行摘要和报告 artifact，不写回默认分支。
 
-脚本使用 Python 3.12+ 标准库；首帧检测和合成首帧回归另需 PATH 中的 FFmpeg，工作流在隔离的只读检测 job 中使用运行器 FFmpeg，记录其实际版本。测试只使用合成元数据和合成媒体，不访问站源。在线阶段每站只抽样目录第一页的第一条有效记录：
+脚本使用 Python 3.12+ 标准库；首帧检测和合成首帧回归另需 PATH 中的 FFmpeg，安装流程回归需要 Bash（Windows 使用 Git Bash）。工作流在隔离的只读检测 job 中使用运行器 FFmpeg，记录其实际版本。测试只使用合成元数据和合成媒体，不访问站源。在线阶段每站只抽样目录第一页的第一条有效记录：
 
 - **目录**：请求标准 JSON／XML 采集列表，校验媒体身份与非空列表；需要时补全同一 ID 的详情。保留接口中其他有语义的查询参数及转义路径。
 - **封面**：仅向抽样记录的封面地址发送 HEAD，核对状态及图片 Content-Type；不发送 GET、不读取图片正文、不验证图片解码。拒绝 HEAD 或返回封装类型时不能证明图片无效。
@@ -55,6 +55,8 @@ python -B -m unittest discover -s scripts -p 'test_*.py'
 
 默认最多 6 站并行，每请求 8 秒、每站网络阶段 50 秒及 16 次请求预算，首帧解码另限 10 秒；DNS 解析使用系统解析器，工作流另设 35 分钟总上限。无自动重试、线路轮换、挑战破解或降级 TLS；公网 DNS 结果固定到本次连接，重定向重新校验并拒绝私网地址及 HTTPS 降级。响应正文、媒体样本只保留在进程内存，不写入仓库或 artifact。检测失败只更新结果，不修改订阅、排序、名称或启停状态。任务执行错误不会覆盖上次报告。
 
+Ubuntu 24.04 x64 的解码工具准备由 `scripts/setup_ffmpeg.sh` 维护，整个步骤最多 5 分钟。已有 FFmpeg 时直接核验版本；缺失时用临时 APT 配置，仅从 Ubuntu 官方 HTTPS 归档及安全仓库安装签名软件包，保留系统信任根，不修改运行器全局软件源。索引更新最多 60 秒、安装最多 180 秒、版本检查最多 10 秒，超时终止另有 5–10 秒强制退出宽限；连接／读取超时 15 秒，下载不重试，日志明确显示准备阶段。配置依据 [APT 配置说明](https://manpages.ubuntu.com/manpages/noble/man5/apt.conf.5.html)与[软件源格式说明](https://manpages.ubuntu.com/manpages/noble/man5/sources.list.5.html)。
+
 检测 job 只有只读权限且不保留 Git 凭据，随后独立 job 用 `GITHUB_TOKEN` 的 `contents: write` 仅提交 README。分支保护若禁止机器人直接提交，或检测期间默认分支发生变化，写回会失败并保留运行摘要与 7 天 artifact，不强推、不覆盖人工修改。仓库或组织必须允许工作流所需的写入权限；不需要个人令牌或新增 Secrets。
 
 ```sh
@@ -64,7 +66,7 @@ python -B scripts/check_health.py --workers 4 --timeout 10
 
 `--initialize` 只生成全部未检测的初始表格，不访问网络；仅用于首次安装。README 自动区只包含来源名称、稳定键、时间、工具版本和检查结果，不展示搜索片名、封面地址、媒体地址或响应正文。首次部署显示“待首次运行”，只有在线检测才写入检测时间和结果。
 
-2026-11-11 在 Windows／Python 3.13.7 完成上述 49 项合成回归、本地 HTTP 请求与 FFmpeg 合成首帧验证，actionlint 1.7.12 工作流检查通过，四份订阅未改变。尚未执行真实站源在线检测或云端 Actions；当前表格保留初始状态。[GitHub 手动运行说明](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow)与[触发器说明](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows)供部署时核对。
+2026-11-11 在 Windows／Python 3.13.7 完成上述 54 项合成回归、本地 HTTP 请求、FFmpeg 合成首帧及安装流程成功／失败／超时分支验证，Bash 语法和 actionlint 1.7.12 检查通过，四份订阅未改变。[首次云端运行](https://github.com/yingchuan-media/yingchuan-sources/actions/runs/43041549880/job/130594401680)的旧版解码工具准备已等待超过 17 分钟，日志显示 Azure Ubuntu HTTP 镜像下载连续 `Ign`，需要安装 87 个包、下载 62.8 MB；站源检测尚未开始。当前补丁改用有界的官方 HTTPS 安装，云端实际耗时仍待新版本运行核验，表格保留初始状态。[GitHub 手动运行说明](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow)与[触发器说明](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows)供部署时核对。
 
 <!-- source-health:start -->
 

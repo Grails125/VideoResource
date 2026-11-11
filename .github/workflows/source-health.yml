@@ -24,12 +24,8 @@ jobs:
         with:
           python-version: '3.12'
       - name: Prepare media decoder
-        run: |
-          if ! command -v ffmpeg >/dev/null; then
-            sudo apt-get update
-            sudo apt-get install --no-install-recommends -y ffmpeg
-          fi
-          ffmpeg -version
+        timeout-minutes: 5
+        run: bash scripts/setup_ffmpeg.sh
       - name: Validate subscriptions and run synthetic tests
         run: |
           python -B scripts/check_subscriptions.py
