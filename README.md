@@ -1,76 +1,36 @@
-# 映川站源 · YingChuan Sources
+# 映川 · 站源订阅
 
-## 原生适配资料（任务243）
+映川（YingChuan）的四份站源订阅，供客户端按分类选择导入。仓库只保留下表四个 JSON 文件，不提供旧批次、合集、索引或归档订阅。
 
-映川 `0.0.163+242` 保留 B站、红果、影视、影视2、奈飞五个内置来源。其余11个原生适配器的名称、说明、入口、API、备用域、分类及线路资料由本仓库配置提供，客户端只保留适配方法、稳定来源身份和权限规则。当前新增资料发布在 `codex/tvbox-jianpian` 分支，不代表 `main` 已更新。
+| 分类 | 订阅地址 | 来源数 |
+| --- | --- | ---: |
+| 影视 | [subscriptions/film-tv.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/film-tv.json) | 135 |
+| 短剧 | [subscriptions/short-drama.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/short-drama.json) | 6 |
+| 动漫 | [subscriptions/animation.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/animation.json) | 4 |
+| 未知 | [subscriptions/unknown.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/unknown.json) | 62 |
 
-- [native.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/codex/tvbox-jianpian/native.json)：原10项可选原生配置，内容与本分支 `config.json` 一致。
-- [tencent.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/codex/tvbox-jianpian/tencent.json)：独立腾讯原生配置。
-- [integrated.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/codex/tvbox-jianpian/integrated.json)：原50项合集，保留原来源和稳定键，仅为其中10项可选原生配置补齐资料。
+当前共 **207 项来源，全部默认启用**。成人标记来源及内容范围待确认的来源放在未知分类。分类依据配置中已有的信息，不代表当前已逐站在线核实内容或播放能力。
 
-每项 `api` 是站点根，`native.version` 为 `1`。可选字段包括独立 `apiUrl` / `cdnUrl`、按角色组织的 `endpoints`、备用 `mirrors`、`allowedHosts` / `allowedSuffixes`、旧输入 `aliases`、分类 `categories`、`playbackLine`、发现入口 `transitSites` / `seedWords`、`generatedMirrorSuffix`、`description` / `warning`。封面引用来源由 `endpoints.coverReferer` 与 `coverRefererHosts` 配套限定。角色路径与站点根不可混用；资料缺失不会回退到客户端内置旧地址。
+## 使用
 
-配置导入仅新增，稳定键冲突会保留现有项，重新订阅不会暗中覆盖用户配置。旧记录补充或更新 `native` 资料时，请使用明确编辑或规则更新流程；编辑原生项时将对应的 `native` 对象放入“站源资料 JSON”，不要把整份订阅文档放进去。旧客户端未传 `native` 的编辑保留已有资料，禁用状态和权限不会因补资料自动改变。
+在映川「设置 → 站源管理 → 添加 → 配置订阅」选择分类，或填写对应地址；读取预览后确认导入。更新已有配置时检查差异并明确确认，个人停用选择、来源身份、权限与观看下载资料由客户端管理。
 
-`archive/source_repository/` 保存从客户端移出的94个历史文本文件，其中86个 Kazumi JSON。归档用于追溯，不是当前可安装的原生配置，也不恢复已退休的脚本执行器。配置迁移和文本解析检查不等于站源健康或实际媒体播放验收。
+四份订阅统一使用 `cache_time: 7200` 与 `api_site` 外层结构。普通采集接口使用 HTTP／HTTPS；原生来源通过客户端已支持的稳定适配器接入，可选配置使用 `native.version: 1`。仅使用客户端内置配置的影视2适配器可不提供 `native` 覆盖。
 
-映川在线源配置仓库，提供十个可选原生来源的订阅配置。
+## 维护与校验
 
-## 使用方法
+- 每个稳定来源键及接口身份只在一份订阅中维护。新增前检查键、适配器或规范化接口地址与独立详情配置，去重后追加到对应文件末尾；保留其他条目的内容和顺序。
+- URL 去重仅统一主机大小写、默认端口、末尾斜线和 `ac=list`，保留其他查询参数、转义路径、HTTP／HTTPS 及独立详情配置。
+- 所有发布来源默认启用；检查失败只记录结果，不自动禁用来源。不提交账号、Cookie、密钥、个人配置、媒体或站源图片。
+- 不新增其他 JSON 文件。来源数量变化时同步更新本文及校验脚本中的分类数量；旧内容需要追溯时查看 Git 历史。
 
-在应用「设置 → 站源管理 → 添加 → 配置订阅」选择「yingchuan-sources 源仓库」，或填写以下订阅地址，获取后检查预览再确认：
+在仓库根目录执行：
 
-```text
-https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/config.json
+```sh
+python -B scripts/check_subscriptions.py
+python -B scripts/test_check_subscriptions.py
 ```
 
-配置安装仍需客户端支持对应的原生适配器，不会自动解锁来源，也不支持通过填写任意网站地址自动接入。
+校验器检查仅有四份订阅 JSON、外层结构与字段类型、各分类数量、稳定键和接口去重、公开 HTTP／HTTPS 地址、原生适配器身份及版本、默认启用状态与明确成人标记的分类。当前四份配置共 207 项通过这些离线检查，维护脚本的 18 项测试通过。
 
-## 配置文件
-
-| 配置                                                                                                     | 内容                                     |
-| -------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| [config.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/config.json)                 | 默认订阅，包含十个可选原生来源           |
-| [plugin20261016.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/plugin20261016.json) | 2026-10-16新增配置 |
-
-配置中的 `cache_time` 为 `7200`；`api_site` 按来源稳定键组织，每个条目包含显示名称 `name`、站点地址 `api` 和客户端适配器标识 `adapter`。稳定键直接使用 `hanxiaoquan`、`sorani` 等名称。
-
-## 来源清单
-
-| 来源   | 稳定键 / 适配器标识 |
-| ------ | ------------------- |
-| 韩小圈 | `hanxiaoquan`     |
-| 鬼片   | `guipian`         |
-| 青空   | `sorani`          |
-
-配置收录不代表站点当前可播放，实际可用性取决于站点状态及客户端适配器。本仓库不存账号、Cookie、私钥或设备配置。
-
-## 分类可选订阅
-
-映川`0.0.149+228`起直接内置影视2，默认位于B站、红果、影视之后，无需导入或来源解锁。下方荐片配置及合集中的相同条目继续兼容旧客户端；新客户端保留原配置记录并使用内置入口，不增加重复来源。请勿将荐片H5网页首页作为普通JSON／XML采集接口；旧误配会提示使用内置影视2，不放宽XML解析校验。
-
-| 配置 | 用途 |
-| --- | --- |
-| [integrated.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/codex/tvbox-jianpian/integrated.json) | 50项合集：原生10＋影视2原生适配1＋JSON28＋XML11，一次预览确认共同安装 |
-| [jianpian.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/codex/tvbox-jianpian/jianpian.json) | 影视2原生适配配置，需要支持`jianpian`适配器的新客户端；旧默认配置不追加此项 |
-| [tvbox-json.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/codex/tvbox-jianpian/tvbox-json.json) | TVBox type1标准JSON采集接口 |
-| [tvbox-xml.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/codex/tvbox-jianpian/tvbox-xml.json) | TVBox type0标准XML采集接口 |
-| [tvbox-pending.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/codex/tvbox-jianpian/tvbox-pending.json) | 21项待验证配置，全部默认禁用；仅供手动选择，不作为快捷推荐 |
-
-映川`0.0.148+227`源码为影视2增加发现页封面目录、推荐／电影／电视剧／动漫／综艺分类及连续分页，保留关键词搜索；旧`0.0.147+226`仍仅支持搜索。已安装的`jianpian`配置无需修改或重新导入，能力以客户端实际版本为准。荐片H5独立短剧入口使用另一套ID与播放消费者，当前未接入，不混用普通影视详情；`jianpian://`、荐片账号及付费授权仍未实现。目录元数据成功不代表图片或媒体实播已验收。
-
-TVBox配置固定参考`hebijunge/tvbox-config`提交`7d5a8d531cd8be71c1299c054a4234b0302b4a1c`，按API规范化去重，保留名称和语义查询参数。上游adult.json明确归类的API／主机排除；名称存在疑问的条目另按待确认保守排除，不将名称当作已确认内容证据。分类文件按接口协议组织，不代表影视题材分类或全部来源内容性质已核实。
-
-JSON／XML配置只面向客户端支持的标准采集接口及标准直连媒体，不包含JAR、JS、spider、type4或需要额外扩展、请求头、播放前缀的配置。原103项配置保持不变；分类订阅与旧配置可能有相同接口，安装前查看预览。上游healthy等标签不代表本客户端已实播，目录响应也不等于媒体可播；实际仍受站点状态、权限和客户端协议支持限制。
-
-本轮最终主分类订阅保留28个JSON及11个XML接口（共39）：通过应用实际core parser的目录请求与转换检查，不表示媒体实播通过。此前初步结构检查的49项中，39项通过本轮实际消费者检查，10项未通过本轮保守检查，不能据此断定永久失效；它们与原11项待验证配置共同保存在`tvbox-pending.json`，共21项，逐项设置`disabled:true`，不作为快捷推荐。
-
-目录分类明确含成人标记的14个新增JSON接口已剔除，包括未列入上游adult清单但本次目录给出明确标记的接口；原103项配置不在本轮批量修改范围。`integrated.json`按稳定键合并原`config.json`的10项原生来源、影视2原生适配1项及主分类39项，共50项，无键冲突。已有单订阅安装采用替换语义，想让这些来源共存时一次选择合集、检查预览后确认；不依次安装分类订阅来冒充合集。旧`config.json`仍保持原样，影视2需要支持`jianpian`的新客户端。
-
-这些分类文件按实际JSON／XML协议组织；影视、动漫、短剧等站内分类以各API实际返回为准，由客户端动态展示，不从来源名称或文件名猜测。目录检查只请求`ac=list,pg=1`，未请求图片、播放清单或媒体，未验证用户授权与实际播放。8秒socket超时不等于严格请求总时限，本轮最长完整请求约15.5秒。
-
-任务244逐源审计见[audits/plugin20261016-status.json](audits/plugin20261016-status.json)：原配置93项逐项保留，首次18项取得有界公开样本解码确认；明确成人引用或实际成人分类的25项未采媒体，其余失败与未确认按阶段记录，不据此删除来源。播放只验证少量分片，下载只验证首段处理链，不代表全片、完整离线或设备界面验收。封面仅HEAD元数据，图片正文读取为0。
-
-初轮、16项诊断补采、分集编号夹具修正后补采分别记录，不把重复请求或后续单项成功累加成初轮通过数。黄果视频不在原93项中，单独记录：本轮自动代理路径首页返回Cloudflare访问拒绝页面，未获取媒体；没有改用户代理或绕过访问限制。审计文件仅保留来源标识、状态、时间、计数和摘要，不含影片名称、媒体地址或密钥；状态具有时效性，不构成上游长期可用承诺。
-
-初轮封面HEAD限3秒，40次超时、1次EOF，不能据此认定封面失效。另以12秒、最多3来源并发补测41项：39项实际发出HEAD，36项200、1项403、1项404、1项EOF；2项目录重取失败未取得封面。仅响应元数据，不读取图片正文，200也不代表已验证图片解码；405若出现仅表示不支持HEAD。本轮没有405，补测不请求媒体正文，独立记录在`coverFollowUp`。
+这些检查不请求站源图片、账号或媒体，也不等同于当前站点可用性、真实播放、完整原生配置行为或物理设备验收；来源访问条件仍由对应服务决定，不绕过 TLS、登录、付费、DRM 或访问拒绝。
