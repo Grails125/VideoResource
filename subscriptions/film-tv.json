@@ -829,6 +829,15 @@
     "yszzq-112": {
       "name": "1717云资源网采集api",
       "api": "http://zy.itono.cn/inc/api.php"
+    },
+    "tvbox-dfaa8e71bccb3d910803980d": {
+      "name": "43 HG",
+      "api": "https://hong.hgyx.vip/api.php/provide/vod"
+    },
+    "lovedan.net": {
+      "name": "艾旦影视",
+      "api": "https://lovedan.net/api.php/provide/vod",
+      "detail": "https://lovedan.net"
     }
   }
 }

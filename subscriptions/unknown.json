@@ -94,15 +94,6 @@
       "api": "https://www.aiduanju.cc/",
       "detail": ""
     },
-    "tvbox-dfaa8e71bccb3d910803980d": {
-      "name": "43 HG",
-      "api": "https://hong.hgyx.vip/api.php/provide/vod"
-    },
-    "lovedan.net": {
-      "name": "艾旦影视",
-      "api": "https://lovedan.net/api.php/provide/vod",
-      "detail": "https://lovedan.net"
-    },
     "dadiziy": {
       "name": "大地资源",
       "api": "https://dadiapi.com/api.php/provide/vod",
@@ -233,16 +224,6 @@
       "api": "https://api.souavzyw.net/api.php/provide/vod",
       "detail": "https://souavzyw.com"
     },
-    "api_50": {
-      "name": "黑木耳",
-      "api": "https://json.heimuer.xyz/api.php/provide/vod",
-      "detail": "https://json.heimuer.xyz"
-    },
-    "api_51": {
-      "name": "黑木耳点播",
-      "api": "https://json02.heimuer.xyz/api.php/provide/vod",
-      "detail": "https://json02.heimuer.xyz"
-    },
     "api_57": {
       "name": "奥斯卡资源",
       "api": "https://aosikazy.com/api.php/provide/vod",
@@ -262,16 +243,6 @@
       "name": "美少女资源",
       "api": "https://www.msnii.com/api/json.php",
       "detail": "https://www.msnii.com"
-    },
-    "api_67": {
-      "name": "色南国",
-      "api": "https://api.sexnguon.com/api.php/provide/vod",
-      "detail": "https://api.sexnguon.com"
-    },
-    "api_68": {
-      "name": "色猫资源",
-      "api": "https://api.maozyapi.com/inc/apijson_vod.php",
-      "detail": "https://api.maozyapi.com"
     },
     "api_70": {
       "name": "香奶儿资源",
@@ -298,18 +269,9 @@
       "api": "https://www.xxibaozyw.com/api.php/provide/vod",
       "detail": ""
     },
-    "tvbox-60a8a8d127afcd27b2ae81d8": {
-      "name": "美少女资源",
-      "api": "https://www.msnii.com/api/json.php"
-    },
     "tvbox-d5597ba670618a92b45d158f": {
       "name": "鸡坤",
       "api": "https://jkunzyapi.com/api.php/provide/vod/at/json",
-      "disabled": false
-    },
-    "tvbox-3a207c730034f6b1dc003c00": {
-      "name": "jkun 直连",
-      "api": "https://jkunzyapi.com/api.php/provide/vod?ac=list",
       "disabled": false
     },
     "heitao": {
@@ -360,10 +322,6 @@
       "name": "星夜资源站",
       "api": "https://xyezy.com/api.php/provide/vod/?ac=list"
     },
-    "yszzq-253": {
-      "name": "看看资源",
-      "api": "https://f-1.cc/api.php/provide/vod/?ac=list"
-    },
     "yszzq-233": {
       "name": "黑料资源网",
       "api": "https://www.heiliaozyapi.com/api.php/provide/vod/"
@@ -371,30 +329,6 @@
     "yszzq-185": {
       "name": "奶香香资源站",
       "api": "https://Naixxzy.com/api.php/provide/vod/"
-    },
-    "yszzq-155": {
-      "name": "奥斯卡资源",
-      "api": "https://aosikazy.com/api.php/provide/vod/?ac=list"
-    },
-    "yszzq-169": {
-      "name": "玉兔资源",
-      "api": "https://apiyutu.com/api.php/provide/vod/?ac=list"
-    },
-    "yszzq-147": {
-      "name": "大地资源",
-      "api": "https://dadiapi.com/api.php"
-    },
-    "yszzq-162": {
-      "name": "全站资源网",
-      "api": "https://caiji.yueai55.cc:2277/yuelove.php/provide/vod/?ac=list"
-    },
-    "yszzq-165": {
-      "name": "久久热资源网",
-      "api": "https://99reapi.com/api.php/provide/vod/at/json/"
-    },
-    "yszzq-202": {
-      "name": "极品资源网",
-      "api": "https://jipinzyapi.com/api.php/provide/vod/?ac=list"
     }
   }
 }
