@@ -48,6 +48,28 @@ jobs:
         with:
           path: ~/go/pkg/mod
           key: native-health-public-modules-linux-go1.24.1-${{ env.YINGCHUAN_NATIVE_CORE_REVISION }}
+      - name: Require read-only native client access
+        if: steps.inventory.outputs.native == 'true'
+        env:
+          CLIENT_REPOSITORY: ${{ secrets.NATIVE_CLIENT_REPOSITORY }}
+          CLIENT_READ_TOKEN: ${{ secrets.NATIVE_CLIENT_READ_TOKEN }}
+        run: |
+          if [[ -z "$CLIENT_REPOSITORY" || -z "$CLIENT_READ_TOKEN" ]]; then
+            echo '::error::Native checks require NATIVE_CLIENT_REPOSITORY and the read-only NATIVE_CLIENT_READ_TOKEN.'
+            exit 1
+          fi
+      - name: Check out pinned native client with read-only access
+        if: steps.inventory.outputs.native == 'true'
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          repository: ${{ secrets.NATIVE_CLIENT_REPOSITORY }}
+          ref: ${{ env.YINGCHUAN_NATIVE_CORE_REVISION }}
+          token: ${{ secrets.NATIVE_CLIENT_READ_TOKEN }}
+          persist-credentials: false
+          fetch-depth: 1
+          sparse-checkout: native
+          path: .health-client
+          show-progress: false
       - name: Build and verify native protocol runner
         if: steps.inventory.outputs.native == 'true'
         timeout-minutes: 10
@@ -57,12 +79,8 @@ jobs:
           YINGCHUAN_HEALTH_SUBSCRIPTIONS: ${{ github.workspace }}/subscriptions
         run: |
           client="$RUNNER_TEMP/yingchuan-health-client"
-          git init "$client"
-          git -C "$client" remote add origin https://github.com/yingchuan-media/yingchuan.git
-          git -C "$client" fetch --depth=1 --filter=blob:none origin "$YINGCHUAN_NATIVE_CORE_REVISION"
-          git -C "$client" sparse-checkout init --cone
-          git -C "$client" sparse-checkout set native
-          git -C "$client" checkout --detach FETCH_HEAD
+          test ! -e "$client"
+          mv -- "$GITHUB_WORKSPACE/.health-client" "$client"
           test "$(git -C "$client" rev-parse HEAD)" = "$YINGCHUAN_NATIVE_CORE_REVISION"
           cp scripts/native_probe_test.go "$client/native/core/repository_health_ci_test.go"
           native_runner="$RUNNER_TEMP/yingchuan-native-health"

@@ -2,7 +2,7 @@
 
 # 映川 · 站源订阅
 
-本仓库维护映川可选站源的地址、协议配置、分类、镜像和固定线路。客户端源码见 [yingchuan](https://github.com/yingchuan-media/yingchuan)，安装包与使用说明见 [yingchuan-releases](https://github.com/yingchuan-media/yingchuan-releases)。内置 B站、红果、影视、影视2、奈飞不在此重复发布。
+本仓库维护映川可选站源的地址、协议配置、分类、镜像和固定线路。安装包与使用说明见 [yingchuan-releases](https://github.com/yingchuan-media/yingchuan-releases)。内置 B站、红果、影视、影视2、奈飞不在此重复发布。
 
 ## 订阅与导入
 
@@ -58,6 +58,8 @@ python -B scripts/test_setup_ffmpeg.py
 | 延迟 | 当前运行节点的单次请求耗时，包含 DNS、TLS 与读取；不是用户设备延迟或吞吐量 |
 
 原生来源通过固定客户端核心调用实际协议，逐站使用空目录和独立进程。FFmpeg 下载与二进制身份均固定校验。检测 job 只读，文档更新在独立 job 执行；报告仅显示名称、稳定键、时间、工具版本和结果，不保存片名、图片或媒体地址及响应正文。
+
+维护者需在 Actions Secrets 配置 `NATIVE_CLIENT_REPOSITORY` 和 `NATIVE_CLIENT_READ_TOKEN`，后者仅需固定客户端仓库的 Contents 只读权限。工作流只检出指定提交的 `native/`，随后移入 runner 临时目录，凭据不持久化，源码不进入公开报告和缓存。缺少凭据时会在检出前明确停止。
 
 待检测、失败和未验证都不等于来源被禁用；离线校验、单条样本可播和完整来源／设备验收分别报告。下表由脚本原子生成，手动维护时保留自动区标记与原始结果。
 
