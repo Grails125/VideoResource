@@ -11,4 +11,5 @@
 - 不查看、下载或处理站源图片。验证使用合成资料，离线配置检查与真实文本元数据、播放或设备验收分别报告。不提交账号、Cookie、密钥、个人配置或媒体，不绕过 TLS、登录、付费、DRM 或访问拒绝。
 - 在线健康检测统一由 `scripts/check_health.py` 和 `.github/workflows/source-health.yml` 维护，逐次从四份 JSON 生成检测清单并原子更新 README 的统计和检测标记区，来源与数量不写死。可选原生来源由 `scripts/native_probe_test.go` 复用固定客户端核心执行真实协议验证，不统一跳过；缺少程序或不完整进程结果须失败并保留原报告。封面只检查 HEAD 响应头，不读取图片正文；合成回归不访问真实站源。播放仅报告有界样本首帧结果，需要本人授权或不支持媒体准确说明，不以 HTTP 200 推断可播，不改变来源权限。CI 解码工具由 `scripts/setup_ffmpeg.py` 固定公开包、二进制摘要及实际构建身份，仅缓存原始公开依赖并逐次验证，保留许可证；不使用 APT 或修改系统 DNS。网络 job 只读，README 写回在独立 job 执行；不新增报告 JSON、账号或媒体存档。
 - 维护 README 当前使用说明。各分类数量、检测行及名单增减根据 JSON 自动生成，不维护固定数量断言；每份文档仍限制 256 项，并逐项校验、跨分类去重和检查权限／协议身份。执行 `python -B scripts/check_subscriptions.py`、Python 合成回归及固定客户端解析／原生合成闭环验证。
+- 原生检测通过仅有客户端仓库 Contents 只读权限的专用令牌稀疏检出固定提交，仓库身份和令牌分别从 `NATIVE_CLIENT_REPOSITORY`、`NATIVE_CLIENT_READ_TOKEN` Secrets 获取，缺失时明确失败。保持 `persist-credentials=false`，客户端源码移至 runner 临时目录，不进入公开仓库、依赖缓存或报告 artifact；公开说明不贴客户端源码地址。不用站源仓库的默认 token 冒充跨私有仓库授权。
 - 未经明确要求，不创建备份分支、不推送、不发布或触发 Actions。只提交本次授权修改，不混入其他仓库的应用源码或资产；不改写历史。
