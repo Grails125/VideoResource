@@ -10,12 +10,12 @@
 
 | 分类 | 订阅地址 | 来源数 |
 | --- | --- | ---: |
-| 影视 | [subscriptions/film-tv.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/film-tv.json) | 133 |
+| 影视 | [subscriptions/film-tv.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/film-tv.json) | 135 |
 | 短剧 | [subscriptions/short-drama.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/short-drama.json) | 6 |
 | 动漫 | [subscriptions/animation.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/animation.json) | 4 |
-| 未知 | [subscriptions/unknown.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/unknown.json) | 62 |
+| 未知 | [subscriptions/unknown.json](https://raw.githubusercontent.com/yingchuan-media/yingchuan-sources/main/subscriptions/unknown.json) | 47 |
 
-当前共 **205 项订阅来源，全部默认启用**。数量和检测清单从四份 JSON 逐次生成，随来源新增、移除及名称变更更新。
+当前共 **192 项订阅来源，全部默认启用**。数量和检测清单从四份 JSON 逐次生成，随来源新增、移除及名称变更更新。
 
 <!-- source-inventory:end -->
 
@@ -25,7 +25,7 @@
 
 ## 维护规则
 
-- 固定使用影视、短剧、动漫、未知四类，不新增合集、索引或归档订阅。内容范围待确认的来源保留在未知类。
+- 固定使用影视、短剧、动漫、未知四类，仓库中只保留上表四份 JSON，不新增合集、索引或归档 JSON（包括 `404.json`）。移除的来源从 Git 历史追溯；内容范围待确认的来源保留在未知类。
 - 新增项按稳定键、适配器及规范化接口地址与独立详情配置去重，追加到对应文件末尾，保留既有身份和顺序；不按名称合并接口。
 - URL 只统一主机大小写、默认端口、末尾斜线和 `ac=list`，保留其他查询、转义路径、协议和独立详情配置。
 - 显示名保留站名、真实数字及英文大小写，移除装饰、测速延迟与批次标签，不增加“成人 ”前缀；同名不同接口只报告，不自动改名。
